@@ -10,6 +10,7 @@ Device priority: MPS (Apple Silicon) > CPU
 import os
 import re
 import torch
+from datetime import datetime, timezone
 from pathlib import Path
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from peft import PeftModel
@@ -17,6 +18,7 @@ from peft import PeftModel
 from knowledge_base import (
     rag_retrieve,
     synthea_patient,
+    synthea_patient_from_spec,
     generate_doctor_questions,
 )
 
@@ -337,10 +339,23 @@ class PatientSession:
         self.symptom_log: dict = {}
         self.q_idx = 0
         self.asked: list[str] = []
+        self._diagnosis_result: dict | None = None
+        self._medications: list[str] = []
+        self._started_at: str = datetime.now(timezone.utc).isoformat()
 
     @classmethod
     def new(cls) -> "PatientSession":
         return cls(synthea_patient())
+
+    @classmethod
+    def from_spec(
+        cls,
+        disease: str,
+        symptoms: list[str],
+        vitals_ranges: dict,
+    ) -> "PatientSession":
+        """Create a session from a doctor-supplied disease + symptom + vitals spec."""
+        return cls(synthea_patient_from_spec(disease, symptoms, vitals_ranges))
 
     # ── Public API ────────────────────────────────────────────────────────
 
@@ -366,7 +381,7 @@ class PatientSession:
         return resp
 
     def diagnose(self, submission: str) -> dict:
-        """Evaluate the doctor's diagnosis and return a reveal dict."""
+        """Evaluate the doctor's diagnosis, store result, and return the reveal."""
         corr = self.patient["disease"].lower()
         sub_words = set(submission.lower().split())
         cor_words = set(corr.split())
@@ -378,11 +393,91 @@ class PatientSession:
         else:
             result = "INCORRECT"
 
+        self._diagnosis_result = {
+            "result":      result,
+            "submission":  submission,
+            "actual":      self.patient["disease"],
+            "turns_taken": len(self.asked),
+            "reveal":      self.engine.reveal_full(),
+        }
+        return self._diagnosis_result
+
+    def submit_medication(self, medications: list[str]) -> dict:
+        """
+        Record prescribed medications (pass an empty list to skip).
+        Returns a summary ready to display before the full report is fetched.
+        """
+        self._medications = [m.strip() for m in medications if m.strip()]
+        kb_treatments = self.patient.get("treatments", [])
         return {
-            "result":        result,
-            "submission":    submission,
-            "turns_taken":   len(self.asked),
-            "reveal":        self.engine.reveal_full(),
+            "prescribed":   self._medications,
+            "skipped":      len(self._medications) == 0,
+            "kb_treatments": kb_treatments[:6],
+        }
+
+    def generate_report(self) -> dict:
+        """
+        Build the complete end-to-end consultation report.
+        Includes patient demographics, vitals, full transcript, symptom
+        coverage, diagnosis result, and prescribed medications.
+        """
+        p = self.patient
+        reveal = self.engine.reveal_full()
+
+        # Build readable transcript from history (skip seed turns and system msg)
+        transcript = []
+        history_turns = self.history[1:]  # drop system message
+        i = 0
+        while i < len(history_turns) - 1:
+            user_msg = history_turns[i]
+            asst_msg = history_turns[i + 1]
+            if user_msg["role"] == "user" and asst_msg["role"] == "assistant":
+                doctor_text = user_msg["content"]
+                if doctor_text.startswith("Doctor: "):
+                    doctor_text = doctor_text[8:]
+                transcript.append({
+                    "turn":    len(transcript) + 1,
+                    "doctor":  doctor_text,
+                    "patient": asst_msg["content"],
+                })
+            i += 2
+
+        diagnosis = self._diagnosis_result or {}
+        kb_treatments = p.get("treatments", [])
+
+        return {
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "session_started_at": self._started_at,
+            "patient": {
+                "name":    p["name"],
+                "age":     p["age"],
+                "gender":  p["gender"],
+                "mrn":     p["mrn"],
+                "dob":     p["dob"],
+                "onset":   p["onset"],
+                "history": p["history"],
+            },
+            "vitals": p["vitals"],
+            "consultation": {
+                "transcript":  transcript,
+                "turns_taken": len(transcript),
+            },
+            "symptoms": {
+                "assigned":     [s.strip() for s in p["symptoms"].split(",")],
+                "canonical":    reveal["canonical"],
+                "revealed":     reveal["revealed"],
+                "coverage_pct": round(self.engine.coverage() * 100, 1),
+            },
+            "diagnosis": {
+                "submitted": diagnosis.get("submission", ""),
+                "actual":    p["disease"],
+                "result":    diagnosis.get("result", "NOT_SUBMITTED"),
+            },
+            "medications": {
+                "prescribed":    self._medications,
+                "skipped":       len(self._medications) == 0,
+                "kb_treatments": kb_treatments[:6],
+            },
         }
 
     def vitals(self) -> dict:

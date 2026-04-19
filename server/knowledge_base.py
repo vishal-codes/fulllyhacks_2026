@@ -126,6 +126,12 @@ _NORMAL_VITALS = {
     "temp": (36.4, 37.2), "spo2": (97, 100), "rr": (14, 18), "pain": (0, 2),
 }
 
+_VITALS_UNITS = {
+    "bp_sys": "mmHg", "bp_dia": "mmHg",
+    "hr": "bpm", "temp": "°C",
+    "spo2": "%", "rr": "breaths/min", "pain": "/10",
+}
+
 
 def _vitals_profile(disease: str) -> dict:
     dl = disease.lower()
@@ -140,6 +146,27 @@ def _vital(disease: str, key: str):
     if key == "temp":
         return round(random.uniform(lo, hi), 1)
     return random.randint(int(lo), int(hi))
+
+
+def _vital_from_range(key: str, range_entry: dict):
+    """Generate a single vital value from a {min, max} dict."""
+    lo, hi = range_entry["min"], range_entry["max"]
+    if key == "temp":
+        return round(random.uniform(float(lo), float(hi)), 1)
+    return random.randint(int(lo), int(hi))
+
+
+def disease_vitals_ranges(disease: str) -> dict:
+    """
+    Return the vitals ranges for a disease as a dict of
+    {key: {min, max, unit}} — suitable for display and editing in the UI.
+    Normal-vitals defaults fill in any keys not overridden by the disease profile.
+    """
+    merged = {**_NORMAL_VITALS, **_vitals_profile(disease)}
+    return {
+        key: {"min": lo, "max": hi, "unit": _VITALS_UNITS.get(key, "")}
+        for key, (lo, hi) in merged.items()
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -218,6 +245,80 @@ def synthea_patient() -> dict:
     }
 
 
+def synthea_patient_from_spec(
+    disease: str,
+    symptoms: list[str],
+    vitals_ranges: dict,
+) -> dict:
+    """
+    Create a synthetic patient for a doctor-specified disease, symptom list,
+    and vitals ranges.
+
+    vitals_ranges format (all keys optional; missing keys fall back to
+    disease defaults then normal defaults):
+        {
+          "bp_sys":  {"min": 130, "max": 160},
+          "bp_dia":  {"min": 80,  "max": 100},
+          "hr":      {"min": 90,  "max": 120},
+          "temp":    {"min": 38.5,"max": 40.0},
+          "spo2":    {"min": 86,  "max": 94},
+          "rr":      {"min": 22,  "max": 32},
+          "pain":    {"min": 4,   "max": 8},
+        }
+    """
+    # Resolve canonical symptoms from KB; fall back to provided list
+    canonical = list(SYMPTOM_KB.get(disease, symptoms or ["general discomfort"]))
+
+    age = random.randint(18, 78)
+    gender = random.choice(["Male", "Female"])
+    first = FAKE.first_name_male() if gender == "Male" else FAKE.first_name_female()
+    last = FAKE.last_name()
+    name = f"{first} {last}"
+    dob = FAKE.date_of_birth(minimum_age=age, maximum_age=age).strftime("%B %d, %Y")
+    mrn = FAKE.numerify("MRN-#######")
+
+    onset_n = random.choice([1, 2, 3, 5, 6, 10, 12, 24])
+    onset = random.choice(_GENERIC_ONSETS).format(n=onset_n)
+    history = ", ".join(random.sample(_GENERIC_HISTORY, 2))
+
+    # Merge: provided ranges override disease defaults override normal defaults
+    base_ranges = disease_vitals_ranges(disease)  # already merged with normal
+    merged_ranges = {
+        key: vitals_ranges.get(key, base_ranges[key])
+        for key in base_ranges
+    }
+
+    def _v(key: str):
+        return _vital_from_range(key, merged_ranges[key])
+
+    return {
+        "name":               name,
+        "first":              first,
+        "last":               last,
+        "dob":                dob,
+        "mrn":                mrn,
+        "age":                age,
+        "gender":             gender,
+        "disease":            disease,
+        "symptoms":           ", ".join(symptoms) if symptoms else ", ".join(
+            random.sample(canonical, min(4, len(canonical)))
+        ),
+        "canonical_symptoms": canonical,
+        "treatments":         TREATMENT_KB.get(disease, []),
+        "onset":              onset,
+        "history":            history,
+        "vitals_ranges":      merged_ranges,   # kept for report/reference
+        "vitals": {
+            "BP":   f"{_v('bp_sys')}/{_v('bp_dia')} mmHg",
+            "HR":   f"{_v('hr')} bpm",
+            "Temp": f"{_v('temp')}C",
+            "SpO2": f"{_v('spo2')}%",
+            "RR":   f"{_v('rr')} breaths/min",
+            "Pain": f"{_v('pain')}/10",
+        },
+    }
+
+
 # ---------------------------------------------------------------------------
 # Dynamic doctor question generation
 # ---------------------------------------------------------------------------
@@ -284,6 +385,41 @@ _CLOSING_QS = [
     "Are you taking any regular medications?",
     "Does anyone in your family have a similar condition?",
 ]
+
+
+# ---------------------------------------------------------------------------
+# Disease lookup helpers (used by frontend disease-selector routes)
+# ---------------------------------------------------------------------------
+
+
+def list_diseases() -> list[str]:
+    """Return all disease names in the KB, sorted alphabetically."""
+    return sorted(SYMPTOM_KB.keys())
+
+
+def disease_info(name: str) -> dict | None:
+    """
+    Return symptoms, treatments, and a sample vitals reading for a disease.
+    Matching is case-insensitive; returns None if not found.
+    """
+    # Exact match first
+    if name in SYMPTOM_KB:
+        matched = name
+    else:
+        nl = name.lower()
+        matched = next(
+            (k for k in SYMPTOM_KB if k.lower() == nl),
+            next((k for k in SYMPTOM_KB if nl in k.lower()), None),
+        )
+    if matched is None:
+        return None
+
+    return {
+        "disease":       matched,
+        "symptoms":      SYMPTOM_KB[matched],
+        "treatments":    TREATMENT_KB.get(matched, []),
+        "vitals_ranges": disease_vitals_ranges(matched),
+    }
 
 
 def generate_doctor_questions(patient: dict, n_symptom_qs: int = 3) -> list[str]:
