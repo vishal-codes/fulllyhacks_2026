@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { fetchDiseaseList, fetchDiseaseConfig, createSession } from "@/lib/api";
+import { fetchDiseaseList, fetchDiseaseConfig } from "@/lib/api";
 import { validateDisease } from "@/lib/validators";
 import { ScenarioConfig } from "@/types/scenario";
 
@@ -29,7 +29,6 @@ function blankConfig(): ScenarioConfig {
 
 export default function DiseaseSelector({
   selectedDisease,
-  editorConfig,
   onSelectDisease,
   onConfigChange,
 }: Props) {
@@ -40,7 +39,6 @@ export default function DiseaseSelector({
   const [listError, setListError] = useState<string | null>(null);
 
   const [loadingConfig, setLoadingConfig] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isCustom, setIsCustom] = useState(false);
 
@@ -75,7 +73,7 @@ export default function DiseaseSelector({
     setSubmitError(null);
   }
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const validationError = validateDisease(selectedDisease);
     if (validationError) {
@@ -83,18 +81,7 @@ export default function DiseaseSelector({
       return;
     }
     setSubmitError(null);
-    setSubmitting(true);
-    try {
-      // Clear previous conversation history before starting a new session
-      try { sessionStorage.removeItem("chat_history"); } catch {}
-      const session = await createSession(editorConfig, selectedDisease);
-      router.push(
-        `/conversation?disease=${encodeURIComponent(selectedDisease)}${session.session_id ? `&session_id=${encodeURIComponent(session.session_id)}` : ""}`
-      );
-    } catch (err) {
-      setSubmitError(err instanceof Error ? err.message : "Failed to start session");
-      setSubmitting(false);
-    }
+    router.push(`/conversation?disease=${encodeURIComponent(selectedDisease)}`);
   }
 
   return (
@@ -209,17 +196,17 @@ export default function DiseaseSelector({
       {/* Submit */}
       <button
         type="submit"
-        disabled={loadingConfig || submitting}
+        disabled={loadingConfig}
         className="w-full py-3 rounded-lg font-semibold text-sm transition-all duration-150"
         style={{
           background: "linear-gradient(135deg, #0891b2, #0e7490)",
           color: "#e0f4f8",
           boxShadow: "0 4px 20px rgba(8,145,178,0.35)",
-          opacity: loadingConfig || submitting ? 0.6 : 1,
-          cursor: loadingConfig || submitting ? "not-allowed" : "pointer",
+          opacity: loadingConfig ? 0.6 : 1,
+          cursor: loadingConfig ? "not-allowed" : "pointer",
         }}
         onMouseEnter={(e) => {
-          if (!loadingConfig && !submitting) {
+          if (!loadingConfig) {
             e.currentTarget.style.background = "linear-gradient(135deg, #22d3ee, #0891b2)";
             e.currentTarget.style.boxShadow = "0 4px 28px rgba(34,211,238,0.45)";
           }
@@ -229,7 +216,7 @@ export default function DiseaseSelector({
           e.currentTarget.style.boxShadow = "0 4px 20px rgba(8,145,178,0.35)";
         }}
       >
-        {submitting ? "Starting…" : "🌊 Start Scenario"}
+        🌊 Start Scenario
       </button>
     </form>
   );
