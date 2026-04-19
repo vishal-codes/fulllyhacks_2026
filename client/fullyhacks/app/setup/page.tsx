@@ -1,20 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import DiseaseSelector from "@/components/DiseaseSelector";
 import ScenarioEditor from "@/components/ScenarioEditor";
 import { ScenarioConfig } from "@/types/scenario";
-
-const BUBBLES: [number, number, number, number][] = [
-  [14, 8, 0, 9],
-  [22, 18, 2, 13],
-  [10, 30, 5, 8],
-  [18, 45, 1, 11],
-  [26, 58, 3, 15],
-  [12, 70, 6, 10],
-  [20, 82, 0.5, 12],
-  [8, 92, 4, 7],
-];
 
 export default function SetupPage() {
   const [selectedDisease, setSelectedDisease] = useState<string>("");
@@ -35,52 +26,95 @@ export default function SetupPage() {
 
   return (
     <main
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 py-16 overflow-hidden"
-      style={{
-        background:
-          "radial-gradient(ellipse at 50% 0%, #0d3b6e 0%, #0e2a4a 40%, #0a1628 100%)",
-      }}
+      className="relative w-full min-h-screen overflow-hidden flex flex-col"
+      style={{ background: "#09090B", fontFamily: "'Gochi Hand', cursive" }}
     >
-      {BUBBLES.map(([size, left, delay, duration], i) => (
-        <span
-          key={i}
-          className="bubble"
+      {/* ── Background image ── */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/chat/chat-bg.png"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+        />
+        <div
+          className="absolute inset-0"
           style={{
-            width: size,
-            height: size,
-            left: `${left}%`,
-            animationDelay: `${delay}s`,
-            animationDuration: `${duration}s`,
+            background:
+              "linear-gradient(90deg, rgba(9,9,11,0.55) 0%, rgba(9,9,11,0.35) 60%, rgba(250,250,250,0.15) 100%)",
           }}
         />
-      ))}
+      </div>
 
-      <div
-        className="pointer-events-none fixed bottom-0 left-0 right-0 h-32 z-0"
+      {/* ── Nav bar ── */}
+      <nav
+        className="relative z-50 flex items-center justify-between px-6 py-3"
         style={{
-          background: "linear-gradient(to top, rgba(8,145,178,0.08), transparent)",
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          background: "rgba(250,250,250,0.05)",
+          borderBottom: "1px solid rgba(250,250,250,0.1)",
         }}
-      />
+      >
+        <Link
+          href="/"
+          className="text-sm font-medium transition-opacity hover:opacity-70"
+          style={{ color: "#FAFAFA", fontFamily: "'Gochi Hand', cursive" }}
+        >
+          ← Home
+        </Link>
+        <span
+          className="text-sm"
+          style={{ color: "rgba(250,250,250,0.5)", fontFamily: "'Gochi Hand', cursive" }}
+        >
+          Teacher Portal
+        </span>
+      </nav>
 
-      <div className="relative z-10 flex flex-col items-center w-full max-w-5xl">
+      {/* ── Content ── */}
+      <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-6 py-12">
+
+        {/* Header */}
         <div className="mb-10 text-center">
-          <div className="text-5xl mb-4 select-none">🐚</div>
-          <h1 className="text-4xl font-bold mb-3" style={{ color: "#22d3ee" }}>
+          <h1
+            className="text-5xl font-bold mb-3"
+            style={{
+              color: "#FAFAFA",
+              fontFamily: "'Gochi Hand', cursive",
+              textShadow: "0px 4px 20px rgba(0,60,117,0.6)",
+            }}
+          >
             Teacher Portal
           </h1>
-          <p className="text-base max-w-sm" style={{ color: "#7dd3e8" }}>
+          <p
+            className="text-xl max-w-sm mx-auto"
+            style={{ color: "rgba(250,250,250,0.6)", fontFamily: "'Gochi Hand', cursive" }}
+          >
             Select a disease scenario to begin a patient interaction session.
           </p>
         </div>
 
+        {/* Panels row */}
         <div className="w-full flex items-start justify-center gap-5 transition-all duration-300">
+
+          {/* Disease selector panel */}
           <div
-            className="ocean-card rounded-2xl p-8 flex-shrink-0 transition-all duration-300"
-            style={{ width: panelOpen ? "380px" : "448px" }}
+            className="flex-shrink-0 flex flex-col transition-all duration-300"
+            style={{
+              width: panelOpen ? "380px" : "448px",
+              borderRadius: "24px",
+              padding: "32px",
+              border: "5px solid rgba(255,255,255,1)",
+              boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
+              background: "rgba(9,9,11,0.55)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+            }}
           >
             <h2
-              className="text-lg font-semibold mb-6"
-              style={{ color: "#bae6fd" }}
+              className="text-2xl font-semibold mb-6"
+              style={{ color: "#FAFAFA", fontFamily: "'Gochi Hand', cursive" }}
             >
               Choose a scenario
             </h2>
@@ -92,13 +126,20 @@ export default function SetupPage() {
             />
           </div>
 
+          {/* Scenario editor panel */}
           <div
-            className="ocean-card rounded-2xl overflow-hidden transition-all duration-300 flex-shrink-0"
+            className="flex-shrink-0 overflow-hidden transition-all duration-300"
             style={{
               width: panelOpen ? "420px" : "0px",
               opacity: panelOpen ? 1 : 0,
-              padding: panelOpen ? "2rem" : "0",
+              padding: panelOpen ? "32px" : "0",
               pointerEvents: panelOpen ? "auto" : "none",
+              borderRadius: "24px",
+              border: panelOpen ? "5px solid rgba(255,255,255,1)" : "none",
+              boxShadow: panelOpen ? "0px 4px 10px 0px rgba(0,60,117,0.25)" : "none",
+              background: "rgba(9,9,11,0.55)",
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
             }}
           >
             {panelOpen && (
@@ -113,7 +154,10 @@ export default function SetupPage() {
           </div>
         </div>
 
-        <p className="mt-8 text-xs" style={{ color: "#4a8fa8" }}>
+        <p
+          className="mt-8 text-sm"
+          style={{ color: "rgba(250,250,250,0.3)", fontFamily: "'Gochi Hand', cursive" }}
+        >
           For educational use only. Not a diagnostic tool.
         </p>
       </div>

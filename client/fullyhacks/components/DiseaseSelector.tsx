@@ -28,6 +28,8 @@ function blankConfig(): ScenarioConfig {
   };
 }
 
+const FONT = "'Gochi Hand', cursive";
+
 export default function DiseaseSelector({
   selectedDisease,
   editorConfig,
@@ -47,7 +49,6 @@ export default function DiseaseSelector({
   const [isCustom, setIsCustom] = useState(false);
   const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard">("easy");
 
-  // Fetch disease list on mount
   useEffect(() => {
     fetchDiseaseList()
       .then(setDiseases)
@@ -81,32 +82,18 @@ export default function DiseaseSelector({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const validationError = validateDisease(selectedDisease);
-    if (validationError) {
-      setSubmitError(validationError);
-      return;
-    }
+    if (validationError) { setSubmitError(validationError); return; }
     setSubmitError(null);
     setSubmitting(true);
     try {
       const backendToken = session?.backendToken;
-      if (!backendToken) {
-        throw new Error("You must be logged in before starting a session.");
-      }
-
-      // Clear previous conversation history before starting a new session
+      if (!backendToken) throw new Error("You must be logged in before starting a session.");
       try { sessionStorage.removeItem("chat_history"); } catch {}
       const createdSession = await createSession(editorConfig, selectedDisease, backendToken, difficulty);
 
-      // Build URL with vitals from the session response so the conversation
-      // page can display them in the Diagnostics Tools panel.
-      // Backend returns formatted strings: { BP: "120/80 mmHg", HR: "88 bpm", Temp: "37.2C", SpO2: "97%", RR: "16 breaths/min", Pain: "3/10" }
       const v = (createdSession.vitals ?? {}) as Record<string, string | number>;
-
-      // Parse helpers
       const num = (val: string | number | undefined) =>
         val !== undefined ? parseFloat(String(val)) : undefined;
-
-      // BP comes as "120/80 mmHg" — split on "/"
       const bpRaw = v["BP"] ? String(v["BP"]).split("/") : [];
       const bpSys = bpRaw[0] ? parseFloat(bpRaw[0]) : undefined;
       const bpDia = bpRaw[1] ? parseFloat(bpRaw[1]) : undefined;
@@ -134,33 +121,27 @@ export default function DiseaseSelector({
 
   return (
     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-5">
+
       {/* Disease list */}
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-medium" style={{ color: "#7dd3e8" }}>
+        <label style={{ color: "rgba(250,250,250,0.6)", fontSize: "20px", fontFamily: FONT }}>
           Select a disease
         </label>
 
-        {/* Loading state */}
         {loadingList && (
-          <div className="flex items-center gap-2 py-4 justify-center">
-            <span className="text-xs animate-pulse" style={{ color: "#4a8fa8" }}>
-              Loading diseases…
-            </span>
-          </div>
-        )}
-
-        {/* List error */}
-        {listError && (
-          <p className="text-xs" style={{ color: "#f87171" }}>
-            ⚠ Could not load diseases: {listError}
+          <p className="text-center animate-pulse py-4" style={{ color: "rgba(250,250,250,0.4)", fontFamily: FONT, fontSize: "18px" }}>
+            Loading diseases…
           </p>
         )}
 
-        {/* Disease buttons */}
+        {listError && (
+          <p style={{ color: "#f87171", fontFamily: FONT, fontSize: "18px" }}>⚠ {listError}</p>
+        )}
+
         {!loadingList && !listError && (
           <div
             className="grid grid-cols-2 gap-2 max-h-56 overflow-y-auto pr-1"
-            style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(34,211,238,0.3) transparent" }}
+            style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.2) transparent" }}
           >
             {diseases.map((name) => {
               const isActive = selectedDisease === name && !isCustom;
@@ -170,19 +151,22 @@ export default function DiseaseSelector({
                   type="button"
                   disabled={loadingConfig}
                   onClick={() => handleSelectDisease(name)}
-                  className="px-4 py-2 rounded-lg border text-sm font-medium transition-all duration-150 cursor-pointer text-left"
+                  className="px-3 py-2 rounded-lg border transition-all duration-150 cursor-pointer text-left"
                   style={
                     isActive
                       ? {
-                          background: "rgba(8,145,178,0.5)",
-                          borderColor: "#22d3ee",
-                          color: "#e0f4f8",
-                          boxShadow: "0 0 12px rgba(34,211,238,0.3)",
+                          background: "#00A6FF",
+                          borderColor: "#FAFAFA",
+                          color: "#FAFAFA",
+                          fontFamily: FONT,
+                          fontSize: "18px",
                         }
                       : {
-                          background: "rgba(13,59,110,0.4)",
-                          borderColor: "rgba(34,211,238,0.2)",
-                          color: "#bae6fd",
+                          background: "rgba(250,250,250,0.08)",
+                          borderColor: "rgba(255,255,255,0.2)",
+                          color: "rgba(250,250,250,0.7)",
+                          fontFamily: FONT,
+                          fontSize: "18px",
                           opacity: loadingConfig ? 0.5 : 1,
                         }
                   }
@@ -194,93 +178,71 @@ export default function DiseaseSelector({
           </div>
         )}
 
-        {/* Loading config indicator */}
         {loadingConfig && (
-          <p className="text-xs text-center animate-pulse" style={{ color: "#22d3ee" }}>
+          <p className="text-center animate-pulse" style={{ color: "#00A6FF", fontFamily: FONT, fontSize: "18px" }}>
             Loading scenario data…
           </p>
         )}
       </div>
 
       {/* Divider */}
-      <div className="flex items-center gap-3 text-sm" style={{ color: "#4a8fa8" }}>
-        <div className="flex-1 h-px" style={{ background: "rgba(34,211,238,0.15)" }} />
+      <div className="flex items-center gap-3" style={{ color: "rgba(250,250,250,0.3)", fontFamily: FONT, fontSize: "18px" }}>
+        <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.15)" }} />
         or
-        <div className="flex-1 h-px" style={{ background: "rgba(34,211,238,0.15)" }} />
+        <div className="flex-1 h-px" style={{ background: "rgba(255,255,255,0.15)" }} />
       </div>
 
       {/* Custom scenario */}
       <button
         type="button"
         onClick={handleCustomScenario}
-        className="w-full py-2.5 rounded-lg border text-sm font-medium transition-all duration-150 cursor-pointer flex items-center justify-center gap-2"
+        className="w-full py-2.5 rounded-lg border transition-all duration-150 cursor-pointer flex items-center justify-center gap-2"
         style={
           isCustom
             ? {
-                background: "rgba(8,145,178,0.2)",
-                borderColor: "#22d3ee",
-                color: "#e0f4f8",
-                boxShadow: "0 0 12px rgba(34,211,238,0.2)",
+                background: "#00A6FF",
+                borderColor: "#FAFAFA",
+                color: "#FAFAFA",
+                fontFamily: FONT,
+                fontSize: "20px",
               }
             : {
-                background: "rgba(13,59,110,0.2)",
-                borderColor: "rgba(34,211,238,0.25)",
-                color: "#7dd3e8",
+                background: "rgba(250,250,250,0.06)",
+                borderColor: "rgba(255,255,255,0.25)",
                 borderStyle: "dashed",
+                color: "rgba(250,250,250,0.5)",
+                fontFamily: FONT,
+                fontSize: "20px",
               }
         }
       >
-        <span>＋</span>
-        Create Custom Scenario
+        ＋ Create Custom Scenario
       </button>
 
       {/* Difficulty */}
       <div className="flex flex-col gap-2">
-        <label className="text-sm font-medium" style={{ color: "#7dd3e8" }}>
+        <label style={{ color: "rgba(250,250,250,0.6)", fontSize: "20px", fontFamily: FONT }}>
           Patient difficulty
         </label>
         <div className="grid grid-cols-3 gap-2">
           {(["easy", "medium", "hard"] as const).map((level) => {
             const isActive = difficulty === level;
-            const activeStyles: Record<typeof level, React.CSSProperties> = {
-              easy: {
-                background: "rgba(8,145,178,0.5)",
-                borderColor: "#22d3ee",
-                color: "#e0f4f8",
-                boxShadow: "0 0 10px rgba(34,211,238,0.3)",
-              },
-              medium: {
-                background: "rgba(180,130,20,0.35)",
-                borderColor: "#fbbf24",
-                color: "#fef3c7",
-                boxShadow: "0 0 10px rgba(251,191,36,0.25)",
-              },
-              hard: {
-                background: "rgba(180,30,30,0.35)",
-                borderColor: "#f87171",
-                color: "#fee2e2",
-                boxShadow: "0 0 10px rgba(248,113,113,0.25)",
-              },
+            const activeColors = {
+              easy:   { bg: "#00A6FF", border: "#FAFAFA", color: "#FAFAFA" },
+              medium: { bg: "rgba(180,130,20,0.5)", border: "#fbbf24", color: "#fef3c7" },
+              hard:   { bg: "rgba(180,30,30,0.5)",  border: "#f87171", color: "#fee2e2" },
             };
-            const labels: Record<typeof level, string> = {
-              easy: "Easy",
-              medium: "Medium",
-              hard: "Hard",
-            };
+            const labels = { easy: "Easy", medium: "Medium", hard: "Hard" };
             return (
               <button
                 key={level}
                 type="button"
                 onClick={() => setDifficulty(level)}
-                className="py-2 rounded-lg border text-sm font-medium transition-all duration-150 cursor-pointer"
+                className="py-2 rounded-lg border transition-all duration-150 cursor-pointer"
                 style={
                   isActive
-                    ? activeStyles[level]
-                    : {
-                        background: "rgba(13,59,110,0.3)",
-                        borderColor: "rgba(34,211,238,0.15)",
-                        color: "#4a8fa8",
-                      }
+                    ? { ...activeColors[level], fontFamily: FONT, fontSize: "20px" }
+                    : { background: "rgba(250,250,250,0.06)", borderColor: "rgba(255,255,255,0.2)", color: "rgba(250,250,250,0.4)", fontFamily: FONT, fontSize: "20px" }
                 }
               >
                 {labels[level]}
@@ -288,16 +250,16 @@ export default function DiseaseSelector({
             );
           })}
         </div>
-        <p className="text-xs" style={{ color: "#2a5f72" }}>
-          {difficulty === "easy" && "Cooperative patient — answers clearly and directly."}
+        <p style={{ color: "rgba(250,250,250,0.35)", fontFamily: FONT, fontSize: "16px" }}>
+          {difficulty === "easy"   && "Cooperative patient — answers clearly and directly."}
           {difficulty === "medium" && "Anxious patient — vague on timing, needs follow-ups."}
-          {difficulty === "hard" && "Distressed patient — deflects, contradicts, minimises symptoms."}
+          {difficulty === "hard"   && "Distressed patient — deflects, contradicts, minimises symptoms."}
         </p>
       </div>
 
       {/* Error */}
       {submitError && (
-        <p role="alert" className="text-sm" style={{ color: "#f87171" }}>
+        <p role="alert" style={{ color: "#f87171", fontFamily: FONT, fontSize: "18px" }}>
           {submitError}
         </p>
       )}
@@ -306,26 +268,19 @@ export default function DiseaseSelector({
       <button
         type="submit"
         disabled={loadingConfig || submitting}
-        className="w-full py-3 rounded-lg font-semibold text-sm transition-all duration-150"
+        className="w-full py-3 rounded-lg transition-all duration-150 flex items-center justify-between"
         style={{
-          background: "linear-gradient(135deg, #0891b2, #0e7490)",
-          color: "#e0f4f8",
-          boxShadow: "0 4px 20px rgba(8,145,178,0.35)",
+          background: "#00F621",
+          borderRadius: "8px",
+          padding: "12px 12px 12px 20px",
           opacity: loadingConfig || submitting ? 0.6 : 1,
           cursor: loadingConfig || submitting ? "not-allowed" : "pointer",
         }}
-        onMouseEnter={(e) => {
-          if (!loadingConfig && !submitting) {
-            e.currentTarget.style.background = "linear-gradient(135deg, #22d3ee, #0891b2)";
-            e.currentTarget.style.boxShadow = "0 4px 28px rgba(34,211,238,0.45)";
-          }
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = "linear-gradient(135deg, #0891b2, #0e7490)";
-          e.currentTarget.style.boxShadow = "0 4px 20px rgba(8,145,178,0.35)";
-        }}
       >
-        {submitting ? "Starting…" : "🌊 Start Scenario"}
+        <span style={{ color: "#065811", fontSize: "24px", fontWeight: 700, fontFamily: "Inter, sans-serif" }}>
+          {submitting ? "STARTING…" : "START SCENARIO"}
+        </span>
+        <span style={{ fontSize: "28px" }}>{submitting ? "…" : "➤"}</span>
       </button>
     </form>
   );

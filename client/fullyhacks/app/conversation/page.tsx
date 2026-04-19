@@ -71,6 +71,27 @@ const DIAGNOSTIC_TOOLS = [
   },
 ];
 
+// Staggered "..." loading indicator — each dot fades in/out with an offset
+function StaggeredDots() {
+  return (
+    <span style={{ display: "inline-flex", gap: "3px", alignItems: "baseline" }}>
+      {[0, 1, 2].map((i) => (
+        <span
+          key={i}
+          style={{
+            display: "inline-block",
+            animation: `vital-dot 1.2s ease-in-out ${i * 0.2}s infinite`,
+            fontSize: "inherit",
+            lineHeight: "inherit",
+          }}
+        >
+          .
+        </span>
+      ))}
+    </span>
+  );
+}
+
 function ConversationContent() {
   const router = useRouter();
   const { data: session } = useSession();
@@ -271,6 +292,25 @@ function ConversationContent() {
     clearTranscripts();
   }
 
+  // ── Vital sign reveal mechanic ───────────────────────────────────────────
+  // Keys start hidden; clicking a tool card triggers a 3s "measuring" animation
+  // then reveals the value with a fade-in.
+  const [revealedVitals, setRevealedVitals] = useState<Set<string>>(new Set());
+  const [measuringVitals, setMeasuringVitals] = useState<Set<string>>(new Set());
+
+  function handleMeasureVital(key: string) {
+    if (revealedVitals.has(key) || measuringVitals.has(key)) return;
+    setMeasuringVitals((prev) => new Set(prev).add(key));
+    setTimeout(() => {
+      setMeasuringVitals((prev) => {
+        const next = new Set(prev);
+        next.delete(key);
+        return next;
+      });
+      setRevealedVitals((prev) => new Set(prev).add(key));
+    }, 3000);
+  }
+
   const errorMsg = scribeError ?? scribeHookError;
   const [endingSession, setEndingSession] = useState(false);
 
@@ -386,8 +426,6 @@ function ConversationContent() {
             backgroundImage: "url('/chat/chat-window-bg-76c432.png')",
             backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat",
-            backdropFilter: "blur(20px)",
-            WebkitBackdropFilter: "blur(20px)",
           }}
         >
           {/* Panel */}
@@ -397,10 +435,7 @@ function ConversationContent() {
               borderRadius: "24px",
               padding: "18px",
               gap: "10px",
-              boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
-              backdropFilter: "blur(25px)",
-              WebkitBackdropFilter: "blur(25px)",
-              background: "rgba(250,250,250,0.08)",
+              background: "transparent",
             }}
           >
             {/* Texts Stream */}
@@ -650,7 +685,7 @@ function ConversationContent() {
                 backgroundImage: "url('/chat/tools-panel-bg-a366ba.png')",
                 backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
-                border: "5px solid rgba(255,255,255,0.15)",
+                border: "5px solid rgba(255,255,255,1)",
                 boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
               }}
             >
@@ -677,45 +712,31 @@ function ConversationContent() {
                       : val !== undefined
                       ? tool.format(val, vitals)
                       : "—";
+                  const revealed  = revealedVitals.has(tool.key);
+                  const measuring = measuringVitals.has(tool.key);
                   return (
-                    <div
+                    <button
                       key={tool.key}
-                      className="flex flex-col items-stretch"
-                      style={{ width: "138px", gap: "6px" }}
+                      onClick={() => handleMeasureVital(tool.key)}
+                      disabled={revealed || measuring}
+                      className="flex flex-col items-stretch text-left"
+                      style={{
+                        width: "138px", gap: "6px",
+                        background: "none", border: "none", padding: 0,
+                        cursor: revealed || measuring ? "default" : "pointer",
+                      }}
+                      title={revealed ? undefined : "Click to measure"}
                     >
-                      <div
-                        style={{
-                          height: "138px",
-                          position: "relative",
-                          boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.5)",
-                        }}
-                      >
+                      <div className={measuring ? "vital-measuring" : ""} style={{ height: "138px", position: "relative", filter: "drop-shadow(0px 4px 10px rgba(0,60,117,0.7))" }}>
                         <Image src={tool.image} alt={tool.label} fill className="object-cover" />
                       </div>
-                      <span
-                        className="text-center"
-                        style={{
-                          color: "#FFFFFF",
-                          fontSize: "20px",
-                          fontFamily: "'Gochi Hand', cursive",
-                          textShadow: "0px 4px 10px rgba(0,60,117,1)",
-                        }}
-                      >
+                      <span className="text-center" style={{ color: "#FFFFFF", fontSize: "20px", fontFamily: "'Gochi Hand', cursive", textShadow: "0px 4px 10px rgba(0,60,117,1)" }}>
                         {tool.label}
                       </span>
-                      <span
-                        className="text-center"
-                        style={{
-                          color: "#FFFFFF",
-                          fontSize: "36px",
-                          fontFamily: "'Gochi Hand', cursive",
-                          lineHeight: "1.18em",
-                          textShadow: "0px 4px 10px rgba(0,60,117,1)",
-                        }}
-                      >
-                        {displayVal}
+                      <span className={`text-center${revealed ? " vital-reveal" : ""}`} style={{ color: "#FFFFFF", fontSize: "36px", fontFamily: "'Gochi Hand', cursive", lineHeight: "1.18em", textShadow: "0px 4px 10px rgba(0,60,117,1)", minHeight: "42px" }}>
+                        {measuring ? <StaggeredDots /> : revealed ? displayVal : "?"}
                       </span>
-                    </div>
+                    </button>
                   );
                 })}
               </div>
@@ -724,47 +745,32 @@ function ConversationContent() {
               <div className="flex justify-between" style={{ gap: "8px" }}>
                 {DIAGNOSTIC_TOOLS.slice(3, 6).map((tool) => {
                   const val = vitals[tool.key];
-                  const displayVal =
-                    val !== undefined ? tool.format(val, vitals) : "—";
+                  const displayVal = val !== undefined ? tool.format(val, vitals) : "—";
+                  const revealed  = revealedVitals.has(tool.key);
+                  const measuring = measuringVitals.has(tool.key);
                   return (
-                    <div
+                    <button
                       key={tool.key}
-                      className="flex flex-col items-stretch"
-                      style={{ width: "138px", gap: "6px" }}
+                      onClick={() => handleMeasureVital(tool.key)}
+                      disabled={revealed || measuring}
+                      className="flex flex-col items-stretch text-left"
+                      style={{
+                        width: "138px", gap: "6px",
+                        background: "none", border: "none", padding: 0,
+                        cursor: revealed || measuring ? "default" : "pointer",
+                      }}
+                      title={revealed ? undefined : "Click to measure"}
                     >
-                      <div
-                        style={{
-                          height: "138px",
-                          position: "relative",
-                          boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.5)",
-                        }}
-                      >
+                      <div className={measuring ? "vital-measuring" : ""} style={{ height: "138px", position: "relative", filter: "drop-shadow(0px 4px 10px rgba(0,60,117,0.7))" }}>
                         <Image src={tool.image} alt={tool.label} fill className="object-cover" />
                       </div>
-                      <span
-                        className="text-center"
-                        style={{
-                          color: "#FFFFFF",
-                          fontSize: "20px",
-                          fontFamily: "'Gochi Hand', cursive",
-                          textShadow: "0px 4px 10px rgba(0,60,117,1)",
-                        }}
-                      >
+                      <span className="text-center" style={{ color: "#FFFFFF", fontSize: "20px", fontFamily: "'Gochi Hand', cursive", textShadow: "0px 4px 10px rgba(0,60,117,1)" }}>
                         {tool.label}
                       </span>
-                      <span
-                        className="text-center"
-                        style={{
-                          color: "#FFFFFF",
-                          fontSize: "36px",
-                          fontFamily: "'Gochi Hand', cursive",
-                          lineHeight: "1.18em",
-                          textShadow: "0px 4px 10px rgba(0,60,117,1)",
-                        }}
-                      >
-                        {displayVal}
+                      <span className={`text-center${revealed ? " vital-reveal" : ""}`} style={{ color: "#FFFFFF", fontSize: "36px", fontFamily: "'Gochi Hand', cursive", lineHeight: "1.18em", textShadow: "0px 4px 10px rgba(0,60,117,1)", minHeight: "42px" }}>
+                        {measuring ? <StaggeredDots /> : revealed ? displayVal : "?"}
                       </span>
-                    </div>
+                    </button>
                   );
                 })}
               </div>
@@ -780,7 +786,7 @@ function ConversationContent() {
                 backgroundImage: "url('/chat/submit-panel-bg-174c22.png')",
                 backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
-                border: "5px solid rgba(255,255,255,0.2)",
+                border: "5px solid rgba(255,255,255,1)",
                 boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
               }}
             >

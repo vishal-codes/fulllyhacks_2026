@@ -11,20 +11,27 @@ interface Props {
   onRenameDisease?: (name: string) => void;
 }
 
-// ─── Shared input style helpers ───────────────────────────────────────────────
+const FONT = "'Gochi Hand', cursive";
 
 const inputBase: React.CSSProperties = {
-  background: "rgba(10,22,40,0.6)",
-  border: "1px solid rgba(34,211,238,0.2)",
-  color: "#e0f4f8",
+  background: "rgba(250,250,250,0.08)",
+  border: "1px solid rgba(255,255,255,0.25)",
+  color: "#FAFAFA",
+  fontFamily: FONT,
+  fontSize: "18px",
+  outline: "none",
+  borderRadius: "8px",
+  padding: "6px 12px",
+  width: "100%",
+  transition: "border-color 0.15s, box-shadow 0.15s",
 };
 
 function focusInput(e: React.FocusEvent<HTMLInputElement>) {
-  e.currentTarget.style.borderColor = "#22d3ee";
-  e.currentTarget.style.boxShadow = "0 0 0 2px rgba(34,211,238,0.12)";
+  e.currentTarget.style.borderColor = "#00A6FF";
+  e.currentTarget.style.boxShadow = "0 0 0 2px rgba(0,166,255,0.2)";
 }
 function blurInput(e: React.FocusEvent<HTMLInputElement>) {
-  e.currentTarget.style.borderColor = "rgba(34,211,238,0.2)";
+  e.currentTarget.style.borderColor = "rgba(255,255,255,0.25)";
   e.currentTarget.style.boxShadow = "none";
 }
 
@@ -38,21 +45,19 @@ function VitalField({
   range?: { min: number; max: number };
   onChange: (v: number) => void;
 }) {
-  // Use range bounds as the hard limits if available
   const clampMin = range ? range.min : min;
   const clampMax = range ? range.max : max;
 
   function handleChange(raw: number) {
     if (isNaN(raw)) return;
-    const clamped = Math.min(clampMax, Math.max(clampMin, raw));
-    onChange(Math.round(clamped * 10) / 10);
+    onChange(Math.round(Math.min(clampMax, Math.max(clampMin, raw)) * 10) / 10);
   }
 
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-xs font-medium" style={{ color: "#7dd3e8" }}>
+      <label style={{ color: "rgba(250,250,250,0.6)", fontFamily: FONT, fontSize: "16px" }}>
         {label}
-        <span className="ml-1 font-normal" style={{ color: "#4a8fa8" }}>({unit})</span>
+        <span className="ml-1" style={{ color: "rgba(250,250,250,0.35)", fontSize: "14px" }}>({unit})</span>
       </label>
       <input
         type="number"
@@ -62,13 +67,12 @@ function VitalField({
         step="0.1"
         placeholder="—"
         onChange={(e) => handleChange(Number(e.target.value))}
-        className="w-full px-3 py-1.5 rounded-lg text-sm outline-none transition-all"
         style={inputBase}
         onFocus={focusInput}
         onBlur={blurInput}
       />
       {range && (
-        <span className="text-xs" style={{ color: "#2a5f72" }}>
+        <span style={{ color: "rgba(250,250,250,0.25)", fontFamily: FONT, fontSize: "13px" }}>
           Range: {range.min} – {range.max}
         </span>
       )}
@@ -89,41 +93,35 @@ function SymptomRow({
     <div
       className="flex items-center gap-2 px-3 py-2 rounded-lg"
       style={{
-        background: symptom.present ? "rgba(8,145,178,0.12)" : "rgba(10,22,40,0.3)",
-        border: "1px solid rgba(34,211,238,0.1)",
+        background: symptom.present ? "rgba(0,166,255,0.12)" : "rgba(250,250,250,0.05)",
+        border: `1px solid ${symptom.present ? "rgba(0,166,255,0.4)" : "rgba(255,255,255,0.12)"}`,
       }}
     >
-      {/* Present toggle */}
       <button
         type="button"
         aria-label={symptom.present ? "Mark absent" : "Mark present"}
         onClick={() => onChange({ ...symptom, present: !symptom.present })}
-        className="flex-shrink-0 w-5 h-5 rounded border transition-all"
+        className="flex-shrink-0 w-5 h-5 rounded border transition-all flex items-center justify-center"
         style={{
-          background: symptom.present ? "#0891b2" : "transparent",
-          borderColor: symptom.present ? "#22d3ee" : "rgba(34,211,238,0.3)",
-          boxShadow: symptom.present ? "0 0 8px rgba(34,211,238,0.3)" : "none",
+          background: symptom.present ? "#00A6FF" : "transparent",
+          borderColor: symptom.present ? "#FAFAFA" : "rgba(255,255,255,0.3)",
         }}
       >
-        {symptom.present && (
-          <span className="flex items-center justify-center text-white text-xs leading-none">✓</span>
-        )}
+        {symptom.present && <span style={{ color: "#FAFAFA", fontSize: "11px", lineHeight: 1 }}>✓</span>}
       </button>
 
-      {/* Label */}
-      <span className="flex-1 text-sm" style={{ color: symptom.present ? "#e0f4f8" : "#4a8fa8" }}>
+      <span className="flex-1" style={{ color: symptom.present ? "#FAFAFA" : "rgba(250,250,250,0.4)", fontFamily: FONT, fontSize: "18px" }}>
         {symptom.label}
       </span>
 
-      {/* Remove */}
       <button
         type="button"
         aria-label="Remove symptom"
         onClick={onRemove}
-        className="flex-shrink-0 w-5 h-5 flex items-center justify-center rounded transition-all text-xs"
-        style={{ color: "#4a8fa8" }}
+        className="flex-shrink-0 w-5 h-5 flex items-center justify-center rounded transition-all"
+        style={{ color: "rgba(250,250,250,0.3)", fontSize: "12px" }}
         onMouseEnter={(e) => { e.currentTarget.style.color = "#f87171"; }}
-        onMouseLeave={(e) => { e.currentTarget.style.color = "#4a8fa8"; }}
+        onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(250,250,250,0.3)"; }}
       >
         ✕
       </button>
@@ -151,22 +149,24 @@ function AddSymptomRow({ onAdd }: { onAdd: (label: string) => void }) {
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); commit(); } }}
         placeholder="New symptom name…"
-        className="flex-1 px-3 py-1.5 rounded-lg text-sm outline-none transition-all"
-        style={inputBase}
+        style={{ ...inputBase, flex: 1 }}
         onFocus={focusInput}
         onBlur={blurInput}
       />
       <button
         type="button"
         onClick={commit}
-        className="px-3 py-1.5 rounded-lg text-sm font-medium transition-all"
+        className="px-4 py-1.5 rounded-lg transition-all"
         style={{
-          background: "rgba(8,145,178,0.3)",
-          border: "1px solid rgba(34,211,238,0.3)",
-          color: "#22d3ee",
+          background: "#00A6FF",
+          border: "1px solid #FAFAFA",
+          color: "#FAFAFA",
+          fontFamily: FONT,
+          fontSize: "18px",
+          cursor: "pointer",
         }}
-        onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(8,145,178,0.5)"; }}
-        onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(8,145,178,0.3)"; }}
+        onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; }}
+        onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; }}
       >
         Add
       </button>
@@ -192,13 +192,10 @@ export default function ScenarioEditor({
   }
 
   function addSymptom(label: string) {
-    const newSymptom: Symptom = {
-      id: `custom-${Date.now()}`,
-      label,
-      present: true,
-      severity: "moderate",
-    };
-    onChange({ ...config, symptoms: [...config.symptoms, newSymptom] });
+    onChange({
+      ...config,
+      symptoms: [...config.symptoms, { id: `custom-${Date.now()}`, label, present: true, severity: "moderate" }],
+    });
   }
 
   return (
@@ -207,33 +204,34 @@ export default function ScenarioEditor({
       style={{
         maxHeight: "calc(100vh - 280px)",
         scrollbarWidth: "thin",
-        scrollbarColor: "rgba(34,211,238,0.3) transparent",
+        scrollbarColor: "rgba(255,255,255,0.2) transparent",
       }}
     >
       {/* Header */}
       <div className="flex items-center gap-2">
-        <span className="text-base">🩺</span>
         {isCustom && onRenameDisease ? (
           <input
             type="text"
             value={diseaseName}
             onChange={(e) => onRenameDisease(e.target.value)}
             placeholder="Scenario name…"
-            className="flex-1 px-3 py-1 rounded-lg text-sm font-semibold outline-none transition-all"
-            style={{ ...inputBase, color: "#22d3ee" }}
+            style={{ ...inputBase, fontSize: "22px", color: "#FAFAFA", flex: 1 }}
             onFocus={focusInput}
             onBlur={blurInput}
           />
         ) : (
-          <h3 className="text-sm font-semibold" style={{ color: "#22d3ee" }}>
-            {diseaseName} — Scenario Settings
+          <h3 style={{ color: "#FAFAFA", fontFamily: FONT, fontSize: "22px" }}>
+            {diseaseName} — Settings
           </h3>
         )}
       </div>
 
       {/* Vitals */}
       <section className="flex flex-col gap-3">
-        <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#4a8fa8" }}>
+        <h4
+          className="uppercase tracking-wider"
+          style={{ color: "rgba(250,250,250,0.4)", fontFamily: FONT, fontSize: "14px" }}
+        >
           Vitals
         </h4>
         <div className="grid grid-cols-2 gap-3">
@@ -244,52 +242,50 @@ export default function ScenarioEditor({
           <VitalField label="Temperature"  unit={config.vitalRanges?.temperature.unit ?? "°C"}   value={config.vitals.temperature}            min={34}  max={42}  range={config.vitalRanges?.temperature}             onChange={(v) => updateVital("temperature", v)} />
           <VitalField label="O₂ Sat"       unit={config.vitalRanges?.oxygenSaturation.unit ?? "%"}    value={config.vitals.oxygenSaturation}       min={70}  max={100} range={config.vitalRanges?.oxygenSaturation}        onChange={(v) => updateVital("oxygenSaturation", v)} />
           {config.vitalRanges?.pain && (
-            <VitalField label="Pain"       unit={config.vitalRanges.pain.unit}                   value={config.vitals.pain ?? 0}              min={0}   max={10}  range={config.vitalRanges.pain}                     onChange={(v) => updateVital("pain", v)} />
+            <VitalField label="Pain" unit={config.vitalRanges.pain.unit} value={config.vitals.pain ?? 0} min={0} max={10} range={config.vitalRanges.pain} onChange={(v) => updateVital("pain", v)} />
           )}
         </div>
       </section>
 
       {/* Divider */}
-      <div className="h-px" style={{ background: "rgba(34,211,238,0.1)" }} />
+      <div className="h-px" style={{ background: "rgba(255,255,255,0.12)" }} />
 
       {/* Symptoms */}
       <section className="flex flex-col gap-3">
-        <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#4a8fa8" }}>
+        <h4
+          className="uppercase tracking-wider"
+          style={{ color: "rgba(250,250,250,0.4)", fontFamily: FONT, fontSize: "14px" }}
+        >
           Symptoms
         </h4>
-
         <div className="flex flex-col gap-2">
           {config.symptoms.length === 0 && (
-            <p className="text-xs italic" style={{ color: "#4a8fa8" }}>
+            <p style={{ color: "rgba(250,250,250,0.3)", fontFamily: FONT, fontSize: "16px", fontStyle: "italic" }}>
               No symptoms added yet.
             </p>
           )}
           {config.symptoms.map((s) => (
-            <SymptomRow
-              key={s.id}
-              symptom={s}
-              onChange={updateSymptom}
-              onRemove={() => removeSymptom(s.id)}
-            />
+            <SymptomRow key={s.id} symptom={s} onChange={updateSymptom} onRemove={() => removeSymptom(s.id)} />
           ))}
         </div>
-
-        {/* Add symptom */}
         <AddSymptomRow onAdd={addSymptom} />
       </section>
 
-      {/* Treatments — read-only, from backend */}
+      {/* Treatments */}
       {config.treatments && config.treatments.length > 0 && (
         <>
-          <div className="h-px" style={{ background: "rgba(34,211,238,0.1)" }} />
+          <div className="h-px" style={{ background: "rgba(255,255,255,0.12)" }} />
           <section className="flex flex-col gap-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#4a8fa8" }}>
+            <h4
+              className="uppercase tracking-wider"
+              style={{ color: "rgba(250,250,250,0.4)", fontFamily: FONT, fontSize: "14px" }}
+            >
               Treatments
             </h4>
             <ul className="flex flex-col gap-1">
               {config.treatments.map((t, i) => (
-                <li key={i} className="text-xs flex gap-2" style={{ color: "#7dd3e8" }}>
-                  <span style={{ color: "#0891b2" }}>•</span>
+                <li key={i} className="flex gap-2" style={{ color: "rgba(250,250,250,0.6)", fontFamily: FONT, fontSize: "16px" }}>
+                  <span style={{ color: "#00A6FF" }}>•</span>
                   {t}
                 </li>
               ))}
