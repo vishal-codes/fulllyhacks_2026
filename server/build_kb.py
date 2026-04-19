@@ -61,7 +61,7 @@ DISEASE_FS_PATHS     = [
 FS_HOST_PREFIX       = "/source/website/nhs.uk"
 
 MAX_PAGE_CHAR_LIMIT  = 40000
-LLM_MODEL            = "llama-3.3-70b-versatile"
+LLM_MODEL            = "llama-3.1-8b-instant"
 OUTPUT_PATH          = _HERE / "diseases.json"
 
 CRAWL_POLL_INTERVAL  = 3

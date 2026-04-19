@@ -2849,5 +2849,3068 @@
         "unit": "/10"
       }
     }
+  },
+  {
+    "name": "Athlete's foot",
+    "symptoms": [
+      "itchy white patches between toes",
+      "sore and flaky patches on feet",
+      "red skin",
+      "cracked or bleeding skin",
+      "fluid-filled blisters"
+    ],
+    "treatments": [
+      "antifungal creams",
+      "antifungal sprays",
+      "antifungal powders",
+      "steroid cream",
+      "antifungal tablets"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 2,
+        "max": 6,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Atopic eczema",
+    "symptoms": [
+      "itchy skin",
+      "dry skin",
+      "cracked skin",
+      "scaly skin",
+      "thickened skin",
+      "red skin",
+      "blistered skin",
+      "bleeding skin"
+    ],
+    "treatments": [
+      "moisturising creams",
+      "emollients",
+      "steroid creams",
+      "topical corticosteroids",
+      "special dressings",
+      "medicines"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Atrial fibrillation",
+    "symptoms": [
+      "irregular heartbeat",
+      "heart palpitations",
+      "fast heartbeat",
+      "tiredness",
+      "shortness of breath",
+      "lightheadedness",
+      "dizziness",
+      "chest pain"
+    ],
+    "treatments": [
+      "beta blockers",
+      "anticoagulants",
+      "ablation",
+      "electrical cardioversion",
+      "pacemaker",
+      "implantable cardioverter defibrillator"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Auditory processing disorder (APD)",
+    "symptoms": [
+      "difficulty understanding spoken words",
+      "difficulty hearing in noisy places",
+      "difficulty with strong accents or fast talkers",
+      "difficulty with similar sounding words",
+      "difficulty with spoken instructions"
+    ],
+    "treatments": [
+      "auditory training",
+      "wireless earpiece to reduce background noise",
+      "speech and language therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Autism",
+    "symptoms": [
+      "Social communication difficulties",
+      "Social interaction difficulties",
+      "Restricted and repetitive patterns of behaviour"
+    ],
+    "treatments": [
+      "Behavioural therapy",
+      "Speech and language therapy",
+      "Occupational therapy",
+      "Medications for related conditions"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Autosomal dominant polycystic kidney disease",
+    "symptoms": [
+      "abdominal pain",
+      "high blood pressure",
+      "blood in urine",
+      "urinary tract infections",
+      "kidney stones"
+    ],
+    "treatments": [
+      "healthy lifestyle",
+      "medication",
+      "dialysis",
+      "kidney transplant",
+      "tolvaptan"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Autosomal recessive polycystic kidney disease",
+    "symptoms": [
+      "underdeveloped lungs",
+      "high blood pressure",
+      "excessive peeing",
+      "excessive thirst",
+      "problems with blood flow through the liver",
+      "progressive loss of kidney function"
+    ],
+    "treatments": [
+      "breathing assistance",
+      "medication for high blood pressure",
+      "procedures to stop internal bleeding",
+      "iron supplements for anaemia",
+      "dialysis",
+      "kidney transplant"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Back pain",
+    "symptoms": [
+      "pain",
+      "tingling",
+      "weakness",
+      "numbness",
+      "stiffness",
+      "muscle spasms"
+    ],
+    "treatments": [
+      "painkillers",
+      "physiotherapy",
+      "manual therapy",
+      "cognitive behavioural therapy",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 1,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bacterial vaginosis",
+    "symptoms": [
+      "unusual vaginal discharge with strong fishy smell",
+      "change to colour and consistency of discharge, such as greyish-white and thin and watery"
+    ],
+    "treatments": [
+      "antibiotic tablets",
+      "antibiotic gels",
+      "antibiotic creams"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Baker's cyst",
+    "symptoms": [
+      "soft lump at the back of the knee",
+      "knee or leg pain",
+      "tightness, stiffness or aching in your knee",
+      "difficulty bending your knee",
+      "clicking in your knee"
+    ],
+    "treatments": [
+      "painkillers",
+      "hydrocortisone injection",
+      "physiotherapy",
+      "draining fluid out of the cyst",
+      "surgery to repair damage to your knee joint"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Balanitis",
+    "symptoms": [
+      "swollen head of penis",
+      "itchy head of penis",
+      "sore head of penis",
+      "red head of penis",
+      "pain when peeing",
+      "thick discharge",
+      "bleeding around foreskin",
+      "unpleasant smell",
+      "difficulty pulling back foreskin"
+    ],
+    "treatments": [
+      "mild steroid cream or ointment",
+      "antifungal cream or ointment",
+      "antibiotics",
+      "circumcision"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bartholin's cyst",
+    "symptoms": [
+      "soft lump on 1 side near the opening of the vagina",
+      "discomfort or pain in the area surrounding the vagina",
+      "1 side of the vaginal lips looking larger or swollen",
+      "smelly discharge from the abscess",
+      "feeling unwell, or having a high temperature",
+      "intense pain around the abscess"
+    ],
+    "treatments": [
+      "sitting in a bath with warm water",
+      "applying a warm cloth or cotton wool to the cyst",
+      "taking ibuprofen or paracetamol for pain",
+      "antibiotics for infected cysts",
+      "surgical procedure to drain the cyst"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bedbugs",
+    "symptoms": [
+      "bites",
+      "spots of blood on bedding",
+      "small brown spots on bedding or furniture",
+      "itchy skin",
+      "painful swelling"
+    ],
+    "treatments": [
+      "cool compress",
+      "keeping affected area clean",
+      "mild steroid cream",
+      "antihistamines",
+      "washing and drying bedding and clothing on hot settings",
+      "freezing affected items"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Behçet's disease",
+    "symptoms": [
+      "genital and mouth ulcers",
+      "red, painful eyes and blurred vision",
+      "acne-like spots",
+      "headaches",
+      "painful, stiff and swollen joints",
+      "vision loss",
+      "strokes"
+    ],
+    "treatments": [
+      "steroids",
+      "immunosuppressants",
+      "biological therapies"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bell's palsy",
+    "symptoms": [
+      "weakness on 1 side of face",
+      "drooping eyelid",
+      "drooling",
+      "dry mouth",
+      "loss of taste",
+      "dry or watering eye"
+    ],
+    "treatments": [
+      "steroid medicine",
+      "antiviral medicine",
+      "eye drops",
+      "eye ointment",
+      "surgical tape"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bile duct cancer (cholangiocarcinoma)",
+    "symptoms": [
+      "yellowing of the skin and eyes",
+      "itchy skin",
+      "loss of appetite",
+      "feeling tired",
+      "weight loss",
+      "abdominal pain",
+      "dark urine",
+      "pale stools"
+    ],
+    "treatments": [
+      "surgery",
+      "chemotherapy",
+      "radiotherapy",
+      "stent placement"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bird flu",
+    "symptoms": [
+      "high temperature",
+      "cough",
+      "sore throat",
+      "runny or blocked nose",
+      "wheezing and sneezing",
+      "shortness of breath",
+      "red, irritated eyes"
+    ],
+    "treatments": [
+      "antiviral medicines",
+      "breathing assistance with machines"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38,
+        "max": 40,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 96,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Birthmarks",
+    "symptoms": [
+      "Red or pink patches",
+      "Raised red lumps",
+      "Red, purple or dark marks",
+      "Flat, light or dark brown patches",
+      "Blue-grey spots",
+      "Brown or black moles"
+    ],
+    "treatments": [
+      "Medicines",
+      "Laser therapy",
+      "Surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Black eye",
+    "symptoms": [
+      "bruising",
+      "swelling",
+      "pain",
+      "headache",
+      "blurry vision",
+      "high temperature",
+      "shivering"
+    ],
+    "treatments": [
+      "apply ice pack",
+      "take painkillers",
+      "apply warm heat pack",
+      "paracetamol",
+      "ibuprofen"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bladder cancer",
+    "symptoms": [
+      "blood in urine",
+      "painful urination",
+      "frequent urination"
+    ],
+    "treatments": [
+      "surgery",
+      "chemotherapy",
+      "radiotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bladder pain syndrome (BPS)",
+    "symptoms": [
+      "bladder pain or pain in lower tummy or back",
+      "feeling like you need to pee, even when bladder is empty",
+      "peeing often, usually small amounts, during the day",
+      "waking up at night to pee",
+      "leaking out a small amount of pee",
+      "pain during sex"
+    ],
+    "treatments": [
+      "everyday painkillers like paracetamol and ibuprofen",
+      "painkillers to treat nerve pain like amitriptyline, gabapentin, or pregabalin",
+      "medicines that make you pee less like oxybutynin",
+      "pentosan polysulfate sodium to protect bladder from irritation",
+      "Botulinum toxin (botox) injection",
+      "sacral nerve stimulation",
+      "bladder expansion surgery",
+      "physiotherapy to strengthen pelvic floor muscles",
+      "bladder retraining exercises",
+      "mental health support"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bladder stones",
+    "symptoms": [
+      "pain in lower tummy",
+      "pain or burning when peeing",
+      "peeing more often",
+      "blood in pee",
+      "difficulty peeing",
+      "frequent urinary tract infections"
+    ],
+    "treatments": [
+      "cystolitholapaxy",
+      "surgery to remove bladder stones",
+      "local anaesthetic",
+      "general anaesthetic",
+      "catheter to drain urine"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Blepharitis",
+    "symptoms": [
+      "sore eyelids",
+      "itchy eyes",
+      "gritty feeling in the eyes",
+      "flakes or crusts around the roots of the eyelashes",
+      "eyelids sticking together in the morning"
+    ],
+    "treatments": [
+      "cleaning eyelids twice a day",
+      "antibiotic cream or ointment",
+      "antibiotic eyedrops or tablets",
+      "referral to an eye specialist"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 4,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Blisters",
+    "symptoms": [
+      "painful bump",
+      "clear fluid under skin",
+      "red or black color",
+      "hot and filled with pus",
+      "surrounding skin looks red"
+    ],
+    "treatments": [
+      "keep clean",
+      "cover with plaster or dressing",
+      "hydrocolloid dressing",
+      "antibiotics for infected blisters"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 2,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Boils",
+    "symptoms": [
+      "itchy or tender spot",
+      "hard and painful lump",
+      "leaking pus",
+      "red and bleeding skin",
+      "carbuncle"
+    ],
+    "treatments": [
+      "soak in warm water",
+      "antibacterial soap",
+      "cover with dressing or gauze",
+      "paracetamol",
+      "ibuprofen",
+      "drainage procedure",
+      "antibiotics"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bone cancer",
+    "symptoms": [
+      "pain",
+      "swelling",
+      "limited mobility",
+      "weakness",
+      "fatigue"
+    ],
+    "treatments": [
+      "surgery",
+      "chemotherapy",
+      "radiotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 7,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bone cyst",
+    "symptoms": [
+      "pain",
+      "swelling",
+      "lump",
+      "numbness",
+      "tingling",
+      "fracture"
+    ],
+    "treatments": [
+      "draining fluid with a needle",
+      "injecting medicine",
+      "cutting or scraping out the cyst",
+      "bone graft",
+      "bone cement mixture"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Botulism",
+    "symptoms": [
+      "blurred or double vision",
+      "drooping eyelids",
+      "difficulty swallowing and speaking",
+      "weak muscles",
+      "constipation",
+      "dry mouth",
+      "weak cry",
+      "difficulty feeding",
+      "limp or floppy head, neck, arms or legs",
+      "paralysis"
+    ],
+    "treatments": [
+      "medicine to stop symptoms getting worse",
+      "ventilator to help breathe",
+      "medicine to treat infection",
+      "surgery to remove infected tissue"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36,
+        "max": 38,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bowel cancer",
+    "symptoms": [
+      "blood in stool",
+      "change in bowel habits",
+      "abdominal pain",
+      "weight loss",
+      "fatigue"
+    ],
+    "treatments": [
+      "surgery",
+      "chemotherapy",
+      "radiotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bowel polyps",
+    "symptoms": [
+      "slime or blood in poo",
+      "bleeding from bottom",
+      "change in bowel habits",
+      "diarrhoea",
+      "constipation",
+      "weight loss"
+    ],
+    "treatments": [
+      "polypectomy",
+      "colonoscopy",
+      "surgery to remove part of bowel"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Cervical cancer",
+    "symptoms": [
+      "Abnormal vaginal bleeding",
+      "Unusual vaginal discharge",
+      "Pain during sex"
+    ],
+    "treatments": [
+      "Surgery",
+      "Radiotherapy",
+      "Chemotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Costochondritis",
+    "symptoms": [
+      "sharp chest pain",
+      "pain in front or side of chest",
+      "pain when moving",
+      "pain when breathing deeply",
+      "pain when lying down"
+    ],
+    "treatments": [
+      "painkillers",
+      "ibuprofen",
+      "steroid injection",
+      "local anaesthetic"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bowel incontinence",
+    "symptoms": [
+      "poo leaking out without control",
+      "feeling like you need to poo but cannot get to the toilet in time",
+      "not being able to get fully clean after going to the toilet",
+      "seeing streaks or stains of poo in underwear"
+    ],
+    "treatments": [
+      "diet review",
+      "loperamide",
+      "laxatives",
+      "incontinence pants",
+      "pads",
+      "anal plugs",
+      "barrier cream",
+      "biofeedback",
+      "bowel retraining",
+      "surgery to repair or replace anal sphincter",
+      "artificial sphincter",
+      "electrical pulse device"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bowen's disease",
+    "symptoms": [
+      "scaly or crusty patch",
+      "flat or raised patch",
+      "itchy patch",
+      "red or pink patch",
+      "bleeding",
+      "open sore",
+      "lump"
+    ],
+    "treatments": [
+      "cryotherapy",
+      "imiquimod cream",
+      "chemotherapy cream",
+      "curettage and cautery",
+      "photodynamic therapy",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Brain abscess",
+    "symptoms": [
+      "headache",
+      "confusion",
+      "irritability",
+      "muscle weakness",
+      "slurred speech",
+      "paralysis",
+      "high temperature",
+      "seizures",
+      "feeling sick",
+      "being sick",
+      "stiff neck",
+      "changes in vision",
+      "blurring",
+      "greying of vision",
+      "double vision"
+    ],
+    "treatments": [
+      "antibiotics",
+      "antifungals",
+      "surgery",
+      "draining the pus through a hole in the skull",
+      "craniotomy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38,
+        "max": 40,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 96,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Brain aneurysm",
+    "symptoms": [
+      "headache",
+      "pain above or around the eye",
+      "changes in vision",
+      "dizziness and balance problems",
+      "numbness or weakness on one side of the face",
+      "difficulty concentrating and speaking",
+      "problems with short-term memory",
+      "sudden severe headache",
+      "weakness in the face",
+      "weakness or numbness in one arm or down one side of the body",
+      "speech problems",
+      "blurred vision or loss of sight"
+    ],
+    "treatments": [
+      "surgical clipping",
+      "endovascular surgery",
+      "regular follow-up scans",
+      "general anaesthetic"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Brain death",
+    "symptoms": [
+      "loss of consciousness",
+      "no breathing without support",
+      "no response to stimuli"
+    ],
+    "treatments": [
+      "artificial life support",
+      "organ donation",
+      "palliative care"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 60,
+        "max": 100,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 30,
+        "max": 60,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36,
+        "max": 38,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 10,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 0,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Brain tumours",
+    "symptoms": [
+      "headaches",
+      "seizures",
+      "nausea",
+      "vomiting",
+      "drowsiness",
+      "mental or behavioural changes",
+      "progressive weakness",
+      "paralysis",
+      "vision problems",
+      "speech problems"
+    ],
+    "treatments": [
+      "steroids",
+      "medicines for symptoms",
+      "surgery",
+      "radiotherapy",
+      "chemotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Breast abscess",
+    "symptoms": [
+      "lump or swelling in breast",
+      "pain in breast",
+      "high temperature",
+      "feeling generally unwell",
+      "breast feels warm or looks red"
+    ],
+    "treatments": [
+      "draining pus with a needle",
+      "draining pus with a small cut in the skin",
+      "antibiotics"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38,
+        "max": 40,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 6,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Breast cancer in men",
+    "symptoms": [
+      "lump in the breast",
+      "change in the size or shape of the breast",
+      "dimpling of the skin",
+      "change in the shape of the nipple"
+    ],
+    "treatments": [
+      "surgery",
+      "radiotherapy",
+      "chemotherapy",
+      "hormone therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Breast cancer in women",
+    "symptoms": [
+      "lump in the breast",
+      "change in breast size or shape",
+      "dimpling of the skin",
+      "nipple discharge",
+      "change in nipple position"
+    ],
+    "treatments": [
+      "surgery",
+      "chemotherapy",
+      "radiotherapy",
+      "hormone therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Breath-holding in babies and children",
+    "symptoms": [
+      "cry and then be silent while holding breath",
+      "open mouth as if going to cry but make no sound",
+      "turn pale, blue or grey",
+      "be floppy or stiff, or body may jerk",
+      "faint for 1 or 2 minutes"
+    ],
+    "treatments": [
+      "iron supplements if iron levels are low",
+      "reassurance and rest"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 80,
+        "max": 120,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 100,
+        "max": 160,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36,
+        "max": 38,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Broken ankle",
+    "symptoms": [
+      "very painful",
+      "large amount of swelling or bruising",
+      "hurts to put weight on it",
+      "feels very stiff or is difficult to move",
+      "high temperature",
+      "numb toes",
+      "blue or white toes"
+    ],
+    "treatments": [
+      "special boot",
+      "plaster cast",
+      "bones moved back into place",
+      "surgery",
+      "painkillers",
+      "physiotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Broken arm or wrist",
+    "symptoms": [
+      "painful",
+      "swollen",
+      "bruised",
+      "difficult to move",
+      "numb",
+      "change in colour",
+      "change in shape"
+    ],
+    "treatments": [
+      "splint",
+      "painkilling medicines",
+      "plaster cast",
+      "sling",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Broken collarbone",
+    "symptoms": [
+      "very painful shoulder",
+      "swollen or bruised shoulder",
+      "changed shape",
+      "bone sticking out of the skin",
+      "chest pain",
+      "difficulty breathing",
+      "coughing up blood"
+    ],
+    "treatments": [
+      "X-rays",
+      "sling",
+      "painkillers",
+      "surgery",
+      "shoulder and arm exercises"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 6,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Broken finger or thumb",
+    "symptoms": [
+      "painful",
+      "swollen",
+      "bruised",
+      "difficult to move",
+      "change in colour",
+      "numbness"
+    ],
+    "treatments": [
+      "splinting",
+      "casting",
+      "strapping",
+      "local anaesthetic injection",
+      "tetanus injection",
+      "antibiotics",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Broken hip",
+    "symptoms": [
+      "pain in the hip or upper leg",
+      "swelling and bruising around your hip and upper leg",
+      "not being able to stand or put weight on the affected hip and leg",
+      "difficulty moving your hip and leg",
+      "the affected leg is at an odd angle or is shorter than the unaffected leg"
+    ],
+    "treatments": [
+      "painkillers",
+      "X-ray",
+      "surgery to fix the broken bones back into place using screws, nails, rods or plates",
+      "hemiarthroplasty",
+      "hip replacement",
+      "physiotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Broken leg",
+    "symptoms": [
+      "painful, swollen and bruised",
+      "difficult to move",
+      "shorter, twisted or bent",
+      "making a grating noise",
+      "wound with bone sticking out"
+    ],
+    "treatments": [
+      "rest for stress fracture",
+      "cast to keep leg still",
+      "surgery with plates, rods or screws",
+      "traction to pull bone back into place",
+      "physiotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Broken nose",
+    "symptoms": [
+      "pain, swelling and bruising",
+      "crunching or crackling sound",
+      "difficulty breathing",
+      "nose changing shape"
+    ],
+    "treatments": [
+      "hold an ice pack on your nose",
+      "take paracetamol",
+      "treat nosebleeds",
+      "manipulation under local anaesthetic",
+      "stitches or strips for large wounds"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Broken or bruised ribs",
+    "symptoms": [
+      "strong pain in chest area",
+      "swelling or tenderness around affected ribs",
+      "bruising on the skin",
+      "feeling or hearing a crack"
+    ],
+    "treatments": [
+      "use painkillers like paracetamol or ibuprofen",
+      "apply ice pack to affected area",
+      "rest and take time off work",
+      "breathe normally and cough when needed",
+      "hold a pillow against chest when coughing",
+      "walk around and move shoulders"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Broken toe",
+    "symptoms": [
+      "bruised or red",
+      "painful and swollen",
+      "difficult to walk on"
+    ],
+    "treatments": [
+      "ibuprofen",
+      "paracetamol",
+      "rest",
+      "ice pack",
+      "strap up broken toe",
+      "wear wide, comfortable flat shoes"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bronchiectasis",
+    "symptoms": [
+      "cough that does not go away",
+      "coughing up phlegm",
+      "frequent chest infections",
+      "wheezing",
+      "shortness of breath",
+      "noises when breathing",
+      "feeling very tired",
+      "coughing up blood",
+      "chest pain"
+    ],
+    "treatments": [
+      "breathing techniques",
+      "physiotherapy",
+      "nebuliser",
+      "pulmonary rehabilitation",
+      "antibiotics",
+      "inhalers",
+      "oxygen therapy",
+      "surgery",
+      "lung transplant"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 95,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bronchiolitis",
+    "symptoms": [
+      "sneezing",
+      "runny or blocked nose",
+      "high temperature",
+      "cough",
+      "breathing more quickly",
+      "difficulty feeding",
+      "noisy breathing",
+      "irritability"
+    ],
+    "treatments": [
+      "children's paracetamol",
+      "ibuprofen",
+      "keeping child upright",
+      "encouraging fluids"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 80,
+        "max": 100,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 70,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 100,
+        "max": 160,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 37,
+        "max": 40,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 30,
+        "max": 60,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Bronchitis",
+    "symptoms": [
+      "cough",
+      "chest pain when coughing",
+      "shortness of breath",
+      "sore throat",
+      "runny nose",
+      "high temperature"
+    ],
+    "treatments": [
+      "rest",
+      "plenty of fluids",
+      "painkillers like paracetamol or ibuprofen",
+      "antibiotics if caused by bacterial infection"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38,
+        "max": 40,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 96,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Brucellosis",
+    "symptoms": [
+      "high temperature",
+      "loss of appetite",
+      "sweating",
+      "headaches",
+      "extreme tiredness",
+      "back and joint pain"
+    ],
+    "treatments": [
+      "antibiotics for at least 6 weeks"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Brugada syndrome",
+    "symptoms": [
+      "fainting",
+      "dizziness",
+      "lightheadedness",
+      "heart palpitations",
+      "seizures",
+      "shortness of breath"
+    ],
+    "treatments": [
+      "monitoring",
+      "implantable cardioverter defibrillator (ICD)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
   }
 ]
