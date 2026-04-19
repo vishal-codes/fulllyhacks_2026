@@ -31,11 +31,23 @@ function blurInput(e: React.FocusEvent<HTMLInputElement>) {
 // ─── VitalField ───────────────────────────────────────────────────────────────
 
 function VitalField({
-  label, unit, value, min, max, onChange,
+  label, unit, value, min, max, range, onChange,
 }: {
   label: string; unit: string; value: number;
-  min: number; max: number; onChange: (v: number) => void;
+  min: number; max: number;
+  range?: { min: number; max: number };
+  onChange: (v: number) => void;
 }) {
+  // Use range bounds as the hard limits if available
+  const clampMin = range ? range.min : min;
+  const clampMax = range ? range.max : max;
+
+  function handleChange(raw: number) {
+    if (isNaN(raw)) return;
+    const clamped = Math.min(clampMax, Math.max(clampMin, raw));
+    onChange(Math.round(clamped * 10) / 10);
+  }
+
   return (
     <div className="flex flex-col gap-1">
       <label className="text-xs font-medium" style={{ color: "#7dd3e8" }}>
@@ -45,25 +57,26 @@ function VitalField({
       <input
         type="number"
         value={value === 0 ? "" : value}
-        min={min}
-        max={max}
+        min={clampMin}
+        max={clampMax}
+        step="0.1"
         placeholder="—"
-        onChange={(e) => onChange(Number(e.target.value))}
+        onChange={(e) => handleChange(Number(e.target.value))}
         className="w-full px-3 py-1.5 rounded-lg text-sm outline-none transition-all"
         style={inputBase}
         onFocus={focusInput}
         onBlur={blurInput}
       />
+      {range && (
+        <span className="text-xs" style={{ color: "#2a5f72" }}>
+          Range: {range.min} – {range.max}
+        </span>
+      )}
     </div>
   );
 }
 
 // ─── SymptomRow ───────────────────────────────────────────────────────────────
-
-const SEVERITY_OPTIONS: Symptom["severity"][] = ["mild", "moderate", "severe"];
-const SEVERITY_COLORS: Record<Symptom["severity"], string> = {
-  mild: "#34d399", moderate: "#fbbf24", severe: "#f87171",
-};
 
 function SymptomRow({
   symptom, onChange, onRemove,
@@ -101,27 +114,6 @@ function SymptomRow({
       <span className="flex-1 text-sm" style={{ color: symptom.present ? "#e0f4f8" : "#4a8fa8" }}>
         {symptom.label}
       </span>
-
-      {/* Severity */}
-      <div className="flex gap-1">
-        {SEVERITY_OPTIONS.map((s) => (
-          <button
-            key={s}
-            type="button"
-            disabled={!symptom.present}
-            onClick={() => onChange({ ...symptom, severity: s })}
-            className="px-2 py-0.5 rounded text-xs font-medium transition-all capitalize"
-            style={{
-              background: symptom.severity === s && symptom.present ? `${SEVERITY_COLORS[s]}22` : "transparent",
-              border: `1px solid ${symptom.severity === s && symptom.present ? SEVERITY_COLORS[s] : "rgba(34,211,238,0.1)"}`,
-              color: symptom.severity === s && symptom.present ? SEVERITY_COLORS[s] : "#4a8fa8",
-              opacity: symptom.present ? 1 : 0.4,
-            }}
-          >
-            {s}
-          </button>
-        ))}
-      </div>
 
       {/* Remove */}
       <button
@@ -245,12 +237,15 @@ export default function ScenarioEditor({
           Vitals
         </h4>
         <div className="grid grid-cols-2 gap-3">
-          <VitalField label="Heart Rate"   unit="bpm"  value={config.vitals.heartRate}              min={30}  max={220} onChange={(v) => updateVital("heartRate", v)} />
-          <VitalField label="BP Systolic"  unit="mmHg" value={config.vitals.bloodPressureSystolic}  min={60}  max={250} onChange={(v) => updateVital("bloodPressureSystolic", v)} />
-          <VitalField label="BP Diastolic" unit="mmHg" value={config.vitals.bloodPressureDiastolic} min={40}  max={150} onChange={(v) => updateVital("bloodPressureDiastolic", v)} />
-          <VitalField label="Resp. Rate"   unit="br/m" value={config.vitals.respiratoryRate}        min={8}   max={40}  onChange={(v) => updateVital("respiratoryRate", v)} />
-          <VitalField label="Temperature"  unit="°F"   value={config.vitals.temperature}            min={95}  max={108} onChange={(v) => updateVital("temperature", v)} />
-          <VitalField label="O₂ Sat"       unit="%"    value={config.vitals.oxygenSaturation}       min={70}  max={100} onChange={(v) => updateVital("oxygenSaturation", v)} />
+          <VitalField label="Heart Rate"   unit={config.vitalRanges?.heartRate.unit ?? "bpm"}  value={config.vitals.heartRate}              min={30}  max={220} range={config.vitalRanges?.heartRate}             onChange={(v) => updateVital("heartRate", v)} />
+          <VitalField label="BP Systolic"  unit={config.vitalRanges?.bloodPressureSystolic.unit ?? "mmHg"} value={config.vitals.bloodPressureSystolic}  min={60}  max={250} range={config.vitalRanges?.bloodPressureSystolic}  onChange={(v) => updateVital("bloodPressureSystolic", v)} />
+          <VitalField label="BP Diastolic" unit={config.vitalRanges?.bloodPressureDiastolic.unit ?? "mmHg"} value={config.vitals.bloodPressureDiastolic} min={40}  max={150} range={config.vitalRanges?.bloodPressureDiastolic} onChange={(v) => updateVital("bloodPressureDiastolic", v)} />
+          <VitalField label="Resp. Rate"   unit={config.vitalRanges?.respiratoryRate.unit ?? "br/m"} value={config.vitals.respiratoryRate}        min={8}   max={40}  range={config.vitalRanges?.respiratoryRate}          onChange={(v) => updateVital("respiratoryRate", v)} />
+          <VitalField label="Temperature"  unit={config.vitalRanges?.temperature.unit ?? "°C"}   value={config.vitals.temperature}            min={34}  max={42}  range={config.vitalRanges?.temperature}             onChange={(v) => updateVital("temperature", v)} />
+          <VitalField label="O₂ Sat"       unit={config.vitalRanges?.oxygenSaturation.unit ?? "%"}    value={config.vitals.oxygenSaturation}       min={70}  max={100} range={config.vitalRanges?.oxygenSaturation}        onChange={(v) => updateVital("oxygenSaturation", v)} />
+          {config.vitalRanges?.pain && (
+            <VitalField label="Pain"       unit={config.vitalRanges.pain.unit}                   value={config.vitals.pain ?? 0}              min={0}   max={10}  range={config.vitalRanges.pain}                     onChange={(v) => updateVital("pain", v)} />
+          )}
         </div>
       </section>
 
@@ -282,6 +277,26 @@ export default function ScenarioEditor({
         {/* Add symptom */}
         <AddSymptomRow onAdd={addSymptom} />
       </section>
+
+      {/* Treatments — read-only, from backend */}
+      {config.treatments && config.treatments.length > 0 && (
+        <>
+          <div className="h-px" style={{ background: "rgba(34,211,238,0.1)" }} />
+          <section className="flex flex-col gap-3">
+            <h4 className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#4a8fa8" }}>
+              Treatments
+            </h4>
+            <ul className="flex flex-col gap-1">
+              {config.treatments.map((t, i) => (
+                <li key={i} className="text-xs flex gap-2" style={{ color: "#7dd3e8" }}>
+                  <span style={{ color: "#0891b2" }}>•</span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </>
+      )}
     </div>
   );
 }
