@@ -343,7 +343,10 @@ def get_competition_leaderboard(competition_date: date) -> list[dict]:
     """Return ranked leaderboard entries for a given competition date."""
     sql = """
         SELECT
-            RANK() OVER (ORDER BY ca.score DESC) AS rank,
+            RANK() OVER (
+                ORDER BY ca.score DESC,
+                         (ca.ended_at - ca.started_at) ASC
+            ) AS rank,
             u.name AS user_name,
             ca.score,
             ca.ended_at AS completed_at
@@ -352,7 +355,7 @@ def get_competition_leaderboard(competition_date: date) -> list[dict]:
         WHERE ca.competition_date = %s
           AND ca.ended_at IS NOT NULL
           AND ca.score IS NOT NULL
-        ORDER BY ca.score DESC
+        ORDER BY ca.score DESC, (ca.ended_at - ca.started_at) ASC
     """
     with _conn() as conn:
         with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:

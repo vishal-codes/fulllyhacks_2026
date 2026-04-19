@@ -19498,5 +19498,555 @@
         "unit": "/10"
       }
     }
+  },
+  {
+    "name": "Learning disabilities",
+    "symptoms": [
+      "learning to speak later than other children",
+      "not being interested in activities around language",
+      "reading at a level below what's expected at their age",
+      "having difficulty with numbers",
+      "telling the time, and remembering the order of things",
+      "written work that looks messy and has lots of spelling mistakes",
+      "being slow and hesitant when reading aloud",
+      "finding it challenging to plan and organise schoolwork"
+    ],
+    "treatments": [
+      "dyslexia training",
+      "auditory processing disorder (APD) training",
+      "speech therapy",
+      "cognitive training"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Leg cramps",
+    "symptoms": [
+      "pain in a muscle",
+      "swelling or bulging of the muscle",
+      "numbness",
+      "weakness or pins and needles",
+      "tightness or difficulty moving the affected body part"
+    ],
+    "treatments": [
+      "surgery",
+      "paracetamol",
+      "ibuprofen"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Legionnaires' disease",
+    "symptoms": [
+      "cough",
+      "shortness of breath",
+      "chest pain or discomfort",
+      "high temperature",
+      "flu-like symptoms",
+      "cough that's lasted 3 weeks or more",
+      "coughing up blood",
+      "chest pain that comes and goes"
+    ],
+    "treatments": [
+      "antibiotics given directly into a vein",
+      "oxygen through a face mask or tubes in your nose",
+      "a machine to help you breathe",
+      "antibiotic tablets"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 37.5,
+        "max": 40.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Leptospirosis (Weil's disease)",
+    "symptoms": [
+      "high temperature",
+      "cold hands and feet",
+      "vomiting",
+      "confusion",
+      "breathing quickly",
+      "muscle and joint pain",
+      "pale, mottled or blotchy skin",
+      "spots or a rash",
+      "headache",
+      "stiff neck",
+      "dislike of bright lights",
+      "being very sleepy or difficult to wake",
+      "fits (seizures)",
+      "refuse feeds",
+      "irritability",
+      "high-pitched cry",
+      "stiff body or be floppy or unresponsive",
+      "bulging soft spot on the top of their head"
+    ],
+    "treatments": [
+      "antibiotics given directly into a vein",
+      "oxygen through a face mask or tubes in your nose",
+      "a machine to help you breathe"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 140,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.0,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Leukoplakia",
+    "symptoms": [
+      "dry mouth",
+      "tooth decay"
+    ],
+    "treatments": [
+      "sugar-free gum",
+      "sugar-free sweets",
+      "lip balm",
+      "alcohol-free mouthwash"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 94,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Lichen planus",
+    "symptoms": [
+      "itchy skin",
+      "swollen skin",
+      "cracked skin",
+      "circular or oval patches"
+    ],
+    "treatments": [
+      "steroid creams",
+      "topical corticosteroids",
+      "emollients",
+      "special dressings",
+      "medicines"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 2,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Lichen sclerosus",
+    "symptoms": [
+      "burning",
+      "throbbing",
+      "stabbing",
+      "soreness"
+    ],
+    "treatments": [
+      "surgery to remove the painful part of your vulva",
+      "cognitive-behavioural therapy (CBT)",
+      "psychosexual therapy",
+      "emollients"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Lipoedema",
+    "symptoms": [
+      "throbbing pain and swelling in 1 leg",
+      "pain and swelling in your arm or tummy",
+      "warm, red or darkened skin around the painful or swollen area",
+      "swollen veins that are hard or sore when you touch them",
+      "sudden breathing difficulties",
+      "chest pain",
+      "coughing up blood",
+      "joint pain",
+      "bleeding more easily than other people",
+      "reddish-blue, lace-like rash on your lower legs"
+    ],
+    "treatments": [
+      "medicines that help prevent blood clots"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Lipoma",
+    "symptoms": [
+      "painful lump",
+      "warm lump",
+      "pus leakage",
+      "high temperature"
+    ],
+    "treatments": [
+      "antibiotics",
+      "antiseptic washes",
+      "retinoids",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Listeriosis",
+    "symptoms": [
+      "blurred or double vision",
+      "drooping eyelids",
+      "difficulty swallowing and speaking",
+      "weak muscles",
+      "constipation",
+      "dry mouth",
+      "weak cry",
+      "difficulty feeding",
+      "being quieter or less active than usual",
+      "constantly sleepy",
+      "limp or floppy head, neck, arms or legs"
+    ],
+    "treatments": [
+      "medicine to stop the symptoms getting worse, given into a vein through a drip (IV)",
+      "helping your body do things until you recover, like using a ventilator to help you breathe",
+      "medicine to treat the infection",
+      "surgery to remove any infected tissue"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
   }
 ]
