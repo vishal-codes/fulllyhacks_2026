@@ -35,7 +35,7 @@ export default async function WelcomePage() {
       }}
     >
       {/* ── Gradient overlay: transparent at top → 90% dark at bottom ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none" style={{ background: "rgba(0,0,0,0.75)" }} />
+      <div className="absolute inset-0 z-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, rgba(0,60,117,1) 100%)" }} />
 
       {/* ── Bubbles ── */}
       {BUBBLES.map(([size, left, delay, duration], i) => (

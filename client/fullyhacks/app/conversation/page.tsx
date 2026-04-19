@@ -870,14 +870,15 @@ function ConversationContent() {
                 }}
                 className="flex items-center justify-between transition-opacity hover:opacity-90"
                 style={{
-                  background: "#00F621",
+                  background: "#21B842",
+                  border: "2px solid #000300",
                   borderRadius: "8px",
                   padding: "12px 12px 12px 20px",
                 }}
               >
                 <span
                   style={{
-                    color: "#065811",
+                    color: "#FFFFFF",
                     fontSize: "24px",
                     fontWeight: 700,
                     fontFamily: "Inter, sans-serif",

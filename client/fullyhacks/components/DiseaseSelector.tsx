@@ -270,14 +270,15 @@ export default function DiseaseSelector({
         disabled={loadingConfig || submitting}
         className="w-full py-3 rounded-lg transition-all duration-150 flex items-center justify-between"
         style={{
-          background: "#00F621",
+          background: "#21B842",
+          border: "2px solid #000300",
           borderRadius: "8px",
           padding: "12px 12px 12px 20px",
           opacity: loadingConfig || submitting ? 0.6 : 1,
           cursor: loadingConfig || submitting ? "not-allowed" : "pointer",
         }}
       >
-        <span style={{ color: "#065811", fontSize: "24px", fontWeight: 700, fontFamily: "Inter, sans-serif" }}>
+        <span style={{ color: "#FFFFFF", fontSize: "24px", fontWeight: 700, fontFamily: "Inter, sans-serif" }}>
           {submitting ? "STARTING…" : "START SCENARIO"}
         </span>
         <span style={{ fontSize: "28px" }}>{submitting ? "…" : "➤"}</span>
