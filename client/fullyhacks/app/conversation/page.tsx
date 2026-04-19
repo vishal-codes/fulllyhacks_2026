@@ -2,7 +2,7 @@
 
 import { useState, useRef, Suspense } from "react";
 import { useScribe } from "@elevenlabs/react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -72,6 +72,7 @@ const DIAGNOSTIC_TOOLS = [
 ];
 
 function ConversationContent() {
+  const router = useRouter();
   const { data: session } = useSession();
   const params = useSearchParams();
   const sessionId = params.get("session_id") ?? "";
@@ -92,39 +93,62 @@ function ConversationContent() {
   const [chatLoading, setChatLoading] = useState(false);
   const [chatError, setChatError] = useState<string | null>(null);
   const chatBottomRef = useRef<HTMLDivElement>(null);
-  // ── TTS — browser SpeechSynthesis (free, no API needed) ─────────────────
+  // ── TTS ───────────────────────────────────────────────────────────────────
   const [ttsLoading, setTtsLoading] = useState(false);
-  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   function stopSpeaking() {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
     if (typeof window !== "undefined" && window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
   }
 
   async function playPatientResponse(text: string) {
-    if (typeof window === "undefined" || !window.speechSynthesis) return;
     stopSpeaking();
     setTtsLoading(true);
+    const audioUrl = await speakText(text);
+    if (audioUrl) {
+      const audio = new Audio(audioUrl);
+      audioRef.current = audio;
+      audio.onended = () => {
+        URL.revokeObjectURL(audioUrl);
+        audioRef.current = null;
+        setTtsLoading(false);
+      };
+      audio.onerror = () => {
+        URL.revokeObjectURL(audioUrl);
+        audioRef.current = null;
+        setTtsLoading(false);
+      };
+      try {
+        await audio.play();
+        return;
+      } catch {
+        URL.revokeObjectURL(audioUrl);
+      }
+    }
+
+    if (typeof window === "undefined" || !window.speechSynthesis) {
+      setTtsLoading(false);
+      return;
+    }
+
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate  = 0.92;   // slightly slower — sounds more like a patient
+    utterance.rate = 0.92;
     utterance.pitch = 0.95;
     utterance.volume = 1;
-    // Pick a natural-sounding voice if available
     const voices = window.speechSynthesis.getVoices();
     const preferred = voices.find(
       (v) => v.lang.startsWith("en") && /natural|enhanced|premium/i.test(v.name)
     ) ?? voices.find((v) => v.lang.startsWith("en")) ?? null;
     if (preferred) utterance.voice = preferred;
-    utterance.onend   = () => setTtsLoading(false);
+    utterance.onend = () => setTtsLoading(false);
     utterance.onerror = () => setTtsLoading(false);
-    utteranceRef.current = utterance;
     window.speechSynthesis.speak(utterance);
-  }
-
-  async function replayLastPatientMessage() {
-    const last = [...messages].reverse().find((m) => m.role === "patient");
-    if (last) await playPatientResponse(last.text);
   }
 
   function appendMessage(msg: ChatMessage) {
@@ -264,7 +288,7 @@ function ConversationContent() {
       }
       const report = await endSession(sessionId, backendToken);
       sessionStorage.setItem("last_osce_report", JSON.stringify(report));
-      window.location.href = "/setup";
+      router.push("/report");
     } catch (err) {
       setChatError(err instanceof Error ? err.message : "Failed to end session");
       setEndingSession(false);
@@ -748,11 +772,11 @@ function ConversationContent() {
 
             {/* Submit Panel */}
             <div
-              className="flex flex-col flex-1"
+              className="flex flex-col justify-center"
               style={{
                 borderRadius: "24px",
                 padding: "24px",
-                gap: "24px",
+                gap: "16px",
                 backgroundImage: "url('/chat/submit-panel-bg-174c22.png')",
                 backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
@@ -760,31 +784,18 @@ function ConversationContent() {
                 boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
               }}
             >
-              {/* Diagnosis text area */}
-              <div
-                className="flex flex-1"
+              <p
+                className="text-center"
                 style={{
-                  background: "rgba(250,250,250,0.35)",
-                  border: "5px solid #FAFAFA",
-                  borderRadius: "8px",
-                  padding: "24px 24px 24px 32px",
-                  backdropFilter: "blur(4px)",
-                  WebkitBackdropFilter: "blur(4px)",
-                  minHeight: "80px",
+                  color: "#FAFAFA",
+                  fontSize: "22px",
+                  fontFamily: "'Gochi Hand', cursive",
+                  lineHeight: "1.18em",
+                  opacity: 0.88,
                 }}
               >
-                <span
-                  style={{
-                    color: "#FAFAFA",
-                    fontSize: "24px",
-                    fontFamily: "'Gochi Hand', cursive",
-                    lineHeight: "1.18em",
-                    opacity: 0.7,
-                  }}
-                >
-                  Respond to patient here...
-                </span>
-              </div>
+                End the chat session and send the full conversation to the backend for the report.
+              </p>
 
               {/* Submit Diagnosis button */}
               <Link

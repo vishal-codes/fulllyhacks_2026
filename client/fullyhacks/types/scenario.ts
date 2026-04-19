@@ -144,7 +144,7 @@ export interface CompetitionStatusResponse {
   attempt?: {
     id: string;
     session_id: string;
-    correct_diagnosis?: boolean | null;
+    score?: number | null;
     started_at: string;
     ended_at?: string | null;
   } | null;

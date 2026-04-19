@@ -84,7 +84,7 @@ CREATE TABLE competition_attempts (
     competition_date  DATE NOT NULL REFERENCES daily_competitions(competition_date) ON DELETE CASCADE,
     user_id           UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     session_id        UUID UNIQUE NOT NULL,
-    correct_diagnosis BOOLEAN,
+    score             INTEGER,
     started_at        TIMESTAMPTZ DEFAULT NOW(),
     ended_at          TIMESTAMPTZ,
     UNIQUE (competition_date, user_id)
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS competition_attempts (
     competition_date  DATE NOT NULL REFERENCES daily_competitions(competition_date) ON DELETE CASCADE,
     user_id           UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     session_id        UUID UNIQUE NOT NULL,
-    correct_diagnosis BOOLEAN,
+    score             INTEGER,
     started_at        TIMESTAMPTZ DEFAULT NOW(),
     ended_at          TIMESTAMPTZ,
     UNIQUE (competition_date, user_id)
@@ -275,7 +275,7 @@ def create_daily_competition(competition_date: date, disease: str, patient: dict
 
 def get_competition_attempt(user_id: str, competition_date: date) -> dict | None:
     sql = """
-        SELECT id, competition_date, user_id, session_id, correct_diagnosis, started_at, ended_at
+        SELECT id, competition_date, user_id, session_id, score, started_at, ended_at
         FROM competition_attempts
         WHERE user_id = %s AND competition_date = %s
     """
@@ -296,7 +296,7 @@ def create_competition_attempt(user_id: str, competition_date: date, session_id:
     sql = """
         INSERT INTO competition_attempts (competition_date, user_id, session_id)
         VALUES (%s, %s, %s)
-        RETURNING id, competition_date, user_id, session_id, correct_diagnosis, started_at, ended_at
+        RETURNING id, competition_date, user_id, session_id, score, started_at, ended_at
     """
     with _conn() as conn:
         with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
@@ -308,13 +308,13 @@ def create_competition_attempt(user_id: str, competition_date: date, session_id:
             return row
 
 
-def complete_competition_attempt(session_id: str, correct_diagnosis: bool | None) -> None:
+def complete_competition_attempt(session_id: str, score: int | None) -> None:
     sql = """
         UPDATE competition_attempts
-        SET correct_diagnosis = %s,
+        SET score = %s,
             ended_at = NOW()
         WHERE session_id = %s
     """
     with _conn() as conn:
         with conn.cursor() as cur:
-            cur.execute(sql, (correct_diagnosis, uuid.UUID(session_id)))
+            cur.execute(sql, (score, uuid.UUID(session_id)))

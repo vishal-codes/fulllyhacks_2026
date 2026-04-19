@@ -370,10 +370,11 @@ def end_session(
     try:
         final_diagnosis = report.get("osce_report", {}).get("domains", {}).get("final_diagnosis", {})
         is_correct = final_diagnosis.get("is_correct")
+        total_score = report.get("osce_report", {}).get("total_score")
         if session.session_kind == "competition":
             _db.complete_competition_attempt(
                 session_id=session_id,
-                correct_diagnosis=is_correct,
+                score=total_score,
             )
         else:
             _db.save_session_end(

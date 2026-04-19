@@ -106,7 +106,7 @@ export default function CompetitionPanel() {
       >
         {loading && (
           <p className="text-sm animate-pulse" style={{ color: "#7dd3e8" }}>
-            Loading today&apos;s challenge...
+            {"Loading today's challenge..."}
           </p>
         )}
 
@@ -124,8 +124,13 @@ export default function CompetitionPanel() {
             {status.has_started && (
               <p className="text-xs mt-3" style={{ color: status.has_completed ? "#22c55e" : "#fbbf24" }}>
                 {status.has_completed
-                  ? "You already completed today&apos;s competition."
-                  : "You already started today&apos;s competition."}
+                  ? "You already completed today's competition."
+                  : "You already started today's competition."}
+              </p>
+            )}
+            {status.has_completed && status.attempt?.score != null && (
+              <p className="text-xs mt-2" style={{ color: "#bae6fd" }}>
+                {"Today's score: "}{status.attempt.score}/100
               </p>
             )}
           </>
