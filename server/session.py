@@ -180,15 +180,17 @@ class GlobalSession:
         self.engine: DiseaseEngine | None = None
         self.active: bool = False
         self.difficulty: str = "easy"
+        self.user_id: str | None = None
 
     # ── Lifecycle ─────────────────────────────────────────────────────────
 
-    def reset(self, patient: dict, difficulty: str = "easy") -> None:
+    def reset(self, patient: dict, difficulty: str = "easy", user_id: str | None = None) -> None:
         """Start a new consultation with the given patient."""
         self.patient = patient
         self.engine = DiseaseEngine(patient)
         self.symptom_log = {}
         self.difficulty = difficulty
+        self.user_id = user_id
         self.history = (
             [{"role": "system", "content": _make_system_msg(patient, difficulty=difficulty)}]
             + _make_seed_turns(patient)
@@ -264,11 +266,34 @@ class GlobalSession:
 
 
 # ---------------------------------------------------------------------------
-# Singleton accessor
+# Session manager — keyed by UUID session_id
 # ---------------------------------------------------------------------------
 
-_session = GlobalSession()
+import uuid as _uuid_mod
+
+_sessions: dict[str, GlobalSession] = {}
 
 
-def get_session() -> GlobalSession:
-    return _session
+def create_session(patient: dict, difficulty: str = "easy", user_id: str | None = None) -> str:
+    """
+    Create a new GlobalSession for the given patient, store it, and return its
+    UUID session_id string.  The caller is responsible for saving the id to DB.
+    """
+    session_id = str(_uuid_mod.uuid4())
+    gs = GlobalSession()
+    gs.reset(patient, difficulty=difficulty, user_id=user_id)
+    _sessions[session_id] = gs
+    return session_id
+
+
+def get_session(session_id: str) -> GlobalSession:
+    """
+    Return the active GlobalSession for session_id.
+    Raises KeyError if not found (caller should convert to 404).
+    """
+    return _sessions[session_id]
+
+
+def remove_session(session_id: str) -> None:
+    """Remove the in-memory session after it has ended."""
+    _sessions.pop(session_id, None)

@@ -2,14 +2,21 @@ import {
   ApiDiseasesResponse,
   ApiDiseaseDetail,
   ScenarioConfig,
-  VitalRanges,
   NewSessionRequest,
   NewSessionResponse,
   ChatRequest,
   ChatResponse,
+  EndSessionResponse,
 } from "@/types/scenario";
 
-const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
+
+function authHeaders(token: string): HeadersInit {
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
+}
 
 // ─── Fetch all disease names ──────────────────────────────────────────────────
 
@@ -82,6 +89,7 @@ function mapApiToConfig(data: ApiDiseaseDetail): ScenarioConfig {
 export async function createSession(
   config: ScenarioConfig | null,
   diseaseName: string,
+  token: string,
   difficulty: "easy" | "medium" | "hard" = "easy"
 ): Promise<NewSessionResponse> {
   const body: NewSessionRequest = { difficulty };
@@ -113,7 +121,7 @@ export async function createSession(
 
   const res = await fetch(`${BASE_URL}/session/new`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: authHeaders(token),
     body: JSON.stringify(body),
   });
 
@@ -128,14 +136,16 @@ export async function createSession(
  * Sends a student message to the virtual patient for the active session.
  */
 export async function sendChatMessage(
+  sessionId: string,
+  token: string,
   message: string,
   maxNewTokens = 120
 ): Promise<ChatResponse> {
   const body: ChatRequest = { message, max_new_tokens: maxNewTokens };
 
-  const res = await fetch(`${BASE_URL}/session/chat`, {
+  const res = await fetch(`${BASE_URL}/session/${encodeURIComponent(sessionId)}/chat`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: authHeaders(token),
     body: JSON.stringify(body),
   });
 
@@ -144,4 +154,20 @@ export async function sendChatMessage(
     throw new Error(`Chat request failed: ${res.status}${body ? ` — ${body}` : ""}`);
   }
   return res.json() as Promise<ChatResponse>;
+}
+
+export async function endSession(
+  sessionId: string,
+  token: string
+): Promise<EndSessionResponse> {
+  const res = await fetch(`${BASE_URL}/session/${encodeURIComponent(sessionId)}/end`, {
+    method: "POST",
+    headers: authHeaders(token),
+  });
+
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`End session failed: ${res.status}${body ? ` — ${body}` : ""}`);
+  }
+  return res.json() as Promise<EndSessionResponse>;
 }

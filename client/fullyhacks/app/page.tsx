@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { auth, signOut } from "@/auth";
 
 /* Bubble config: [size-px, left-%, delay-s, duration-s] */
 const BUBBLES: [number, number, number, number][] = [
@@ -32,7 +33,11 @@ const FEATURES = [
   },
 ];
 
-export default function WelcomePage() {
+export default async function WelcomePage() {
+  const session = await auth();
+  const displayName =
+    session?.backendUser?.name ?? session?.user?.name ?? session?.user?.email ?? "Doctor";
+
   return (
     <main
       className="relative flex flex-col items-center min-h-screen overflow-hidden"
@@ -84,6 +89,24 @@ export default function WelcomePage() {
         }}>
           Educational Tool
         </span>
+        <form
+          action={async () => {
+            "use server";
+            await signOut({ redirectTo: "/login" });
+          }}
+        >
+          <button
+            type="submit"
+            className="text-xs px-3 py-1 rounded-full"
+            style={{
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              color: "#bae6fd",
+            }}
+          >
+            Sign out
+          </button>
+        </form>
       </nav>
 
       {/* ── Hero ── */}
@@ -114,6 +137,9 @@ export default function WelcomePage() {
           >
             An educational simulation platform where medical students practice
             diagnostic conversations with realistic virtual patients.
+          </p>
+          <p className="text-sm" style={{ color: "#bae6fd" }}>
+            Signed in as {displayName}
           </p>
         </div>
 

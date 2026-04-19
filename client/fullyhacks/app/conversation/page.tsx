@@ -3,9 +3,10 @@
 import { useState, useRef, Suspense } from "react";
 import { useScribe } from "@elevenlabs/react";
 import { useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
-import { sendChatMessage } from "@/lib/api";
+import { endSession, sendChatMessage } from "@/lib/api";
 
 async function fetchScribeToken(): Promise<string> {
   const res = await fetch("/api/scribe-token");
@@ -71,8 +72,9 @@ const DIAGNOSTIC_TOOLS = [
 ];
 
 function ConversationContent() {
+  const { data: session } = useSession();
   const params = useSearchParams();
-  const disease = params.get("disease") ?? "Unknown";
+  const sessionId = params.get("session_id") ?? "";
 
   // Parse vitals from URL params — set by DiseaseSelector after POST /session/new
   const vitals: VitalsDisplay = {
@@ -103,7 +105,14 @@ function ConversationContent() {
     setChatError(null);
     setTimeout(() => chatBottomRef.current?.scrollIntoView({ behavior: "smooth" }), 30);
     try {
-      const res = await sendChatMessage(trimmed);
+      const backendToken = session?.backendToken;
+      if (!sessionId) {
+        throw new Error("Missing session id. Start a new session from setup.");
+      }
+      if (!backendToken) {
+        throw new Error("You are not authenticated with the backend.");
+      }
+      const res = await sendChatMessage(sessionId, backendToken, trimmed);
       appendMessage({ role: "patient", text: res.response });
     } catch (err) {
       setChatError(err instanceof Error ? err.message : "Failed to send message");
@@ -192,6 +201,28 @@ function ConversationContent() {
   }
 
   const errorMsg = scribeError ?? scribeHookError;
+  const [endingSession, setEndingSession] = useState(false);
+
+  async function handleEndSession() {
+    if (endingSession) return;
+    setEndingSession(true);
+    setChatError(null);
+    try {
+      const backendToken = session?.backendToken;
+      if (!sessionId) {
+        throw new Error("Missing session id. Start a new session from setup.");
+      }
+      if (!backendToken) {
+        throw new Error("You are not authenticated with the backend.");
+      }
+      const report = await endSession(sessionId, backendToken);
+      sessionStorage.setItem("last_osce_report", JSON.stringify(report));
+      window.location.href = "/setup";
+    } catch (err) {
+      setChatError(err instanceof Error ? err.message : "Failed to end session");
+      setEndingSession(false);
+    }
+  }
 
   return (
     <main
@@ -697,7 +728,11 @@ function ConversationContent() {
 
               {/* Submit Diagnosis button */}
               <Link
-                href="/setup"
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  void handleEndSession();
+                }}
                 className="flex items-center justify-between transition-opacity hover:opacity-90"
                 style={{
                   background: "#00F621",
@@ -716,7 +751,7 @@ function ConversationContent() {
                 >
                   SUBMIT DIAGNOSIS
                 </span>
-                <span style={{ fontSize: "28px" }}>➤</span>
+                <span style={{ fontSize: "28px" }}>{endingSession ? "…" : "➤"}</span>
               </Link>
             </div>
           </div>

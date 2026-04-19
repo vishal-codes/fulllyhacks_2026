@@ -95,7 +95,7 @@ export interface NewSessionResponse {
   disease: string;
   /** Formatted vitals strings e.g. { BP: "120/80 mmHg", HR: "88 bpm", Temp: "37.2C", SpO2: "97%", RR: "16 breaths/min", Pain: "3/10" } */
   vitals: Record<string, string | number>;
-  session_id?: string;
+  session_id: string;
   [key: string]: unknown;
 }
 
@@ -108,5 +108,31 @@ export interface ChatRequest {
 /** Response from POST /session/chat */
 export interface ChatResponse {
   response: string;
+  [key: string]: unknown;
+}
+
+export interface EndSessionResponse {
+  patient: {
+    name: string;
+    age: number;
+    gender: string;
+    mrn?: string;
+    disease: string;
+    onset?: string;
+    history?: string;
+  };
+  vitals: Record<string, string | number>;
+  transcript: Array<{
+    turn: number;
+    doctor: string;
+    patient: string;
+  }>;
+  symptoms: {
+    canonical: string[];
+    revealed: string[];
+    coverage_pct: number;
+  };
+  osce_report?: Record<string, unknown>;
+  counterfactual?: Record<string, unknown>;
   [key: string]: unknown;
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { fetchDiseaseList, fetchDiseaseConfig, createSession } from "@/lib/api";
 import { validateDisease } from "@/lib/validators";
 import { ScenarioConfig } from "@/types/scenario";
@@ -34,6 +35,7 @@ export default function DiseaseSelector({
   onConfigChange,
 }: Props) {
   const router = useRouter();
+  const { data: session } = useSession();
 
   const [diseases, setDiseases] = useState<string[]>([]);
   const [loadingList, setLoadingList] = useState(true);
@@ -86,14 +88,19 @@ export default function DiseaseSelector({
     setSubmitError(null);
     setSubmitting(true);
     try {
+      const backendToken = session?.backendToken;
+      if (!backendToken) {
+        throw new Error("You must be logged in before starting a session.");
+      }
+
       // Clear previous conversation history before starting a new session
       try { sessionStorage.removeItem("chat_history"); } catch {}
-      const session = await createSession(editorConfig, selectedDisease, difficulty);
+      const createdSession = await createSession(editorConfig, selectedDisease, backendToken, difficulty);
 
       // Build URL with vitals from the session response so the conversation
       // page can display them in the Diagnostics Tools panel.
       // Backend returns formatted strings: { BP: "120/80 mmHg", HR: "88 bpm", Temp: "37.2C", SpO2: "97%", RR: "16 breaths/min", Pain: "3/10" }
-      const v = (session.vitals ?? {}) as Record<string, string | number>;
+      const v = (createdSession.vitals ?? {}) as Record<string, string | number>;
 
       // Parse helpers
       const num = (val: string | number | undefined) =>
@@ -115,7 +122,7 @@ export default function DiseaseSelector({
 
       const params = new URLSearchParams({
         disease: selectedDisease,
-        ...(session.session_id ? { session_id: session.session_id } : {}),
+        session_id: createdSession.session_id,
         ...vitalsParams,
       });
       router.push(`/conversation?${params.toString()}`);
