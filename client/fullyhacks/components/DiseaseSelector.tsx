@@ -88,9 +88,36 @@ export default function DiseaseSelector({
       // Clear previous conversation history before starting a new session
       try { sessionStorage.removeItem("chat_history"); } catch {}
       const session = await createSession(editorConfig, selectedDisease);
-      router.push(
-        `/conversation?disease=${encodeURIComponent(selectedDisease)}${session.session_id ? `&session_id=${encodeURIComponent(session.session_id)}` : ""}`
-      );
+
+      // Build URL with vitals from the session response so the conversation
+      // page can display them in the Diagnostics Tools panel.
+      // Backend returns formatted strings: { BP: "120/80 mmHg", HR: "88 bpm", Temp: "37.2C", SpO2: "97%", RR: "16 breaths/min", Pain: "3/10" }
+      const v = (session.vitals ?? {}) as Record<string, string | number>;
+
+      // Parse helpers
+      const num = (val: string | number | undefined) =>
+        val !== undefined ? parseFloat(String(val)) : undefined;
+
+      // BP comes as "120/80 mmHg" — split on "/"
+      const bpRaw = v["BP"] ? String(v["BP"]).split("/") : [];
+      const bpSys = bpRaw[0] ? parseFloat(bpRaw[0]) : undefined;
+      const bpDia = bpRaw[1] ? parseFloat(bpRaw[1]) : undefined;
+
+      const vitalsParams: Record<string, string> = {};
+      if (bpSys !== undefined && !isNaN(bpSys)) vitalsParams.bp_sys = String(bpSys);
+      if (bpDia !== undefined && !isNaN(bpDia)) vitalsParams.bp_dia = String(bpDia);
+      const hr   = num(v["HR"]);   if (hr   !== undefined && !isNaN(hr))   vitalsParams.hr   = String(hr);
+      const temp = num(v["Temp"]); if (temp !== undefined && !isNaN(temp)) vitalsParams.temp = String(temp);
+      const spo2 = num(v["SpO2"]); if (spo2 !== undefined && !isNaN(spo2)) vitalsParams.spo2 = String(spo2);
+      const rr   = num(v["RR"]);   if (rr   !== undefined && !isNaN(rr))   vitalsParams.rr   = String(rr);
+      const pain = num(v["Pain"]); if (pain !== undefined && !isNaN(pain)) vitalsParams.pain = String(pain);
+
+      const params = new URLSearchParams({
+        disease: selectedDisease,
+        ...(session.session_id ? { session_id: session.session_id } : {}),
+        ...vitalsParams,
+      });
+      router.push(`/conversation?${params.toString()}`);
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : "Failed to start session");
       setSubmitting(false);

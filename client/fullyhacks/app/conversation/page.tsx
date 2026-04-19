@@ -74,15 +74,15 @@ function ConversationContent() {
   const params = useSearchParams();
   const disease = params.get("disease") ?? "Unknown";
 
-  // Parse vitals from URL params if present
+  // Parse vitals from URL params — set by DiseaseSelector after POST /session/new
   const vitals: VitalsDisplay = {
-    temperature: params.get("temp") ? Number(params.get("temp")) : undefined,
-    heartRate: params.get("hr") ? Number(params.get("hr")) : undefined,
+    temperature:           params.get("temp")   ? Number(params.get("temp"))   : undefined,
+    heartRate:             params.get("hr")     ? Number(params.get("hr"))     : undefined,
     bloodPressureSystolic: params.get("bp_sys") ? Number(params.get("bp_sys")) : undefined,
-    bloodPressureDiastolic: params.get("bp_dia") ? Number(params.get("bp_dia")) : undefined,
-    oxygenSaturation: params.get("spo2") ? Number(params.get("spo2")) : undefined,
-    respiratoryRate: params.get("rr") ? Number(params.get("rr")) : undefined,
-    pain: params.get("pain") ? Number(params.get("pain")) : undefined,
+    bloodPressureDiastolic:params.get("bp_dia") ? Number(params.get("bp_dia")) : undefined,
+    oxygenSaturation:      params.get("spo2")   ? Number(params.get("spo2"))   : undefined,
+    respiratoryRate:       params.get("rr")     ? Number(params.get("rr"))     : undefined,
+    pain:                  params.get("pain")   ? Number(params.get("pain"))   : undefined,
   };
 
   // ── Chat history ─────────────────────────────────────────────────────────

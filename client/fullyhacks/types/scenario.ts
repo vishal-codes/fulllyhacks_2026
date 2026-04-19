@@ -86,14 +86,15 @@ export interface NewSessionRequest {
   vitals?: Record<string, number>;
 }
 
-/** Response from POST /session/new — backend returns patient info, not a session_id */
+/** Response from POST /session/new — backend returns patient info with formatted vitals */
 export interface NewSessionResponse {
   name: string;
   age: number;
   gender: string;
   disease: string;
-  vitals: Record<string, number>;
-  session_id?: string; // may be added in future
+  /** Formatted vitals strings e.g. { BP: "120/80 mmHg", HR: "88 bpm", Temp: "37.2C", SpO2: "97%", RR: "16 breaths/min", Pain: "3/10" } */
+  vitals: Record<string, string | number>;
+  session_id?: string;
   [key: string]: unknown;
 }
 
