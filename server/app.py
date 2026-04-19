@@ -1,82 +1,71 @@
 """
 app.py
 ------
-FastAPI server for the medical patient simulator.
+FastAPI server for the Medical Patient Simulator.
 
-Endpoints
----------
-POST  /session/new                  Create a new patient session
-POST  /session/{id}/chat            Send a doctor message, get patient response
-GET   /session/{id}/vitals          Patient vitals
-GET   /session/{id}/hint            Age + gender hint
-GET   /session/{id}/suggest         Next suggested question
-GET   /session/{id}/revealed        Symptoms uncovered so far
-POST  /session/{id}/diagnose        Submit a diagnosis and get the full reveal
-POST  /session/{id}/medication      Submit medications (or skip with empty list)
-GET   /session/{id}/report          Full end-to-end consultation report
+Startup:
+    GROQ_API_KEY=<your_key> uvicorn app:app --reload --port 8000
 
-GET   /diseases                     All disease names (for frontend dropdown)
-GET   /diseases/{name}              Symptoms, treatments, sample vitals for a disease
-
-Run:
-    uvicorn app:app --reload --port 8000
+Routes
+------
+GET   /health
+GET   /diseases                  list all supported disease names
+GET   /diseases/{name}           symptoms + vitals ranges for a disease
+POST  /session/new               create patient, start session
+POST  /session/chat              send a doctor message, get patient response
+POST  /session/end               end session, get Groq evaluation report
 """
 
-import uuid
 from contextlib import asynccontextmanager
+from typing import Optional
 
 from fastapi import FastAPI, HTTPException
+from starlette.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from typing import Optional
-from inference import PatientSession, load_model
-from knowledge_base import list_diseases, disease_info
+import model as _model
+from knowledge_base import (
+    list_diseases,
+    disease_info,
+    synthea_patient,
+    synthea_patient_from_spec,
+)
+from session import get_session
+from report import generate_report
+
 
 # ---------------------------------------------------------------------------
-# In-memory session store  {session_id: PatientSession}
-# ---------------------------------------------------------------------------
-
-_sessions: dict[str, PatientSession] = {}
-
-
-# ---------------------------------------------------------------------------
-# Lifespan — warm up model at startup so the first request isn't slow
+# Startup / shutdown
 # ---------------------------------------------------------------------------
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print("[app] Warming up model …")
-    load_model()
-    print("[app] Ready.")
+    # Load Qwen + LoRA adapter into memory once; all requests reuse them.
+    _model.load()
     yield
 
 
 app = FastAPI(
     title="Medical Patient Simulator",
-    description="Qwen2.5-1.5B + LoRA patient simulator for medical training",
-    version="1.0.0",
+    description="Qwen2.5-1.5B + LoRA patient simulator — Groq evaluation report",
+    version="2.0.0",
     lifespan=lifespan,
+)
+
+# Allow requests from the Next.js dev server
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
 # ---------------------------------------------------------------------------
-# Request / response schemas
+# Request schemas
 # ---------------------------------------------------------------------------
-
-
-class ChatRequest(BaseModel):
-    message: str
-    max_new_tokens: int = 120
-
-
-class ChatResponse(BaseModel):
-    response: str
-    session_id: str
-
-
-class DiagnoseRequest(BaseModel):
-    disease: str
 
 
 class VitalRange(BaseModel):
@@ -86,25 +75,19 @@ class VitalRange(BaseModel):
 
 
 class NewSessionRequest(BaseModel):
+    """
+    All fields optional.
+    - No body → random patient from the KB.
+    - With disease (+ optional symptoms / vitals_ranges) → doctor-specified patient.
+    """
     disease: Optional[str] = None
     symptoms: Optional[list[str]] = None
     vitals_ranges: Optional[dict[str, VitalRange]] = None
 
 
-class MedicationRequest(BaseModel):
-    medications: list[str] = []  # empty list = skip
-
-
-# ---------------------------------------------------------------------------
-# Helpers
-# ---------------------------------------------------------------------------
-
-
-def _get_session(session_id: str) -> PatientSession:
-    session = _sessions.get(session_id)
-    if session is None:
-        raise HTTPException(status_code=404, detail=f"Session '{session_id}' not found")
-    return session
+class ChatRequest(BaseModel):
+    message: str
+    max_new_tokens: int = 120
 
 
 # ---------------------------------------------------------------------------
@@ -112,135 +95,117 @@ def _get_session(session_id: str) -> PatientSession:
 # ---------------------------------------------------------------------------
 
 
-@app.post("/session/new")
-def new_session(body: NewSessionRequest = NewSessionRequest()):
-    """
-    Create a new patient session.
-
-    - No body → random patient from the full KB.
-    - With body → use the doctor-supplied disease, symptoms, and vitals ranges.
-      The frontend sends back whatever the doctor edited from GET /diseases/{name}.
-    """
-    session_id = str(uuid.uuid4())
-
-    if body.disease:
-        vitals_ranges = (
-            {k: v.model_dump() for k, v in body.vitals_ranges.items()}
-            if body.vitals_ranges else {}
-        )
-        _sessions[session_id] = PatientSession.from_spec(
-            disease=body.disease,
-            symptoms=body.symptoms or [],
-            vitals_ranges=vitals_ranges,
-        )
-    else:
-        _sessions[session_id] = PatientSession.new()
-
-    patient = _sessions[session_id].patient
-    return {
-        "session_id": session_id,
-        "message":    "New patient has arrived. Begin your consultation.",
-        "patient_info": {
-            "mrn":    patient["mrn"],
-            "age":    patient["age"],
-            "gender": patient["gender"],
-        },
-    }
+@app.get("/health")
+def health():
+    s = get_session()
+    return {"status": "ok", "session_active": s.is_active()}
 
 
-@app.post("/session/{session_id}/chat", response_model=ChatResponse)
-def chat(session_id: str, body: ChatRequest):
-    """Send a doctor message and receive the patient's response."""
-    session = _get_session(session_id)
-    response = session.chat(body.message, max_new_tokens=body.max_new_tokens)
-    return ChatResponse(response=response, session_id=session_id)
-
-
-@app.get("/session/{session_id}/vitals")
-def vitals(session_id: str):
-    """Return the patient's current vital signs."""
-    return _get_session(session_id).vitals()
-
-
-@app.get("/session/{session_id}/hint")
-def hint(session_id: str):
-    """Return age and gender without revealing the disease."""
-    return _get_session(session_id).hint()
-
-
-@app.get("/session/{session_id}/suggest")
-def suggest(session_id: str):
-    """Return the next suggested doctor question."""
-    q = _get_session(session_id).suggest()
-    return {"suggestion": q}
-
-
-@app.get("/session/{session_id}/revealed")
-def revealed(session_id: str):
-    """Return symptoms the patient has confirmed so far."""
-    return _get_session(session_id).revealed()
-
-
-@app.post("/session/{session_id}/diagnose")
-def diagnose(session_id: str, body: DiagnoseRequest):
-    """
-    Submit a diagnosis. Returns CORRECT / CLOSE / INCORRECT plus the
-    full disease reveal with symptom coverage stats.
-    """
-    return _get_session(session_id).diagnose(body.disease)
-
-
-@app.post("/session/{session_id}/medication")
-def medication(session_id: str, body: MedicationRequest):
-    """
-    Submit prescribed medications after diagnosis (pass an empty list to skip).
-    Returns a summary; call /session/{id}/report afterwards to get the full report.
-    """
-    return _get_session(session_id).submit_medication(body.medications)
-
-
-@app.get("/session/{session_id}/report")
-def report(session_id: str):
-    """
-    Generate and return the complete end-to-end consultation report.
-    Includes patient info, vitals, full transcript, symptom coverage,
-    diagnosis result, and prescribed medications.
-    """
-    return _get_session(session_id).generate_report()
-
-
-# ---------------------------------------------------------------------------
-# Disease catalogue (for frontend disease-selector)
-# ---------------------------------------------------------------------------
+# ── Disease catalogue ──────────────────────────────────────────────────────
 
 
 @app.get("/diseases")
 def get_diseases():
-    """Return all disease names in the KB (alphabetically sorted)."""
+    """Return all disease names supported by the KB (sorted alphabetically)."""
     return {"diseases": list_diseases()}
 
 
 @app.get("/diseases/{disease_name}")
 def get_disease_info(disease_name: str):
     """
-    Return symptoms, treatments, and a sample vitals profile for a disease.
+    Return symptoms, treatments, and vitals ranges for a disease.
+    The doctor can edit the vitals ranges in the UI before starting a session.
     Matching is case-insensitive.
     """
     info = disease_info(disease_name)
     if info is None:
-        raise HTTPException(status_code=404, detail=f"Disease '{disease_name}' not found")
+        raise HTTPException(
+            status_code=404,
+            detail=f"Disease '{disease_name}' not found in the knowledge base.",
+        )
     return info
 
 
-@app.delete("/session/{session_id}")
-def delete_session(session_id: str):
-    """Clean up a finished session."""
-    if session_id not in _sessions:
-        raise HTTPException(status_code=404, detail=f"Session '{session_id}' not found")
-    del _sessions[session_id]
-    return {"deleted": session_id}
+# ── Session ────────────────────────────────────────────────────────────────
 
 
-@app.get("/health")
-def health():
-    return {"status": "ok", "active_sessions": len(_sessions)}
+@app.post("/session/new")
+def new_session(body: NewSessionRequest = NewSessionRequest()):
+    """
+    Create a new patient and start the global session.
+
+    If disease is provided the patient is built from the doctor's spec
+    (disease + optional symptom list + optional edited vitals ranges).
+    Otherwise a fully random patient is generated.
+
+    Returns only: patient name, age, gender, disease, and actual vitals
+    (sampled from the provided/default ranges) — the disease is revealed
+    so the doctor knows what they're simulating.
+    """
+    if body.disease:
+        vitals_ranges = (
+            {k: v.model_dump() for k, v in body.vitals_ranges.items()}
+            if body.vitals_ranges
+            else {}
+        )
+        patient = synthea_patient_from_spec(
+            disease=body.disease,
+            symptoms=body.symptoms or [],
+            vitals_ranges=vitals_ranges,
+        )
+    else:
+        patient = synthea_patient()
+
+    session = get_session()
+    session.reset(patient)
+
+    return {
+        "name":    patient["name"],
+        "age":     patient["age"],
+        "gender":  patient["gender"],
+        "disease": patient["disease"],
+        "vitals":  patient["vitals"],
+    }
+
+
+@app.post("/session/chat")
+def chat(body: ChatRequest):
+    """
+    Send a doctor message.  The fine-tuned Qwen model generates the patient's
+    response and returns it.  Both sides of the conversation are stored in
+    memory for the final evaluation report.
+    """
+    session = get_session()
+    if not session.is_active():
+        raise HTTPException(
+            status_code=400,
+            detail="No active session. Call POST /session/new first.",
+        )
+
+    response = session.chat(body.message, max_new_tokens=body.max_new_tokens)
+    return {"response": response}
+
+
+@app.post("/session/end")
+def end_session():
+    """
+    End the consultation and generate the full evaluation report via Groq.
+
+    The report includes:
+    - Patient demographics and vitals
+    - Full conversation transcript
+    - Symptom coverage (which canonical symptoms the patient revealed)
+    - Evaluation: diagnosis accuracy, medication appropriateness,
+      question quality — all extracted from the conversation by the LLM
+    - Overall score and summary
+    """
+    session = get_session()
+    if not session.is_active():
+        raise HTTPException(
+            status_code=400,
+            detail="No active session to end.",
+        )
+
+    report = generate_report(session)
+    session.end()
+    return report

@@ -205,7 +205,7 @@ def synthea_patient() -> dict:
     disease = random.choice(list(SYMPTOM_KB.keys()))
     canonical = list(SYMPTOM_KB.get(disease, ["fatigue", "general discomfort"]))
 
-    n_syms = random.randint(2, min(5, len(canonical)))
+    n_syms = random.randint(min(2, len(canonical)), min(5, len(canonical)))
     selected = random.sample(canonical, n_syms)
 
     age = random.randint(18, 78)
