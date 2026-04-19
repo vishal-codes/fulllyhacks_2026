@@ -1,130 +1,169 @@
-"use client";
+import Link from "next/link";
 
-import { useState } from "react";
-import DiseaseSelector from "@/components/DiseaseSelector";
-import ScenarioEditor from "@/components/ScenarioEditor";
-import { ScenarioConfig } from "@/types/scenario";
-
-// Bubble config: [size-px, left-%, delay-s, duration-s]
+/* Bubble config: [size-px, left-%, delay-s, duration-s] */
 const BUBBLES: [number, number, number, number][] = [
-  [14, 8,   0,   9],
-  [22, 18,  2,  13],
-  [10, 30,  5,   8],
-  [18, 45,  1,  11],
-  [26, 58,  3,  15],
-  [12, 70,  6,  10],
-  [20, 82,  0.5, 12],
-  [8,  92,  4,   7],
+  [10,  5,  0,   8],
+  [18, 12,  3,  12],
+  [8,  22,  1,   7],
+  [24, 33,  5,  14],
+  [14, 47,  2,  10],
+  [20, 58,  7,  13],
+  [10, 68,  0.5, 9],
+  [28, 76,  4,  16],
+  [12, 85,  6,  11],
+  [8,  93,  2,   8],
 ];
 
-export default function LandingPage() {
-  // Lifted state — shared between selector (left) and editor (right)
-  const [selectedDisease, setSelectedDisease] = useState<string>("");
-  const [editorConfig, setEditorConfig] = useState<ScenarioConfig | null>(null);
-  const [isCustom, setIsCustom] = useState(false);
+const FEATURES = [
+  {
+    icon: "🩺",
+    title: "Realistic Scenarios",
+    body: "Virtual patients respond naturally — not like a textbook. Symptoms reveal gradually through conversation.",
+  },
+  {
+    icon: "⚙️",
+    title: "Fully Configurable",
+    body: "Adjust vitals, toggle symptoms, and set severity levels before every session.",
+  },
+  {
+    icon: "📊",
+    title: "Instant Feedback",
+    body: "Students receive a structured report with missed clues and constructive diagnostic feedback.",
+  },
+];
 
-  const panelOpen = !!editorConfig && !!selectedDisease;
-
-  function handleSelectDisease(name: string) {
-    setSelectedDisease(name);
-    setIsCustom(false);
-  }
-
-  function handleConfigChange(config: ScenarioConfig | null, custom = false) {
-    setEditorConfig(config);
-    setIsCustom(custom);
-  }
-
+export default function WelcomePage() {
   return (
     <main
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 py-16 overflow-hidden"
+      className="relative flex flex-col items-center min-h-screen overflow-hidden"
       style={{
         background:
-          "radial-gradient(ellipse at 50% 0%, #0d3b6e 0%, #0e2a4a 40%, #0a1628 100%)",
+          "radial-gradient(ellipse at 50% -10%, #0d3b6e 0%, #0a1e3d 35%, #060e1f 100%)",
       }}
     >
-      {/* Animated bubbles */}
+      {/* ── Bubbles ── */}
       {BUBBLES.map(([size, left, delay, duration], i) => (
         <span
           key={i}
           className="bubble"
           style={{
-            width: size,
+            width:  size,
             height: size,
-            left: `${left}%`,
-            animationDelay: `${delay}s`,
+            left:   `${left}%`,
+            animationDelay:    `${delay}s`,
             animationDuration: `${duration}s`,
           }}
         />
       ))}
 
-      {/* Ocean floor glow */}
+      {/* ── Ocean floor glow ── */}
       <div
-        className="pointer-events-none fixed bottom-0 left-0 right-0 h-32 z-0"
-        style={{ background: "linear-gradient(to top, rgba(8,145,178,0.08), transparent)" }}
+        className="pointer-events-none fixed bottom-0 left-0 right-0 z-0"
+        style={{
+          height: "220px",
+          background:
+            "linear-gradient(to top, rgba(8,145,178,0.12) 0%, transparent 100%)",
+        }}
       />
 
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center w-full max-w-5xl">
-        {/* Header */}
-        <div className="mb-10 text-center">
-          <div className="text-5xl mb-4 select-none">🐚</div>
-          <h1 className="text-4xl font-bold mb-3" style={{ color: "#22d3ee" }}>
-            Virtual Patient Practice
+      {/* ── Top nav bar ── */}
+      <nav
+        className="relative z-10 w-full flex items-center justify-between px-8 py-5"
+        style={{ borderBottom: "1px solid rgba(34,211,238,0.08)" }}
+      >
+        <div className="flex items-center gap-2">
+          <span className="text-xl">🐚</span>
+          <span className="text-sm font-semibold tracking-wide" style={{ color: "#7dd3e8" }}>
+            VPP
+          </span>
+        </div>
+        <span className="text-xs px-3 py-1 rounded-full" style={{
+          background: "rgba(34,211,238,0.08)",
+          border: "1px solid rgba(34,211,238,0.15)",
+          color: "#4a8fa8",
+        }}>
+          Educational Tool
+        </span>
+      </nav>
+
+      {/* ── Hero ── */}
+      <section
+        className="relative z-10 flex flex-col items-center text-center px-6 pt-20 pb-16 gap-8 w-full max-w-3xl mx-auto"
+      >
+        {/* Glowing shell icon */}
+        <div className="hero-icon fade-up-1 text-8xl select-none leading-none">
+          🐚
+        </div>
+
+        {/* Headline */}
+        <div className="fade-up-2 flex flex-col gap-4">
+          <h1
+            className="text-6xl font-bold leading-tight tracking-tight"
+            style={{
+              color: "#22d3ee",
+              textShadow: "0 0 60px rgba(34,211,238,0.25)",
+            }}
+          >
+            Virtual Patient
+            <br />
+            Practice
           </h1>
-          <p className="text-base max-w-sm" style={{ color: "#7dd3e8" }}>
-            Select or enter a disease scenario to begin a patient interaction session.
+          <p
+            className="text-lg leading-relaxed max-w-md mx-auto"
+            style={{ color: "#7dd3e8" }}
+          >
+            An educational simulation platform where medical students practice
+            diagnostic conversations with realistic virtual patients.
           </p>
         </div>
 
-        {/* Two-column layout */}
-        <div
-          className="w-full flex items-start gap-5 transition-all duration-300"
-          style={{ justifyContent: panelOpen ? "center" : "center" }}
-        >
-          {/* Left — selector card */}
-          <div
-            className="ocean-card rounded-2xl p-8 flex-shrink-0 transition-all duration-300"
-            style={{ width: panelOpen ? "380px" : "448px" }}
+        {/* CTA */}
+        <div className="fade-up-3">
+          <Link
+            href="/setup"
+            className="cta-btn inline-flex items-center gap-3 px-10 py-4 rounded-2xl font-semibold text-base"
           >
-            <h2 className="text-lg font-semibold mb-6" style={{ color: "#bae6fd" }}>
-              Choose a scenario
-            </h2>
-            <DiseaseSelector
-              selectedDisease={selectedDisease}
-              editorConfig={editorConfig}
-              onSelectDisease={handleSelectDisease}
-              onConfigChange={handleConfigChange}
-            />
-          </div>
-
-          {/* Right — editor panel, slides in */}
-          <div
-            className="ocean-card rounded-2xl overflow-hidden transition-all duration-300 flex-shrink-0"
-            style={{
-              width: panelOpen ? "420px" : "0px",
-              opacity: panelOpen ? 1 : 0,
-              padding: panelOpen ? "2rem" : "0",
-              pointerEvents: panelOpen ? "auto" : "none",
-            }}
-          >
-            {panelOpen && (
-              <ScenarioEditor
-                diseaseName={selectedDisease}
-                config={editorConfig!}
-                isCustom={isCustom}
-                onChange={setEditorConfig}
-                onRenameDisease={isCustom ? setSelectedDisease : undefined}
-              />
-            )}
-          </div>
+            <span className="text-lg">🌊</span>
+            Enter Teacher Portal
+          </Link>
         </div>
 
-        {/* Footer note */}
-        <p className="mt-8 text-xs" style={{ color: "#4a8fa8" }}>
-          For educational use only. Not a diagnostic tool.
+        {/* Shimmer divider */}
+        <div className="fade-up-4 shimmer-line w-48" />
+      </section>
+
+      {/* ── Feature cards ── */}
+      <section className="relative z-10 w-full max-w-4xl mx-auto px-6 pb-20 fade-up-5">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {FEATURES.map((f) => (
+            <div key={f.title} className="feature-card rounded-2xl p-6 flex flex-col gap-3">
+              <span className="text-3xl">{f.icon}</span>
+              <h3
+                className="text-sm font-semibold"
+                style={{ color: "#bae6fd" }}
+              >
+                {f.title}
+              </h3>
+              <p
+                className="text-xs leading-relaxed"
+                style={{ color: "#4a8fa8" }}
+              >
+                {f.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Footer ── */}
+      <footer
+        className="relative z-10 w-full text-center py-6"
+        style={{ borderTop: "1px solid rgba(34,211,238,0.07)" }}
+      >
+        <p className="text-xs" style={{ color: "#2a5f72" }}>
+          For educational use only · Not a diagnostic tool
         </p>
-      </div>
+      </footer>
     </main>
   );
 }
