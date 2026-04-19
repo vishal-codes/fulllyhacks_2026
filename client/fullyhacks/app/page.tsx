@@ -90,30 +90,33 @@ export default async function WelcomePage() {
 
       {/* ── Hero ── */}
       <section className="relative z-10 flex-1 w-full overflow-y-auto" style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.2) transparent" }}>
-        <div className="flex flex-col items-center text-center px-6 pt-16 pb-12 gap-8 w-full max-w-4xl mx-auto">
+        <div className="flex flex-col items-center text-center px-6 pt-6 pb-12 gap-8 w-full max-w-4xl mx-auto">
 
         {/* Headline */}
-        <div className="fade-up-2 flex flex-col gap-4">
+        <div className="fade-up-2 flex flex-col gap-0">
           <h1
-            className="text-6xl font-bold leading-tight"
+            className="font-bold leading-tight"
             style={{
               color: "#FAFAFA",
               fontFamily: "'Gochi Hand', cursive",
+              fontSize: "96px",
               textShadow: "0px 4px 20px rgba(0,60,117,0.6)",
             }}
           >
             ClinicVerse
           </h1>
-          <p
-            className="text-xl leading-relaxed max-w-md mx-auto"
-            style={{ color: "rgba(250,250,250,0.6)", fontFamily: "'Gochi Hand', cursive" }}
-          >
-            An educational simulation platform where medical students practice
-            diagnostic conversations with realistic virtual patients.
-          </p>
-          <p style={{ color: "rgba(250,250,250,0.4)", fontFamily: "'Gochi Hand', cursive", fontSize: "18px" }}>
-            Signed in as {displayName}
-          </p>
+          <div className="flex flex-col gap-2">
+            <p
+              className="text-[25px] leading-relaxed max-w-2xl mx-auto"
+              style={{ color: "rgba(236, 236, 236, 0.83)", fontFamily: "'Gochi Hand', cursive" }}
+            >
+              An educational simulation platform where medical students practice
+              diagnostic conversations with realistic virtual patients.
+            </p>
+            <p style={{ color: "rgba(250,250,250,0.4)", fontFamily: "'Gochi Hand', cursive", fontSize: "18px" }}>
+              Signed in as {displayName}
+            </p>
+          </div>
         </div>
 
         {/* Entry point cards */}
