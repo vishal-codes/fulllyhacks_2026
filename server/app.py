@@ -32,6 +32,7 @@ GET   /session/history            list current user's sessions   [auth required]
 
 import os
 from contextlib import asynccontextmanager
+from datetime import datetime, timezone
 from typing import Literal, Optional
 
 from fastapi import Depends, FastAPI, HTTPException
@@ -114,6 +115,21 @@ class ChatRequest(BaseModel):
     max_new_tokens: int = 120
 
 
+def _today_utc_date():
+    return datetime.now(timezone.utc).date()
+
+
+def _competition_payload(session_id: str, patient: dict, competition_date: str) -> dict:
+    return {
+        "session_id": session_id,
+        "competition_date": competition_date,
+        "name": patient["name"],
+        "age": patient["age"],
+        "gender": patient["gender"],
+        "vitals": patient["vitals"],
+    }
+
+
 # ---------------------------------------------------------------------------
 # Auth routes
 # ---------------------------------------------------------------------------
@@ -160,6 +176,7 @@ def auth_schema():
     return {
         "users": _db.USER_PROFILE_SCHEMA_SQL,
         "sessions": _db.SESSION_SCHEMA_SQL,
+        "competitions": _db.COMPETITION_SCHEMA_SQL,
     }
 
 
@@ -192,6 +209,61 @@ def get_disease_info(disease_name: str):
             detail=f"Disease '{disease_name}' not found in the knowledge base.",
         )
     return info
+
+
+@app.get("/competition/today")
+def competition_today(user_id: str = Depends(_auth.get_current_user_id)):
+    today = _today_utc_date()
+    competition = _db.get_daily_competition(today)
+    if competition is None:
+        patient = synthea_patient()
+        competition = _db.create_daily_competition(today, patient["disease"], patient)
+
+    attempt = _db.get_competition_attempt(user_id, today)
+    return {
+        "competition_date": str(today),
+        "has_started": attempt is not None,
+        "has_completed": bool(attempt and attempt.get("ended_at") is not None),
+        "attempt": attempt,
+        "patient_preview": {
+            "name": competition["patient"]["name"],
+            "age": competition["patient"]["age"],
+            "gender": competition["patient"]["gender"],
+        },
+    }
+
+
+@app.post("/competition/start")
+def start_competition(user_id: str = Depends(_auth.get_current_user_id)):
+    today = _today_utc_date()
+    existing_attempt = _db.get_competition_attempt(user_id, today)
+    if existing_attempt is not None:
+        raise HTTPException(
+            status_code=409,
+            detail="You have already started today's competition.",
+        )
+
+    competition = _db.get_daily_competition(today)
+    if competition is None:
+        patient = synthea_patient()
+        competition = _db.create_daily_competition(today, patient["disease"], patient)
+
+    patient = competition["patient"]
+    session_id = create_session(
+        patient,
+        difficulty="medium",
+        user_id=user_id,
+        session_kind="competition",
+        competition_date=str(today),
+    )
+
+    try:
+        _db.create_competition_attempt(user_id, today, session_id)
+    except Exception as e:
+        remove_session(session_id)
+        raise HTTPException(status_code=409, detail=f"Could not start competition: {e}")
+
+    return _competition_payload(session_id, patient, str(today))
 
 
 # ---------------------------------------------------------------------------
@@ -297,10 +369,17 @@ def end_session(
     # Persist report to DB (best-effort)
     try:
         final_diagnosis = report.get("osce_report", {}).get("domains", {}).get("final_diagnosis", {})
-        _db.save_session_end(
-            session_id=session_id,
-            correct_diagnosis=final_diagnosis.get("is_correct"),
-        )
+        is_correct = final_diagnosis.get("is_correct")
+        if session.session_kind == "competition":
+            _db.complete_competition_attempt(
+                session_id=session_id,
+                correct_diagnosis=is_correct,
+            )
+        else:
+            _db.save_session_end(
+                session_id=session_id,
+                correct_diagnosis=is_correct,
+            )
     except Exception as e:
         print(f"[DB] Could not save report: {e}")
 

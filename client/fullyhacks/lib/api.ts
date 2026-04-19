@@ -7,6 +7,9 @@ import {
   ChatRequest,
   ChatResponse,
   EndSessionResponse,
+  CompetitionStatusResponse,
+  CompetitionStartResponse,
+  VitalRanges,
 } from "@/types/scenario";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
@@ -170,4 +173,29 @@ export async function endSession(
     throw new Error(`End session failed: ${res.status}${body ? ` — ${body}` : ""}`);
   }
   return res.json() as Promise<EndSessionResponse>;
+}
+
+export async function fetchCompetitionStatus(token: string): Promise<CompetitionStatusResponse> {
+  const res = await fetch(`${BASE_URL}/competition/today`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Failed to load competition: ${res.status}${body ? ` — ${body}` : ""}`);
+  }
+  return res.json() as Promise<CompetitionStatusResponse>;
+}
+
+export async function startCompetition(token: string): Promise<CompetitionStartResponse> {
+  const res = await fetch(`${BASE_URL}/competition/start`, {
+    method: "POST",
+    headers: authHeaders(token),
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Failed to start competition: ${res.status}${body ? ` — ${body}` : ""}`);
+  }
+  return res.json() as Promise<CompetitionStartResponse>;
 }

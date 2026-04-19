@@ -136,3 +136,30 @@ export interface EndSessionResponse {
   counterfactual?: Record<string, unknown>;
   [key: string]: unknown;
 }
+
+export interface CompetitionStatusResponse {
+  competition_date: string;
+  has_started: boolean;
+  has_completed: boolean;
+  attempt?: {
+    id: string;
+    session_id: string;
+    correct_diagnosis?: boolean | null;
+    started_at: string;
+    ended_at?: string | null;
+  } | null;
+  patient_preview: {
+    name: string;
+    age: number;
+    gender: string;
+  };
+}
+
+export interface CompetitionStartResponse {
+  session_id: string;
+  competition_date: string;
+  name: string;
+  age: number;
+  gender: string;
+  vitals: Record<string, string | number>;
+}

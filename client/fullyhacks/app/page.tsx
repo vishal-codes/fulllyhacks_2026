@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { auth, signOut } from "@/auth";
+import CompetitionPanel from "@/components/CompetitionPanel";
 
 /* Bubble config: [size-px, left-%, delay-s, duration-s] */
 const BUBBLES: [number, number, number, number][] = [
@@ -143,15 +144,37 @@ export default async function WelcomePage() {
           </p>
         </div>
 
-        {/* CTA */}
-        <div className="fade-up-3">
-          <Link
-            href="/setup"
-            className="cta-btn inline-flex items-center gap-3 px-10 py-4 rounded-2xl font-semibold text-base"
-          >
-            <span className="text-lg">🌊</span>
-            Enter Teacher Portal
-          </Link>
+        {/* Entry points */}
+        <div className="fade-up-3 w-full max-w-5xl pt-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
+            <div
+              className="ocean-card rounded-3xl p-8 flex flex-col items-center text-center gap-5"
+              style={{ minHeight: "100%" }}
+            >
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "#4a8fa8" }}>
+                  Teacher Mode
+                </p>
+                <h2 className="text-3xl font-semibold mt-3" style={{ color: "#bae6fd" }}>
+                  Build a Custom Case
+                </h2>
+                <p className="text-sm mt-3 max-w-sm" style={{ color: "#7dd3e8" }}>
+                  Open the teacher portal to choose a disease, adjust symptoms, tune vitals,
+                  and start a guided practice scenario.
+                </p>
+              </div>
+
+              <Link
+                href="/setup"
+                className="cta-btn inline-flex items-center gap-3 px-10 py-4 rounded-2xl font-semibold text-base"
+              >
+                <span className="text-lg">🌊</span>
+                Enter Teacher Portal
+              </Link>
+            </div>
+
+            <CompetitionPanel />
+          </div>
         </div>
 
         {/* Shimmer divider */}
