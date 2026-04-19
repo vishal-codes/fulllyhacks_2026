@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
-import { endSession, sendChatMessage } from "@/lib/api";
+import { endSession, sendChatMessage, speakText } from "@/lib/api";
 
 async function fetchScribeToken(): Promise<string> {
   const res = await fetch("/api/scribe-token");
@@ -92,6 +92,40 @@ function ConversationContent() {
   const [chatLoading, setChatLoading] = useState(false);
   const [chatError, setChatError] = useState<string | null>(null);
   const chatBottomRef = useRef<HTMLDivElement>(null);
+  // ── TTS — browser SpeechSynthesis (free, no API needed) ─────────────────
+  const [ttsLoading, setTtsLoading] = useState(false);
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+
+  function stopSpeaking() {
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      window.speechSynthesis.cancel();
+    }
+  }
+
+  async function playPatientResponse(text: string) {
+    if (typeof window === "undefined" || !window.speechSynthesis) return;
+    stopSpeaking();
+    setTtsLoading(true);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate  = 0.92;   // slightly slower — sounds more like a patient
+    utterance.pitch = 0.95;
+    utterance.volume = 1;
+    // Pick a natural-sounding voice if available
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(
+      (v) => v.lang.startsWith("en") && /natural|enhanced|premium/i.test(v.name)
+    ) ?? voices.find((v) => v.lang.startsWith("en")) ?? null;
+    if (preferred) utterance.voice = preferred;
+    utterance.onend   = () => setTtsLoading(false);
+    utterance.onerror = () => setTtsLoading(false);
+    utteranceRef.current = utterance;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  async function replayLastPatientMessage() {
+    const last = [...messages].reverse().find((m) => m.role === "patient");
+    if (last) await playPatientResponse(last.text);
+  }
 
   function appendMessage(msg: ChatMessage) {
     setMessages((prev) => [...prev, msg]);
@@ -114,6 +148,8 @@ function ConversationContent() {
       }
       const res = await sendChatMessage(sessionId, backendToken, trimmed);
       appendMessage({ role: "patient", text: res.response });
+      // Auto-play the patient's response via ElevenLabs TTS
+      playPatientResponse(res.response);
     } catch (err) {
       setChatError(err instanceof Error ? err.message : "Failed to send message");
     } finally {
@@ -127,6 +163,10 @@ function ConversationContent() {
 
   function handleTextSend() {
     if (!textInput.trim() || chatLoading) return;
+    if (!session?.backendToken) {
+      setChatError("Not authenticated. Please log in to use the competition.");
+      return;
+    }
     submitToChat(textInput);
     setTextInput("");
   }
@@ -178,7 +218,14 @@ function ConversationContent() {
       resetScribe();
       disconnect();
       clearTranscripts();
-      if (text) await submitToChat(text);
+      if (text) {
+        // Check auth before attempting to send
+        if (!session?.backendToken) {
+          setChatError("Not authenticated. Please log in to use the competition.");
+          return;
+        }
+        await submitToChat(text);
+      }
     } else {
       resetScribe();
       try {
@@ -399,9 +446,22 @@ function ConversationContent() {
                       </div>
                       {/* Replay row */}
                       <div className="flex items-center" style={{ gap: "10px" }}>
-                        <span style={{ color: "#FAFAFA", fontSize: "20px", fontFamily: "'Gochi Hand', cursive" }}>
-                          🔊 Replay
-                        </span>
+                        <button
+                          onClick={() => playPatientResponse(m.text)}
+                          disabled={ttsLoading}
+                          style={{
+                            background: "none",
+                            border: "none",
+                            cursor: ttsLoading ? "wait" : "pointer",
+                            color: "#FAFAFA",
+                            fontSize: "20px",
+                            fontFamily: "'Gochi Hand', cursive",
+                            opacity: ttsLoading ? 0.5 : 1,
+                            padding: 0,
+                          }}
+                        >
+                          {ttsLoading ? "⏳ Playing…" : "🔊 Replay"}
+                        </button>
                       </div>
                     </div>
                   )}

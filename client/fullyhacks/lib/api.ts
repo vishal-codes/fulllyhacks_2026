@@ -201,3 +201,26 @@ export async function startCompetition(token: string): Promise<CompetitionStartR
   }
   return res.json() as Promise<CompetitionStartResponse>;
 }
+
+// ─── Text-to-speech ───────────────────────────────────────────────────────────
+
+/**
+ * POST /api/tts
+ * Sends text to the Next.js TTS route which calls ElevenLabs server-side.
+ * Returns an object URL pointing to the audio blob, or null on failure.
+ * Caller is responsible for revoking the URL after playback.
+ */
+export async function speakText(text: string): Promise<string | null> {
+  try {
+    const res = await fetch("/api/tts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+    if (!res.ok) return null;
+    const blob = await res.blob();
+    return URL.createObjectURL(blob);
+  } catch {
+    return null;
+  }
+}
