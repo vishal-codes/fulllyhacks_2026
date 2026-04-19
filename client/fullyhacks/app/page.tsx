@@ -179,6 +179,37 @@ export default async function WelcomePage() {
 
         {/* Shimmer divider */}
         <div className="fade-up-4 shimmer-line w-48" />
+
+        {/* Leaderboard entry */}
+        <div className="fade-up-4 w-full max-w-5xl">
+          <Link
+            href="/leaderboard"
+            className="flex items-center justify-between w-full px-7 py-5 rounded-2xl transition-all duration-200 group"
+            style={{
+              background: "rgba(13,59,110,0.35)",
+              border: "1px solid rgba(34,211,238,0.15)",
+              backdropFilter: "blur(12px)",
+            }}
+          >
+            <div className="flex items-center gap-4">
+              <span className="text-2xl">🏆</span>
+              <div className="text-left">
+                <p className="text-sm font-semibold" style={{ color: "#bae6fd" }}>
+                  View Competition Leaderboards
+                </p>
+                <p className="text-xs mt-0.5" style={{ color: "#4a8fa8" }}>
+                  Browse previous daily competitions and see how everyone ranked.
+                </p>
+              </div>
+            </div>
+            <span
+              className="text-sm font-medium transition-colors"
+              style={{ color: "#22d3ee" }}
+            >
+              View all →
+            </span>
+          </Link>
+        </div>
       </section>
 
       {/* ── Feature cards ── */}

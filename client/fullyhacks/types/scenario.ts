@@ -163,3 +163,19 @@ export interface CompetitionStartResponse {
   gender: string;
   vitals: Record<string, string | number>;
 }
+
+export interface LeaderboardEntry {
+  rank: number;
+  user_name: string;
+  score: number;
+  completed_at: string;
+}
+
+export interface LeaderboardResponse {
+  competition_date: string;
+  entries: LeaderboardEntry[];
+}
+
+export interface CompetitionDatesResponse {
+  dates: string[];
+}

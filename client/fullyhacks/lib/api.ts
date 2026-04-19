@@ -9,6 +9,8 @@ import {
   EndSessionResponse,
   CompetitionStatusResponse,
   CompetitionStartResponse,
+  LeaderboardResponse,
+  CompetitionDatesResponse,
   VitalRanges,
 } from "@/types/scenario";
 
@@ -200,6 +202,28 @@ export async function startCompetition(token: string): Promise<CompetitionStartR
     throw new Error(`Failed to start competition: ${res.status}${body ? ` — ${body}` : ""}`);
   }
   return res.json() as Promise<CompetitionStartResponse>;
+}
+
+export async function fetchCompetitionDates(token: string): Promise<CompetitionDatesResponse> {
+  const res = await fetch(`${BASE_URL}/competition/dates`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Failed to load competition dates: ${res.status}${body ? ` — ${body}` : ""}`);
+  }
+  return res.json() as Promise<CompetitionDatesResponse>;
+}
+
+export async function fetchLeaderboard(token: string, date: string): Promise<LeaderboardResponse> {
+  const res = await fetch(`${BASE_URL}/competition/leaderboard?date=${encodeURIComponent(date)}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Failed to load leaderboard: ${res.status}${body ? ` — ${body}` : ""}`);
+  }
+  return res.json() as Promise<LeaderboardResponse>;
 }
 
 // ─── Text-to-speech ───────────────────────────────────────────────────────────

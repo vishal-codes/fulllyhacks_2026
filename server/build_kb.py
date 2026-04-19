@@ -1,29 +1,22 @@
 """
 build_kb.py
 -----------
-Build server/diseases.json from NHS condition pages via Human Delta.
+Build server/diseases.json from NHS condition pages via Human Delta + Groq.
 
-Flow
-----
-0. Crawl (or reuse) the NHS A-Z page at https://www.nhs.uk/conditions/ with
-   max_pages=1 — HD stores just that one page on its virtual filesystem.
-1. hd.fs.read() the A-Z page and parse every `- [Name](url)` markdown link
-   to produce (display_name, slug) pairs. Aliases ("X, see Y") are skipped.
-2. For each of the first MAX_DISEASES entries:
-     a. hd.indexes.create(disease_url, max_pages=1)  — crawl JUST that page,
-        no sub-link following.
-     b. job.wait() until completed.
-     c. hd.fs.read("/source/website/nhs.uk/conditions/{slug}.md") returns
-        the full single-page text (Symptoms + Tests + Treatment + Causes
-        are all inline on the NHS page).
-     d. Send that text to Groq (llama-3.3-70b-versatile) with a
-        strict JSON schema; validate; append to diseases.json.
+Simple flow, disease by disease:
+  1. If `/source/website/nhs.uk/conditions/{slug}.md` is already on HD's fs
+     (from any earlier crawl), just read it. No new crawl.
+  2. Otherwise, crawl just that one page (max_pages=1), wait, then read it.
+  3. Strip image markdown, cap the context, send to Groq with a strict JSON
+     schema. Groq fills in vitals_ranges from its own medical knowledge — NHS
+     pages don't carry numeric ranges.
+  4. Validate the JSON and append to diseases.json on disk (resume-safe).
 
 Env vars
 --------
     HD_API_KEY           Human Delta API key (required)
-    GROQ_API_KEY         Groq API key (required, used for JSON extraction)
-    MAX_DISEASES         Optional cap on diseases to process (default 10)
+    GROQ_API_KEY         Groq API key (required)
+    MAX_DISEASES         Optional cap (default 10)
 """
 
 import json
@@ -44,50 +37,49 @@ from groq import Groq
 
 _HERE = Path(__file__).parent
 
-NHS_AZ_URL           = "https://www.nhs.uk/conditions/"
-AZ_FS_PATHS          = [
-    "/source/website/nhs.uk/conditions.md",
-    "/source/website/nhs.uk/conditions/index.md",
-    "/source/website/nhs.uk/conditions",
-    "/source/website/nhs.uk/conditions/",
+NHS_AZ_URL       = "https://www.nhs.uk/conditions/"
+FS_HOST_PREFIX   = "/source/website/nhs.uk"
+AZ_FS_PATHS      = [
+    f"{FS_HOST_PREFIX}/conditions.md",
+    f"{FS_HOST_PREFIX}/conditions/index.md",
 ]
-DISEASE_PAGE_URL     = "https://www.nhs.uk/conditions/{slug}/"
-DISEASE_FS_PATHS     = [
-    "/source/website/nhs.uk/conditions/{slug}.md",
-    "/source/website/nhs.uk/conditions/{slug}/index.md",
-    "/source/website/nhs.uk/conditions/{slug}",
-    "/source/website/nhs.uk/conditions/{slug}/",
+DISEASE_URL      = "https://www.nhs.uk/conditions/{slug}/"
+DISEASE_FS_PATHS = [
+    f"{FS_HOST_PREFIX}/conditions/{{slug}}.md",
+    f"{FS_HOST_PREFIX}/conditions/{{slug}}/index.md",
 ]
-FS_HOST_PREFIX       = "/source/website/nhs.uk"
 
-MAX_PAGE_CHAR_LIMIT  = 40000
-LLM_MODEL            = "llama-3.1-8b-instant"
-OUTPUT_PATH          = _HERE / "diseases.json"
+MAX_CONTEXT_CHARS     = 6000
+MIN_SEARCH_CHARS      = 400     # below this we fall back to fs.read
+SEARCH_TOP_K          = 1       # 1 chunk per query (× 2 queries) — index has only 1 page
+CRAWL_POLL_INTERVAL   = 3
+CRAWL_TIMEOUT         = 600     # generous — HD can be slow under load
+POST_CRAWL_RETRIES    = 5
+POST_CRAWL_SLEEP      = 3
+INTER_REQUEST_SLEEP   = 1.0
+QUEUE_429_BACKOFF     = 15      # seconds to sleep after a 429 before retrying the crawl
+QUEUE_429_MAX_RETRIES = 4
+MAX_DISEASES_DEFAULT  = 10
+LLM_MODEL             = "llama-3.1-8b-instant"
+OUTPUT_PATH           = _HERE / "diseases.json"
 
-CRAWL_POLL_INTERVAL  = 3
-CRAWL_TIMEOUT        = 300
-POST_CRAWL_RETRIES   = 5      # retry fs.read after job completes
-POST_CRAWL_SLEEP     = 3      # seconds between retries
-INTER_REQUEST_SLEEP  = 1.0
-MAX_DISEASES_DEFAULT = 10
-
-REQUIRED_KEYS        = {"name", "symptoms", "treatments", "vitals_ranges"}
-REQUIRED_VITAL_KEYS  = {"bp_sys", "bp_dia", "hr", "temp", "spo2", "rr", "pain"}
+REQUIRED_KEYS       = {"name", "symptoms", "treatments", "vitals_ranges"}
+REQUIRED_VITAL_KEYS = {"bp_sys", "bp_dia", "hr", "temp", "spo2", "rr", "pain"}
 
 
 # ---------------------------------------------------------------------------
-# Extraction prompt
+# Prompt
 # ---------------------------------------------------------------------------
 
 SYSTEM_PROMPT = (
     "You are a medical data extraction assistant. "
-    "Return ONLY valid JSON — no preamble, no markdown, no code fences, "
-    "no commentary. Follow the exact schema the user provides."
+    "Return ONLY valid JSON — no preamble, no markdown, no code fences, no commentary. "
+    "Follow the exact schema the user provides."
 )
 
-USER_PROMPT_TEMPLATE = """Extract structured clinical data for the disease "{disease}" from the NHS page below.
+USER_PROMPT_TEMPLATE = """Extract structured clinical data for the disease "{disease}" from the context below.
 
-Return ONLY valid JSON in EXACTLY this shape (no markdown, no code fences, no extra keys):
+Return ONLY valid JSON in EXACTLY this shape:
 
 {{
   "name": "{disease}",
@@ -105,48 +97,44 @@ Return ONLY valid JSON in EXACTLY this shape (no markdown, no code fences, no ex
 }}
 
 Rules:
-- Populate symptoms from the page's Symptoms section.
-- Populate treatments from the page's Treatment section (often titled "Treatment for {disease}" or similar). Do not leave treatments empty if the page describes any treatment.
-- Prefer concise clinical phrases; avoid full sentences.
-- If the page lacks enough info for a vital, use clinically reasonable defaults for "{disease}".
-- All vitals_ranges keys MUST be present. Numeric min/max only (no strings).
-- Use "{disease}" exactly as the name. Do not rename the disease.
+- Pull symptoms and treatments directly from the context. Keep phrases short and clinical.
+- Do not leave treatments empty if the context describes any.
+- vitals_ranges comes from your own medical knowledge, not the context. Use clinically reasonable ranges for a patient actively presenting with "{disease}".
+- All 7 vitals keys must be present, with numeric min/max (no strings).
+- Use "{disease}" exactly as the name.
+- Ignore any image URLs or markdown image syntax in the context.
 
-=== NHS PAGE ===
+=== CONTEXT ===
 {page}
-=== END PAGE ===
+=== END CONTEXT ===
 """
 
 
 # ---------------------------------------------------------------------------
-# Helpers
+# Tiny helpers
 # ---------------------------------------------------------------------------
 
 
 def _load_dotenv(path: Path) -> None:
-    """Populate os.environ from a simple KEY=VALUE .env file if present."""
     if not path.exists():
         return
     for line in path.read_text().splitlines():
         line = line.strip()
         if not line or line.startswith("#") or "=" not in line:
             continue
-        key, val = line.split("=", 1)
-        key = key.strip()
-        val = val.strip().strip('"').strip("'")
-        os.environ.setdefault(key, val)
+        k, v = line.split("=", 1)
+        os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 
 def _env(var: str) -> str:
-    val = os.environ.get(var)
-    if not val:
+    v = os.environ.get(var)
+    if not v:
         print(f"[build_kb] ERROR: env var {var} is not set.", file=sys.stderr)
         sys.exit(1)
-    return val
+    return v
 
 
 def _parse_json(raw: str) -> dict:
-    """Strip code fences / preamble and return parsed JSON dict."""
     text = raw.strip()
     fence = re.match(r"^```(?:json)?\s*(.*?)\s*```$", text, re.DOTALL)
     if fence:
@@ -166,13 +154,12 @@ def _validate(entry: dict, disease: str) -> dict:
         raise ValueError("symptoms must be a non-empty list")
     if not isinstance(entry["treatments"], list):
         raise ValueError("treatments must be a list")
-
     vitals = entry["vitals_ranges"]
     if not isinstance(vitals, dict):
         raise ValueError("vitals_ranges must be an object")
-    missing_vitals = REQUIRED_VITAL_KEYS - vitals.keys()
-    if missing_vitals:
-        raise ValueError(f"vitals_ranges missing keys: {missing_vitals}")
+    missing_v = REQUIRED_VITAL_KEYS - vitals.keys()
+    if missing_v:
+        raise ValueError(f"vitals_ranges missing keys: {missing_v}")
     for k, v in vitals.items():
         if not isinstance(v, dict):
             raise ValueError(f"vitals_ranges.{k} must be an object")
@@ -181,13 +168,21 @@ def _validate(entry: dict, disease: str) -> dict:
                 raise ValueError(f"vitals_ranges.{k}.{need} missing")
         if not isinstance(v["min"], (int, float)) or not isinstance(v["max"], (int, float)):
             raise ValueError(f"vitals_ranges.{k}.min/max must be numeric")
-
     entry["name"] = disease
     return entry
 
 
+# Strip markdown images like ![alt](url) — never send those to the LLM.
+_IMG_RE = re.compile(r"!\[[^\]]*\]\([^)]+\)")
+
+
+def _strip_images(text: str) -> str:
+    text = _IMG_RE.sub("", text)
+    return re.sub(r"\n{3,}", "\n\n", text).strip()
+
+
 # ---------------------------------------------------------------------------
-# Disease-list parsing (from the NHS A-Z page markdown)
+# A-Z parsing
 # ---------------------------------------------------------------------------
 
 _MD_LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://[^)]+)\)")
@@ -195,44 +190,32 @@ _ALIAS_RE   = re.compile(r",\s*see\s+", re.IGNORECASE)
 
 
 def _slug_from_url(url: str) -> str:
-    """Return the disease slug from an NHS /conditions/<slug>/ URL, or ''."""
-    path = urlparse(url).path.strip("/")
-    parts = path.split("/")
+    parts = urlparse(url).path.strip("/").split("/")
     if len(parts) >= 2 and parts[0] == "conditions" and parts[1]:
         return parts[1]
     return ""
 
 
 def parse_disease_entries(text: str) -> list[tuple[str, str]]:
-    """
-    Parse the A-Z markdown and return [(display_name, slug)] in page order.
-
-    NHS renders each condition as `- [Name](https://www.nhs.uk/conditions/slug/)`.
-    Alias rows like `- [Acid reflux, see Heartburn and acid reflux](...)` are
-    skipped. Non-`/conditions/<slug>/` URLs (nav, breadcrumbs, fragments) are
-    skipped because _slug_from_url returns "".
-    """
-    seen: dict[str, str] = {}  # slug -> display_name (preserves insertion order)
+    """Return [(display_name, slug)] from the NHS A-Z markdown, in page order."""
+    seen: dict[str, str] = {}
     for m in _MD_LINK_RE.finditer(text):
-        name = m.group(1).strip()
-        url  = m.group(2).strip()
+        name, url = m.group(1).strip(), m.group(2).strip()
         if _ALIAS_RE.search(name):
             continue
         slug = _slug_from_url(url)
-        if not slug:
-            continue
-        if slug not in seen:
+        if slug and slug not in seen:
             seen[slug] = name
     return [(seen[s], s) for s in seen]
 
 
 # ---------------------------------------------------------------------------
-# HD helpers
+# HD I/O
 # ---------------------------------------------------------------------------
 
 
 def _fs_read_first(hd: HumanDelta, paths: list[str]) -> str:
-    """Try each fs path; return the first non-empty content or ''."""
+    """Try each path; return first non-empty content (len > 300), else ''."""
     for p in paths:
         try:
             content = hd.fs.read(p)
@@ -243,128 +226,131 @@ def _fs_read_first(hd: HumanDelta, paths: list[str]) -> str:
     return ""
 
 
-def _shell(hd: HumanDelta, cmd: str) -> str:
-    """Run hd.fs.shell and return stdout as a string (empty on failure)."""
-    try:
-        out = hd.fs.shell(cmd)
-    except Exception as e:
-        print(f"[build_kb]   shell({cmd!r}) raised {type(e).__name__}: {e}")
-        return ""
-    if isinstance(out, str):
-        return out
-    # Some SDK versions may return a dict-like {'stdout': ...}
-    return getattr(out, "stdout", None) or (out.get("stdout", "") if hasattr(out, "get") else "")
-
-
-def _find_first_file(hd: HumanDelta, prefix: str) -> str:
-    """Return the first file path under prefix, or '' if none."""
-    out = _shell(hd, f"find {prefix} -type f 2>/dev/null | head -10")
-    for line in out.splitlines():
-        line = line.strip()
-        if line:
-            return line
-    return ""
-
-
-def _dump_tree(hd: HumanDelta, prefix: str) -> None:
-    """Print a short diagnostic of what's stored under prefix."""
-    print(f"[build_kb]   diagnostic: files under {prefix}:")
-    out = _shell(hd, f"find {prefix} -type f 2>/dev/null | head -20")
-    print(out if out else "    (nothing found)")
-
-
-def fetch_az_index(hd: HumanDelta) -> str:
-    """Return the NHS A-Z page text. Crawl it (max_pages=1) if not already stored."""
+def fetch_az_text(hd: HumanDelta) -> str:
+    """Read the NHS A-Z page from fs; crawl it (max_pages=1) if missing."""
     text = _fs_read_first(hd, AZ_FS_PATHS)
     if text:
-        print(f"[build_kb] A-Z page already in HD fs ({len(text)} chars)")
+        print(f"[build_kb] A-Z page already on fs ({len(text)} chars)")
         return text
 
-    print(f"[build_kb] Crawling A-Z page: {NHS_AZ_URL}")
+    print(f"[build_kb] A-Z missing — crawling {NHS_AZ_URL}")
+    t0 = time.time()
     job = hd.indexes.create(NHS_AZ_URL, max_pages=1, name="NHS A-Z")
-    print(f"[build_kb]   index_id={job.id}  status={job.status}")
     job.wait(interval=CRAWL_POLL_INTERVAL, timeout=CRAWL_TIMEOUT)
     if job.status != "completed":
         raise RuntimeError(f"A-Z crawl did not complete (status={job.status})")
+    print(f"[build_kb]   crawl done in {time.time() - t0:.1f}s")
 
-    # Retry fs.read + find a few times — HD sometimes needs a few seconds
-    # after job.wait() returns before the stored file is visible.
-    for attempt in range(1, POST_CRAWL_RETRIES + 1):
+    for _ in range(POST_CRAWL_RETRIES):
         text = _fs_read_first(hd, AZ_FS_PATHS)
         if text:
-            print(f"[build_kb]   got A-Z page ({len(text)} chars)")
             return text
-
-        out = _shell(
-            hd,
-            f"find {FS_HOST_PREFIX} -maxdepth 2 -name 'conditions*' -type f 2>/dev/null | head -5",
-        )
-        for line in out.splitlines():
-            line = line.strip()
-            if not line:
-                continue
-            try:
-                content = hd.fs.read(line)
-                if isinstance(content, str) and len(content) > 300:
-                    print(f"[build_kb]   read {len(content)} chars from {line}")
-                    return content
-            except Exception as e:
-                print(f"[build_kb]   fs.read({line}) failed: {e}")
-
-        print(f"[build_kb]   fs not ready (attempt {attempt}/{POST_CRAWL_RETRIES}), sleeping {POST_CRAWL_SLEEP}s …")
         time.sleep(POST_CRAWL_SLEEP)
-
-    _dump_tree(hd, FS_HOST_PREFIX)
     raise RuntimeError("A-Z page missing from fs after crawl")
 
 
-def fetch_disease_page(hd: HumanDelta, slug: str) -> str:
+def _search_disease_chunks(hd: HumanDelta, index_id: str, name: str) -> str:
     """
-    Crawl a single NHS disease page (max_pages=1) and return its text.
+    Run two targeted vector searches scoped to ``index_id`` and return the
+    concatenated chunk text (deduped by chunk_id, images stripped).
 
-    If the page is already on the fs from a prior run, skip the crawl and
-    return the stored text.
+    We bypass ``hd.search()`` because the installed SDK drops the ``index_id``
+    and ``sources`` kwargs. Posting to ``/v1/search`` directly keeps scoping.
+    """
+    queries  = [f"symptoms of {name}", f"treatment for {name}"]
+    seen_ids: set[str] = set()
+    parts:    list[str] = []
+
+    for q in queries:
+        try:
+            raw = hd._post("/v1/search", {
+                "query":    q,
+                "top_k":    SEARCH_TOP_K,
+                "index_id": index_id,
+                "sources":  ["web"],
+            })
+        except Exception as e:
+            print(f"[build_kb]   search({q!r}) raised {type(e).__name__}: {e}")
+            continue
+
+        items = raw if isinstance(raw, list) else (raw.get("results") or raw.get("data") or [])
+        for r in items:
+            if not isinstance(r, dict):
+                continue
+            text = r.get("text") or ""
+            cid  = r.get("chunk_id")
+            if not text or (cid and cid in seen_ids):
+                continue
+            if cid:
+                seen_ids.add(cid)
+            cleaned = _strip_images(text).strip()
+            if cleaned:
+                parts.append(cleaned)
+
+    return "\n\n".join(parts)
+
+
+def fetch_disease_context(hd: HumanDelta, slug: str, name: str) -> tuple[str, str]:
+    """
+    Return ``(context_text, source_tag)`` for one disease.
+
+    Flow:
+      1. If ``slug.md`` is on fs → return it (``fs.read``). No crawl.
+      2. Else fire a ``max_pages=1`` crawl and wait (with a 429 retry loop).
+         Once done, run a targeted search on the fresh index (``search``).
+      3. If search returns too little, fall back to reading the freshly
+         written page from fs.
     """
     paths = [p.format(slug=slug) for p in DISEASE_FS_PATHS]
 
-    text = _fs_read_first(hd, paths)
-    if text:
-        print(f"[build_kb]   reusing stored page ({len(text)} chars)")
-        return text
+    # (1) fs hit — no crawl, no search.
+    stored = _fs_read_first(hd, paths)
+    if stored:
+        print(f"[build_kb]   fs hit — {len(stored)} chars (no crawl)")
+        return stored, "fs.read"
 
-    url = DISEASE_PAGE_URL.format(slug=slug)
-    job = hd.indexes.create(url, max_pages=1, name=f"NHS: {slug}")
-    print(f"[build_kb]   crawl queued: index_id={job.id}")
-    job.wait(interval=CRAWL_POLL_INTERVAL, timeout=CRAWL_TIMEOUT)
-    if job.status != "completed":
-        raise RuntimeError(f"crawl did not complete (status={job.status})")
-
-    # Retry fs.read + find a few times — see comment in fetch_az_index.
-    for attempt in range(1, POST_CRAWL_RETRIES + 1):
-        text = _fs_read_first(hd, paths)
-        if text:
-            return text
-
-        out = _shell(
-            hd,
-            f"find {FS_HOST_PREFIX}/conditions -maxdepth 2 -name '{slug}*' -type f 2>/dev/null | head -5",
-        )
-        for line in out.splitlines():
-            line = line.strip()
-            if not line:
+    # (2) Crawl. Retry with backoff on 429.
+    url = DISEASE_URL.format(slug=slug)
+    print(f"[build_kb]   fs miss — crawling {url}")
+    job = None
+    for attempt in range(QUEUE_429_MAX_RETRIES + 1):
+        try:
+            job = hd.indexes.create(url, max_pages=1, name=f"NHS: {slug}")
+            break
+        except Exception as e:
+            if "429" in str(e) and attempt < QUEUE_429_MAX_RETRIES:
+                wait = QUEUE_429_BACKOFF * (attempt + 1)
+                print(f"[build_kb]   [429] waiting {wait}s (attempt {attempt + 1}/{QUEUE_429_MAX_RETRIES})")
+                time.sleep(wait)
                 continue
-            try:
-                content = hd.fs.read(line)
-                if isinstance(content, str) and len(content) > 300:
-                    print(f"[build_kb]   found stored file at: {line}")
-                    return content
-            except Exception as e:
-                print(f"[build_kb]   fs.read({line}) failed: {e}")
+            raise
 
-        print(f"[build_kb]   fs not ready (attempt {attempt}/{POST_CRAWL_RETRIES}), sleeping {POST_CRAWL_SLEEP}s …")
+    t0 = time.time()
+    try:
+        job.wait(interval=CRAWL_POLL_INTERVAL, timeout=CRAWL_TIMEOUT)
+    except TimeoutError:
+        try:
+            job.cancel()
+        except Exception:
+            pass
+        raise
+    if job.status != "completed":
+        raise RuntimeError(f"crawl status={job.status}")
+    print(f"[build_kb]   crawl done in {time.time() - t0:.1f}s")
+
+    # (2a) Preferred: targeted search against the fresh single-page index.
+    chunks = _search_disease_chunks(hd, job.id, name)
+    if len(chunks) >= MIN_SEARCH_CHARS:
+        print(f"[build_kb]   search ok — {len(chunks)} chars of chunks")
+        return chunks, "search"
+    print(f"[build_kb]   search short ({len(chunks)} chars) — falling back to fs.read")
+
+    # (2b) Fallback: read the newly stored markdown.
+    for _ in range(POST_CRAWL_RETRIES):
+        stored = _fs_read_first(hd, paths)
+        if stored:
+            return stored, "fs.read"
         time.sleep(POST_CRAWL_SLEEP)
-
-    _dump_tree(hd, f"{FS_HOST_PREFIX}/conditions")
     raise RuntimeError("page missing from fs after crawl")
 
 
@@ -374,21 +360,19 @@ def fetch_disease_page(hd: HumanDelta, slug: str) -> str:
 
 
 def extract_entry(llm: Groq, disease: str, page_text: str) -> dict:
-    page = page_text[:MAX_PAGE_CHAR_LIMIT]
-    user_prompt = USER_PROMPT_TEMPLATE.format(disease=disease, page=page)
-
+    context = _strip_images(page_text)[:MAX_CONTEXT_CHARS]
+    prompt = USER_PROMPT_TEMPLATE.format(disease=disease, page=context)
     completion = llm.chat.completions.create(
         model=LLM_MODEL,
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user",   "content": user_prompt},
+            {"role": "user",   "content": prompt},
         ],
         temperature=0.1,
         max_tokens=800,
     )
     raw = completion.choices[0].message.content or ""
-    parsed = _parse_json(raw)
-    return _validate(parsed, disease)
+    return _validate(_parse_json(raw), disease)
 
 
 # ---------------------------------------------------------------------------
@@ -398,11 +382,8 @@ def extract_entry(llm: Groq, disease: str, page_text: str) -> dict:
 
 def main() -> None:
     _load_dotenv(_HERE / ".env")
-    hd_key   = _env("HD_API_KEY")
-    groq_key = _env("GROQ_API_KEY")
-
-    hd  = HumanDelta(api_key=hd_key)
-    llm = Groq(api_key=groq_key)
+    hd  = HumanDelta(api_key=_env("HD_API_KEY"))
+    llm = Groq(api_key=_env("GROQ_API_KEY"))
 
     try:
         max_n = int(os.environ.get("MAX_DISEASES", MAX_DISEASES_DEFAULT))
@@ -410,61 +391,57 @@ def main() -> None:
         max_n = MAX_DISEASES_DEFAULT
     print(f"[build_kb] MAX_DISEASES={max_n}")
 
-    az_text = fetch_az_index(hd)
-    entries = parse_disease_entries(az_text)
-    print(f"[build_kb] Parsed {len(entries)} (name, slug) pairs from the A-Z page")
+    az = fetch_az_text(hd)
+    entries = parse_disease_entries(az)
+    print(f"[build_kb] parsed {len(entries)} diseases from A-Z")
     if not entries:
-        print("[build_kb] No diseases parsed — aborting.", file=sys.stderr)
         sys.exit(2)
-
     entries = entries[:max_n]
 
-    # Resume support: load any existing diseases.json and skip entries whose
-    # display name is already in it. Ensures partial runs can be continued.
+    # Resume: skip diseases already in diseases.json
     results: list[dict] = []
-    done_names: set[str] = set()
+    done: set[str] = set()
     if OUTPUT_PATH.exists():
         try:
             existing = json.loads(OUTPUT_PATH.read_text())
             if isinstance(existing, list):
                 results = existing
-                done_names = {e.get("name", "") for e in results if isinstance(e, dict)}
-                print(f"[build_kb] Loaded {len(results)} existing entries from {OUTPUT_PATH.name}")
+                done = {e.get("name", "") for e in results if isinstance(e, dict)}
+                print(f"[build_kb] loaded {len(results)} existing entries")
         except Exception as e:
-            print(f"[build_kb] Could not read existing {OUTPUT_PATH.name}: {e}")
+            print(f"[build_kb] could not read existing {OUTPUT_PATH.name}: {e}")
 
-    remaining = [(n, s) for n, s in entries if n not in done_names]
+    remaining = [(n, s) for n, s in entries if n not in done]
     skipped   = len(entries) - len(remaining)
-    print(f"[build_kb] Processing {len(remaining)} diseases "
-          f"({skipped} already done, skipping):")
-    for name, slug in remaining:
-        print(f"[build_kb]   - {name}  →  {slug}")
+    print(f"[build_kb] {len(remaining)} to process ({skipped} already done)")
 
-    succeeded = 0
-    failed    = 0
-
+    ok = fail = 0
+    via_search = via_fs_read = 0
     for i, (name, slug) in enumerate(remaining, start=1):
         print(f"\n[build_kb] ({i}/{len(remaining)}) {name}  (slug={slug})")
         try:
-            page = fetch_disease_page(hd, slug)
-            print(f"[build_kb]   fetched page ({len(page)} chars)")
+            page, source = fetch_disease_context(hd, slug, name)
+            if source == "search":
+                via_search += 1
+            else:
+                via_fs_read += 1
             entry = extract_entry(llm, name, page)
             results.append(entry)
-            succeeded += 1
             OUTPUT_PATH.write_text(json.dumps(results, indent=2, ensure_ascii=False))
-            print(
-                f"[build_kb]   ok — {len(entry['symptoms'])} symptoms, "
-                f"{len(entry['treatments'])} treatments  [saved {OUTPUT_PATH.name}]"
-            )
+            ok += 1
+            tag = "[via SEARCH]" if source == "search" else "[via fs.read]"
+            print(f"[build_kb]   ok {tag} — {len(entry['symptoms'])} symptoms, "
+                  f"{len(entry['treatments'])} treatments  [saved]")
         except Exception as e:
-            failed += 1
+            fail += 1
             print(f"[build_kb]   SKIPPED ({type(e).__name__}): {e}", file=sys.stderr)
         time.sleep(INTER_REQUEST_SLEEP)
 
     OUTPUT_PATH.write_text(json.dumps(results, indent=2, ensure_ascii=False))
     print(
-        f"\n[build_kb] Done. {succeeded} succeeded, {failed} failed. "
-        f"Wrote {len(results)} entries to {OUTPUT_PATH}"
+        f"\n[build_kb] done. {ok} ok, {fail} failed. "
+        f"context: {via_search} via SEARCH, {via_fs_read} via fs.read. "
+        f"total entries: {len(results)}"
     )
 
 
