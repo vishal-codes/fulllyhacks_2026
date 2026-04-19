@@ -235,17 +235,7 @@ function ConversationContent() {
           >
             ← Back
           </Link>
-          <span
-            className="px-3 py-1 rounded-full text-sm font-semibold"
-            style={{
-              background: "rgba(0,166,255,0.2)",
-              border: "1px solid rgba(0,166,255,0.4)",
-              color: "#00A6FF",
-              fontFamily: "'Gochi Hand', cursive",
-            }}
-          >
-            {disease}
-          </span>
+         
         </div>
         <span
           className="text-sm"
