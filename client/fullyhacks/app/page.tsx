@@ -16,23 +16,6 @@ const BUBBLES: [number, number, number, number][] = [
   [8,  93,  2,   8],
 ];
 
-const FEATURES = [
-  {
-    icon: "🩺",
-    title: "Realistic Scenarios",
-    body: "Virtual patients respond naturally — not like a textbook. Symptoms reveal gradually through conversation.",
-  },
-  {
-    icon: "⚙️",
-    title: "Fully Configurable",
-    body: "Adjust vitals, toggle symptoms, and set severity levels before every session.",
-  },
-  {
-    icon: "📊",
-    title: "Instant Feedback",
-    body: "Students receive a structured report with missed clues and constructive diagnostic feedback.",
-  },
-];
 
 export default async function WelcomePage() {
   const session = await auth();
@@ -77,12 +60,7 @@ export default async function WelcomePage() {
         className="relative z-10 w-full flex items-center justify-between px-8 py-5"
         style={{ borderBottom: "1px solid rgba(34,211,238,0.08)" }}
       >
-        <div className="flex items-center gap-2">
-          <span className="text-xl">🐚</span>
-          <span className="text-sm font-semibold tracking-wide" style={{ color: "#7dd3e8" }}>
-            VPP
-          </span>
-        </div>
+       
         <span className="text-xs px-3 py-1 rounded-full" style={{
           background: "rgba(34,211,238,0.08)",
           border: "1px solid rgba(34,211,238,0.15)",
@@ -115,9 +93,7 @@ export default async function WelcomePage() {
         className="relative z-10 flex flex-col items-center text-center px-6 pt-20 pb-16 gap-8 w-full max-w-3xl mx-auto"
       >
         {/* Glowing shell icon */}
-        <div className="hero-icon fade-up-1 text-8xl select-none leading-none">
-          🐚
-        </div>
+        
 
         {/* Headline */}
         <div className="fade-up-2 flex flex-col gap-4">
@@ -168,7 +144,6 @@ export default async function WelcomePage() {
                 href="/setup"
                 className="cta-btn inline-flex items-center gap-3 px-10 py-4 rounded-2xl font-semibold text-base"
               >
-                <span className="text-lg">🌊</span>
                 Enter Teacher Portal
               </Link>
             </div>
@@ -192,7 +167,6 @@ export default async function WelcomePage() {
             }}
           >
             <div className="flex items-center gap-4">
-              <span className="text-2xl">🏆</span>
               <div className="text-left">
                 <p className="text-sm font-semibold" style={{ color: "#bae6fd" }}>
                   View Competition Leaderboards
@@ -212,28 +186,7 @@ export default async function WelcomePage() {
         </div>
       </section>
 
-      {/* ── Feature cards ── */}
-      <section className="relative z-10 w-full max-w-4xl mx-auto px-6 pb-20 fade-up-5">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-          {FEATURES.map((f) => (
-            <div key={f.title} className="feature-card rounded-2xl p-6 flex flex-col gap-3">
-              <span className="text-3xl">{f.icon}</span>
-              <h3
-                className="text-sm font-semibold"
-                style={{ color: "#bae6fd" }}
-              >
-                {f.title}
-              </h3>
-              <p
-                className="text-xs leading-relaxed"
-                style={{ color: "#4a8fa8" }}
-              >
-                {f.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+
 
       {/* ── Footer ── */}
       <footer
