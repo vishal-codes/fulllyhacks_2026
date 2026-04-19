@@ -75,52 +75,61 @@ export default function CompetitionPanel() {
   const disabled = loading || starting || status?.has_started;
 
   return (
-    <div className="ocean-card rounded-2xl p-8 w-full max-w-sm">
+    <div
+      className="w-full p-8 flex flex-col justify-between"
+      style={{
+        borderRadius: "24px",
+        border: "5px solid rgba(255,255,255,1)",
+        boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
+        background: "rgba(9,9,11,0.55)",
+        backdropFilter: "blur(100px)",
+        WebkitBackdropFilter: "blur(100px)",
+      }}
+    >
       <div className="flex items-center justify-between mb-5">
         <div>
-          <h2 className="text-lg font-semibold" style={{ color: "#bae6fd" }}>
+          <h2 className="text-2xl font-semibold" style={{ color: "#FAFAFA", fontFamily: "'Gochi Hand', cursive" }}>
             Daily Competition
           </h2>
-          <p className="text-sm mt-1" style={{ color: "#7dd3e8" }}>
+          <p className="text-lg mt-1" style={{ color: "rgba(250,250,250,0.6)", fontFamily: "'Gochi Hand', cursive" }}>
             One shared patient for everyone, once per day.
           </p>
         </div>
-        
       </div>
 
       <div
         className="rounded-xl p-4 mb-5"
         style={{
-          background: "rgba(13,59,110,0.35)",
-          border: "1px solid rgba(34,211,238,0.15)",
+          background: "rgba(250,250,250,0.06)",
+          border: "1px solid rgba(255,255,255,0.15)",
         }}
       >
         {loading && (
-          <p className="text-sm animate-pulse" style={{ color: "#7dd3e8" }}>
+          <p className="text-lg animate-pulse" style={{ color: "rgba(250,250,250,0.5)", fontFamily: "'Gochi Hand', cursive" }}>
             {"Loading today's challenge..."}
           </p>
         )}
 
         {!loading && status && (
           <>
-            <p className="text-sm mb-2" style={{ color: "#7dd3e8" }}>
+            <p className="text-lg mb-2" style={{ color: "rgba(250,250,250,0.6)", fontFamily: "'Gochi Hand', cursive" }}>
               Competition date: {status.competition_date}
             </p>
-            <p className="text-sm" style={{ color: "#e0f4f8" }}>
+            <p className="text-lg" style={{ color: "#FAFAFA", fontFamily: "'Gochi Hand', cursive" }}>
               Patient: {status.patient_preview.name}, {status.patient_preview.age}-year-old {status.patient_preview.gender.toLowerCase()}
             </p>
-            <p className="text-xs mt-3" style={{ color: "#4a8fa8" }}>
+            <p className="text-base mt-3" style={{ color: "rgba(250,250,250,0.35)", fontFamily: "'Gochi Hand', cursive" }}>
               Everyone gets the same hidden disease and symptom profile for the day.
             </p>
             {status.has_started && (
-              <p className="text-xs mt-3" style={{ color: status.has_completed ? "#22c55e" : "#fbbf24" }}>
+              <p className="text-base mt-3" style={{ color: status.has_completed ? "#22c55e" : "#fbbf24", fontFamily: "'Gochi Hand', cursive" }}>
                 {status.has_completed
                   ? "You already completed today's competition."
                   : "You already started today's competition."}
               </p>
             )}
             {status.has_completed && status.attempt?.score != null && (
-              <p className="text-xs mt-2" style={{ color: "#bae6fd" }}>
+              <p className="text-base mt-2" style={{ color: "#FAFAFA", fontFamily: "'Gochi Hand', cursive" }}>
                 {"Today's score: "}{status.attempt.score}/100
               </p>
             )}
@@ -132,16 +141,20 @@ export default function CompetitionPanel() {
         type="button"
         disabled={disabled}
         onClick={handleStart}
-        className="w-full py-3 rounded-xl text-sm font-semibold transition-all duration-150"
+        className="w-full py-3 rounded-xl font-semibold transition-all duration-150 flex items-center justify-between"
         style={{
-          background: disabled ? "rgba(255,255,255,0.06)" : "linear-gradient(135deg, #f59e0b, #ef4444)",
-          color: disabled ? "#4a8fa8" : "#fff7ed",
-          border: disabled ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(251,191,36,0.35)",
+          background: disabled ? "rgba(250,250,250,0.06)" : "rgba(255,140,0,0.9)",
+          color: disabled ? "rgba(250,250,250,0.3)" : "#FAFAFA",
+          border: disabled ? "1px solid rgba(255,255,255,0.1)" : "2px solid #FF8C00",
+          borderRadius: "12px",
+          padding: "12px 16px 12px 20px",
           cursor: disabled ? "not-allowed" : "pointer",
-          boxShadow: disabled ? "none" : "0 12px 24px rgba(239,68,68,0.18)",
+          fontFamily: "'Gochi Hand', cursive",
+          fontSize: "22px",
         }}
       >
-        {starting ? "Starting..." : status?.has_started ? "Already Played Today" : "Start Competition"}
+        <span>{starting ? "Starting..." : status?.has_started ? "Already Played Today" : "Start Competition"}</span>
+        {!disabled && <span style={{ color: "#FAFAFA", fontSize: "24px", fontWeight: "bold" }}>➤</span>}
       </button>
 
       {error && (
