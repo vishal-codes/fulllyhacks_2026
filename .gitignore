@@ -60,3 +60,4 @@ build/
 .eggs/  
 server/.claude/scheduled_tasks.lock
 server/humandeltadocs.pdf
+server/__pycache__/inference.cpython-313.pyc
