@@ -94,6 +94,9 @@ CREATE INDEX competition_attempts_date_idx ON competition_attempts(competition_d
 CREATE INDEX competition_attempts_user_id_idx ON competition_attempts(user_id);
 """.strip()
 
+# Run this once directly on the DB to drop the unused column:
+# ALTER TABLE competition_attempts DROP COLUMN IF EXISTS correct_diagnosis;
+
 _SCHEMA = f"""
 CREATE TABLE IF NOT EXISTS users (
     id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -132,6 +135,8 @@ CREATE TABLE IF NOT EXISTS competition_attempts (
     ended_at          TIMESTAMPTZ,
     UNIQUE (competition_date, user_id)
 );
+
+ALTER TABLE competition_attempts DROP COLUMN IF EXISTS correct_diagnosis;
 
 CREATE INDEX IF NOT EXISTS competition_attempts_date_idx ON competition_attempts(competition_date);
 CREATE INDEX IF NOT EXISTS competition_attempts_user_id_idx ON competition_attempts(user_id);
@@ -318,3 +323,46 @@ def complete_competition_attempt(session_id: str, score: int | None) -> None:
     with _conn() as conn:
         with conn.cursor() as cur:
             cur.execute(sql, (score, uuid.UUID(session_id)))
+
+
+def list_competition_dates() -> list[str]:
+    """Return all competition dates that have at least one completed attempt, newest first."""
+    sql = """
+        SELECT DISTINCT competition_date
+        FROM competition_attempts
+        WHERE ended_at IS NOT NULL
+        ORDER BY competition_date DESC
+    """
+    with _conn() as conn:
+        with conn.cursor() as cur:
+            cur.execute(sql)
+            return [str(row[0]) for row in cur.fetchall()]
+
+
+def get_competition_leaderboard(competition_date: date) -> list[dict]:
+    """Return ranked leaderboard entries for a given competition date."""
+    sql = """
+        SELECT
+            RANK() OVER (ORDER BY ca.score DESC) AS rank,
+            u.name AS user_name,
+            ca.score,
+            ca.ended_at AS completed_at
+        FROM competition_attempts ca
+        JOIN users u ON u.id = ca.user_id
+        WHERE ca.competition_date = %s
+          AND ca.ended_at IS NOT NULL
+          AND ca.score IS NOT NULL
+        ORDER BY ca.score DESC
+    """
+    with _conn() as conn:
+        with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cur:
+            cur.execute(sql, (competition_date,))
+            return [
+                {
+                    "rank": int(row["rank"]),
+                    "user_name": row["user_name"],
+                    "score": row["score"],
+                    "completed_at": row["completed_at"].isoformat(),
+                }
+                for row in cur.fetchall()
+            ]

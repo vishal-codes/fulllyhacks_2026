@@ -18198,5 +18198,1305 @@
         "unit": "/10"
       }
     }
+  },
+  {
+    "name": "Jaundice",
+    "symptoms": [
+      "yellow eyes",
+      "yellow skin",
+      "yellow under tongue or inside cheeks"
+    ],
+    "treatments": [],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 140,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Jaundice in babies",
+    "symptoms": [
+      "eyes or skin look yellow",
+      "yellow in the whites of their eyes",
+      "yellow on their skin",
+      "yellow under their tongue or inside their cheeks",
+      "pee is dark yellow or brown",
+      "poo is a pale creamy colour"
+    ],
+    "treatments": [
+      "phototherapy",
+      "encouraging your baby to feed regularly",
+      "blood transfusion",
+      "medicine into a vein"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 80,
+        "max": 120,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 40,
+        "max": 70,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 160,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Jellyfish and other sea creature stings",
+    "symptoms": [
+      "Painful redness and swelling at the sting site",
+      "Numbness or tingling around the mouth or face",
+      "Blisters or welts at the sting site",
+      "Itching or burning sensation at the sting site"
+    ],
+    "treatments": [
+      "Rinse the affected area with salt water",
+      "Remove any remaining stingers or spines",
+      "Apply a topical pain reliever such as lidocaine or benzocaine",
+      "Take an oral antihistamine such as diphenhydramine to reduce itching and swelling"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Jet lag",
+    "symptoms": [
+      "Feeling sleepy or tired in the daytime",
+      "Headache",
+      "Stomach ache",
+      "Feeling sick (nausea)",
+      "Feeling dizzy",
+      "Feeling irritable or restless",
+      "Dry mouth",
+      "Dry or itchy skin"
+    ],
+    "treatments": [
+      "Rest",
+      "Medicine to ease symptoms",
+      "Steroid medicine",
+      "Medicine to lower blood pressure",
+      "Oxygen through a mask",
+      "Hyperbaric chamber"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Joint hypermobility syndrome",
+    "symptoms": [
+      "often get tired, even after rest",
+      "keep getting pain and stiffness in your joints or muscles",
+      "keep getting sprains and strains",
+      "keep dislocating your joints (they 'pop out')",
+      "have poor balance or co-ordination",
+      "have thin, stretchy skin",
+      "have bladder or bowel problems"
+    ],
+    "treatments": [
+      "improving muscle strength and fitness",
+      "physiotherapy",
+      "occupational therapy",
+      "podiatry",
+      "paracetamol",
+      "anti-inflammatory painkillers",
+      "warm baths",
+      "hot water bottles",
+      "heat-rub cream"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Kawasaki disease",
+    "symptoms": [
+      "high temperature",
+      "cold hands and feet",
+      "vomiting",
+      "confusion",
+      "breathing quickly",
+      "muscle and joint pain",
+      "pale, mottled or blotchy skin",
+      "spots or a rash",
+      "headache",
+      "a stiff neck",
+      "a dislike of bright lights",
+      "being very sleepy or difficult to wake",
+      "fits (seizures)",
+      "refuse feeds",
+      "irritable",
+      "high-pitched cry",
+      "stiff body or be floppy or unresponsive",
+      "bulging soft spot on the top of their head"
+    ],
+    "treatments": [
+      "steroids"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Keloid scars",
+    "symptoms": [
+      "dry, rough and scaly patches",
+      "itchy"
+    ],
+    "treatments": [
+      "antibiotics",
+      "antiseptic washes",
+      "retinoids"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Intracranial hypertension",
+    "symptoms": [
+      "constant throbbing headache",
+      "temporary loss of vision",
+      "feeling and being sick",
+      "feeling sleepy",
+      "feeling irritable",
+      "finding it difficult or painful to look at bright lights",
+      "hearing a pulsing rhythmic noise in your ears",
+      "problems with co-ordination and balance",
+      "mental confusion",
+      "loss of feeling or weakness"
+    ],
+    "treatments": [
+      "Treatment depends on the cause",
+      "Idiopathic intracranial hypertension treatment"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 120,
+        "max": 180,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 70,
+        "max": 100,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 140,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Iron deficiency anaemia",
+    "symptoms": [
+      "tiredness and lack of energy",
+      "shortness of breath",
+      "noticeable heartbeats (heart palpitations)",
+      "paler than usual skin",
+      "headaches",
+      "hearing ringing, buzzing or hissing noises inside your head (tinnitus)",
+      "food tasting strange",
+      "feeling itchy",
+      "a sore tongue",
+      "hair loss",
+      "wanting to eat non-food items, such as paper or ice (pica)",
+      "finding it hard to swallow (dysphagia)",
+      "painful open sores (ulcers) in the corners of your mouth",
+      "nail changes, such as spoon-shaped nails",
+      "restless legs syndrome"
+    ],
+    "treatments": [
+      "iron tablets",
+      "eating iron-rich foods"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Keratosis pilaris",
+    "symptoms": [
+      "Dry rough skin",
+      "Small, painless bumps on your skin",
+      "Patches of bumps that are the same colour as your skin"
+    ],
+    "treatments": [
+      "Exfoliating treatments",
+      "Moisturizing treatments"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 35,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 6,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Kidney cancer",
+    "symptoms": [
+      "weight loss and poor appetite",
+      "swollen ankles, feet or hands",
+      "shortness of breath",
+      "tiredness",
+      "blood in your pee (urine)",
+      "an increased need to pee",
+      "difficulty sleeping",
+      "itchy skin",
+      "muscle cramps",
+      "feeling sick",
+      "headaches",
+      "erectile dysfunction"
+    ],
+    "treatments": [
+      "dialysis",
+      "kidney transplant",
+      "medication for high blood pressure",
+      "medication for pain",
+      "medication for UTIs",
+      "operation to remove kidney stones"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Kidney infection",
+    "symptoms": [
+      "high temperature",
+      "feeling or being sick",
+      "pain in your lower back or side",
+      "diarrhoea",
+      "aching muscles and flu-like symptoms",
+      "pain, burning or stinging when you pee",
+      "needing to pee more often and urgently than usual",
+      "pee that's dark or cloudy",
+      "wetting the bed or themselves",
+      "being drowsy"
+    ],
+    "treatments": [
+      "rest",
+      "drink lots of fluids",
+      "take paracetamol to reduce a high temperature and relieve pain",
+      "give your child liquid paracetamol for children if they're distressed or uncomfortable"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Kidney stones",
+    "symptoms": [
+      "pain in your lower tummy (abdomen)",
+      "pain or burning when you pee",
+      "peeing more often then usual, including at night",
+      "blood in your pee",
+      "having difficulty peeing or not being able to pee at all",
+      "having frequent urinary tract infections (UTIs)"
+    ],
+    "treatments": [
+      "tests on a sample of your pee",
+      "a blood test",
+      "scans such as an ultrasound or CT scan",
+      "a cystoscopy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Klinefelter syndrome",
+    "symptoms": [
+      "infertility",
+      "undescended testicles",
+      "underdeveloped penis"
+    ],
+    "treatments": [
+      "IVF",
+      "embryo testing",
+      "surgery for undescended testicles"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Knock knees",
+    "symptoms": [
+      "pain in the knee",
+      "knee instability"
+    ],
+    "treatments": [
+      "knee exercises",
+      "physical therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 6,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Knocked-out tooth",
+    "symptoms": [
+      "tooth chipped, cracked or broken"
+    ],
+    "treatments": [
+      "gluing the fragment of tooth back on",
+      "filling",
+      "crown",
+      "root canal treatment"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 2,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Kyphosis",
+    "symptoms": [
+      "visibly curved spine",
+      "leaning to 1 side",
+      "uneven shoulders",
+      "1 shoulder or hip sticking out",
+      "the ribs sticking out on 1 side",
+      "clothes not fitting well",
+      "back pain"
+    ],
+    "treatments": [
+      "X-ray of the back",
+      "referral to a specialist",
+      "scoliosis centre treatment"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Labial fusion",
+    "symptoms": [
+      "burning",
+      "throbbing",
+      "stabbing",
+      "soreness"
+    ],
+    "treatments": [
+      "inserting a tampon",
+      "having sex",
+      "poo"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Labyrinthitis and vestibular neuritis",
+    "symptoms": [
+      "hearing loss",
+      "hearing sounds that come from inside the body (tinnitus)",
+      "the sensation that you're moving or spinning (vertigo)",
+      "persistent headaches",
+      "temporary blurred or double vision",
+      "numbness, pain or weakness on 1 side of the face",
+      "problems with limb co-ordination (ataxia) on 1 side of the body",
+      "voice changes or difficulty swallowing (dysphagia)"
+    ],
+    "treatments": [
+      "treating any underlying cause or symptoms",
+      "ensuring diabetes is well controlled",
+      "vitamin B12 injections or tablets",
+      "steroids",
+      "immunosuppressants",
+      "injections of immunoglobulin",
+      "medicine to treat any nerve pain (neuropathic pain)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Lactose intolerance",
+    "symptoms": [
+      "stomach cramps",
+      "bloating",
+      "diarrhoea"
+    ],
+    "treatments": [
+      "lactase enzyme supplements",
+      "non-dairy products",
+      "dietary changes"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Lambert-Eaton myasthenic syndrome",
+    "symptoms": [
+      "muscle weakness",
+      "muscle cramps",
+      "twitching",
+      "numbness",
+      "pins and needles",
+      "burning or sharp pain",
+      "loss of balance or co-ordination",
+      "difficulty lifting up the front part of your foot and toes",
+      "constipation",
+      "diarrhoea"
+    ],
+    "treatments": [
+      "Acetylcholinesterase inhibitors",
+      "plasmapheresis",
+      "immunosuppressive medications"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Laryngeal cancer",
+    "symptoms": [
+      "Hoarseness",
+      "Difficulty swallowing",
+      "Pain in the throat",
+      "Weight loss",
+      "Coughing up blood"
+    ],
+    "treatments": [
+      "Surgery",
+      "Radiotherapy",
+      "Chemotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Laryngitis",
+    "symptoms": [
+      "hoarse voice",
+      "sore throat",
+      "cough",
+      "feeling tired and unwell",
+      "high temperature",
+      "aching muscles",
+      "loss of taste and smell",
+      "feeling of pressure in your ears and face"
+    ],
+    "treatments": [
+      "get plenty of rest",
+      "drink lots of fluid",
+      "eat healthy food",
+      "gargle salt water",
+      "drink a hot lemon and honey drink",
+      "breathe in steam"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Lazy eye",
+    "symptoms": [
+      "blurred vision",
+      "headaches",
+      "eye strain"
+    ],
+    "treatments": [
+      "glasses",
+      "contact lenses",
+      "laser surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 6,
+        "unit": "/10"
+      }
+    }
   }
 ]

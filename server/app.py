@@ -233,6 +233,30 @@ def competition_today(user_id: str = Depends(_auth.get_current_user_id)):
     }
 
 
+@app.get("/competition/dates")
+def competition_dates(user_id: str = Depends(_auth.get_current_user_id)):
+    """Return all dates that have at least one completed competition attempt, newest first."""
+    try:
+        return {"dates": _db.list_competition_dates()}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Could not fetch competition dates: {e}")
+
+
+@app.get("/competition/leaderboard")
+def competition_leaderboard(date: str, user_id: str = Depends(_auth.get_current_user_id)):
+    """Return ranked leaderboard for a specific competition date (YYYY-MM-DD)."""
+    try:
+        from datetime import date as date_type
+        competition_date = date_type.fromisoformat(date)
+    except ValueError:
+        raise HTTPException(status_code=400, detail="Invalid date format. Use YYYY-MM-DD.")
+    try:
+        entries = _db.get_competition_leaderboard(competition_date)
+        return {"competition_date": date, "entries": entries}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Could not fetch leaderboard: {e}")
+
+
 @app.post("/competition/start")
 def start_competition(user_id: str = Depends(_auth.get_current_user_id)):
     today = _today_utc_date()
