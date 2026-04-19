@@ -4,17 +4,8 @@ import { useState, useRef, Suspense } from "react";
 import { useScribe } from "@elevenlabs/react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { sendChatMessage } from "@/lib/api";
-
-const BUBBLES: [number, number, number, number][] = [
-  [10,  5,  0,   9],
-  [18, 15,  3,  13],
-  [8,  28,  1,   7],
-  [22, 42,  5,  14],
-  [14, 60,  2,  11],
-  [20, 74,  6,  13],
-  [10, 88,  0.5, 9],
-];
 
 async function fetchScribeToken(): Promise<string> {
   const res = await fetch("/api/scribe-token");
@@ -28,25 +19,77 @@ interface ChatMessage {
   text: string;
 }
 
-type InputMode = "mic" | "text";
+// Vitals passed via URL search params (set during session creation)
+interface VitalsDisplay {
+  temperature?: number;
+  heartRate?: number;
+  bloodPressureSystolic?: number;
+  bloodPressureDiastolic?: number;
+  oxygenSaturation?: number;
+  respiratoryRate?: number;
+  pain?: number;
+}
+
+const DIAGNOSTIC_TOOLS = [
+  {
+    key: "temperature" as keyof VitalsDisplay,
+    label: "Temperature:",
+    image: "/chat/tool-temperature.png",
+    format: (v: number) => `${v} °F`,
+  },
+  {
+    key: "heartRate" as keyof VitalsDisplay,
+    label: "Heart Rate:",
+    image: "/chat/tool-heartrate.png",
+    format: (v: number) => `${v} BPM`,
+  },
+  {
+    key: "bloodPressureSystolic" as keyof VitalsDisplay,
+    label: "Blood Pressure:",
+    image: "/chat/tool-bloodpressure.png",
+    format: (_v: number, vitals?: VitalsDisplay) =>
+      `${vitals?.bloodPressureSystolic ?? "—"}/${vitals?.bloodPressureDiastolic ?? "—"} mmHg`,
+  },
+  {
+    key: "oxygenSaturation" as keyof VitalsDisplay,
+    label: "Blood Oxygen:",
+    image: "/chat/tool-oxygen.png",
+    format: (v: number) => `${v}%`,
+  },
+  {
+    key: "respiratoryRate" as keyof VitalsDisplay,
+    label: "Respiration Rate:",
+    image: "/chat/tool-respiration.png",
+    format: (v: number) => `${v} /min`,
+  },
+  {
+    key: "pain" as keyof VitalsDisplay,
+    label: "Pain:",
+    image: "/chat/tool-pain.png",
+    format: (v: number) => `${v}/10`,
+  },
+];
 
 function ConversationContent() {
-  const params  = useSearchParams();
+  const params = useSearchParams();
   const disease = params.get("disease") ?? "Unknown";
 
-  // ── Input mode toggle ────────────────────────────────────────────────────
-  const [inputMode, setInputMode] = useState<InputMode>("mic");
+  // Parse vitals from URL params if present
+  const vitals: VitalsDisplay = {
+    temperature: params.get("temp") ? Number(params.get("temp")) : undefined,
+    heartRate: params.get("hr") ? Number(params.get("hr")) : undefined,
+    bloodPressureSystolic: params.get("bp_sys") ? Number(params.get("bp_sys")) : undefined,
+    bloodPressureDiastolic: params.get("bp_dia") ? Number(params.get("bp_dia")) : undefined,
+    oxygenSaturation: params.get("spo2") ? Number(params.get("spo2")) : undefined,
+    respiratoryRate: params.get("rr") ? Number(params.get("rr")) : undefined,
+    pain: params.get("pain") ? Number(params.get("pain")) : undefined,
+  };
 
   // ── Chat history ─────────────────────────────────────────────────────────
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [chatLoading, setChatLoading] = useState(false);
-  const [chatError,   setChatError]   = useState<string | null>(null);
+  const [chatError, setChatError] = useState<string | null>(null);
   const chatBottomRef = useRef<HTMLDivElement>(null);
-
-  function clearHistory() {
-    setMessages([]);
-    setChatError(null);
-  }
 
   function appendMessage(msg: ChatMessage) {
     setMessages((prev) => [...prev, msg]);
@@ -70,7 +113,7 @@ function ConversationContent() {
     }
   }
 
-  // ── Text input state ─────────────────────────────────────────────────────
+  // ── Text input ───────────────────────────────────────────────────────────
   const [textInput, setTextInput] = useState("");
 
   function handleTextSend() {
@@ -80,22 +123,19 @@ function ConversationContent() {
   }
 
   function handleTextKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleTextSend(); }
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleTextSend();
+    }
   }
 
   // ── ElevenLabs Scribe ────────────────────────────────────────────────────
-  const [scribeError,      setScribeError]      = useState<string | null>(null);
+  const [scribeError, setScribeError] = useState<string | null>(null);
   const [displayTranscript, setDisplayTranscript] = useState<string>("");
   const accumulatedTextRef = useRef<string>("");
-  const partialTextRef     = useRef<string>("");
+  const partialTextRef = useRef<string>("");
 
-  const {
-    status,
-    connect,
-    disconnect,
-    clearTranscripts,
-    error: scribeHookError,
-  } = useScribe({
+  const { status, connect, disconnect, clearTranscripts, error: scribeHookError } = useScribe({
     modelId: "scribe_v2_realtime",
     microphone: {},
     onPartialTranscript: (data) => {
@@ -112,7 +152,7 @@ function ConversationContent() {
     },
   });
 
-  const isListening  = status === "connected" || status === "transcribing";
+  const isListening = status === "connected" || status === "transcribing";
   const isConnecting = status === "connecting";
 
   function resetScribe() {
@@ -141,199 +181,556 @@ function ConversationContent() {
     }
   }
 
+  // Send mic transcript as text input
+  function handleMicSendAsText() {
+    const text = displayTranscript.trim();
+    if (!text) return;
+    setTextInput(text);
+    resetScribe();
+    disconnect();
+    clearTranscripts();
+  }
+
   const errorMsg = scribeError ?? scribeHookError;
 
   return (
     <main
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 py-10 overflow-hidden"
-      style={{
-        background: "radial-gradient(ellipse at 50% 0%, #0d3b6e 0%, #0e2a4a 40%, #0a1628 100%)",
-      }}
+      className="relative w-full min-h-screen overflow-hidden"
+      style={{ background: "#09090B", fontFamily: "'Gochi Hand', cursive" }}
     >
-      {BUBBLES.map(([size, left, delay, duration], i) => (
-        <span key={i} className="bubble" style={{
-          width: size, height: size, left: `${left}%`,
-          animationDelay: `${delay}s`, animationDuration: `${duration}s`,
-        }} />
-      ))}
-      <div className="pointer-events-none fixed bottom-0 left-0 right-0 h-32 z-0"
-        style={{ background: "linear-gradient(to top, rgba(8,145,178,0.08), transparent)" }} />
+      {/* ── Full-page background image ── */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/chat/chat-bg.png"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Right-side fade overlay matching Figma gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(9,9,11,0) 69%, rgba(250,250,250,0.5) 100%)",
+          }}
+        />
+      </div>
 
-      <div className="relative z-10 flex flex-col w-full max-w-xl ocean-card rounded-2xl overflow-hidden">
-
-        {/* ── Header ── */}
-        <div className="flex items-center justify-between px-6 py-4"
-          style={{ borderBottom: "1px solid rgba(34,211,238,0.1)" }}>
-          <div className="flex items-center gap-3">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase"
-              style={{ background: "rgba(8,145,178,0.2)", border: "1px solid rgba(34,211,238,0.3)", color: "#22d3ee" }}>
-              {disease}
-            </span>
-            <span className="text-sm font-semibold" style={{ color: "#bae6fd" }}>Patient Consultation</span>
-          </div>
-          <div className="flex items-center gap-4">
-            {messages.length > 0 && (
-              <button onClick={clearHistory} className="text-xs transition-colors"
-                style={{ color: "#2a5f72" }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#f87171"; }}
-                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#2a5f72"; }}>
-                Clear history
-              </button>
-            )}
-            <Link href="/setup" className="text-xs transition-colors" style={{ color: "#4a8fa8" }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#22d3ee"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#4a8fa8"; }}>
-              ← Back
-            </Link>
-          </div>
+      {/* ── Nav Bar (absolute, top) ── */}
+      <nav
+        className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-3 py-3"
+        style={{
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+          background: "rgba(250,250,250,0.05)",
+          borderBottom: "1px solid rgba(250,250,250,0.1)",
+        }}
+      >
+        <div className="flex items-center gap-6">
+          <Link
+            href="/setup"
+            className="text-sm font-medium transition-opacity hover:opacity-70"
+            style={{ color: "#FAFAFA", fontFamily: "'Gochi Hand', cursive" }}
+          >
+            ← Back
+          </Link>
+          <span
+            className="px-3 py-1 rounded-full text-sm font-semibold"
+            style={{
+              background: "rgba(0,166,255,0.2)",
+              border: "1px solid rgba(0,166,255,0.4)",
+              color: "#00A6FF",
+              fontFamily: "'Gochi Hand', cursive",
+            }}
+          >
+            {disease}
+          </span>
         </div>
+        <span
+          className="text-sm"
+          style={{ color: "rgba(250,250,250,0.5)", fontFamily: "'Gochi Hand', cursive" }}
+        >
+          Patient Consultation
+        </span>
+      </nav>
 
-        {/* ── Chat history ── */}
-        <div className="flex flex-col gap-4 overflow-y-auto px-6 py-5"
-          style={{ minHeight: "300px", maxHeight: "400px", scrollbarWidth: "thin", scrollbarColor: "rgba(34,211,238,0.2) transparent" }}>
-          {messages.length === 0 && (
-            <p className="text-xs italic text-center mt-8" style={{ color: "#2a5f72" }}>
-              {inputMode === "mic" ? "Press the mic and speak to begin." : "Type a message to begin."}
-            </p>
-          )}
-          {messages.map((m, i) => (
-            <div key={i} className="flex flex-col gap-1"
-              style={{ alignItems: m.role === "student" ? "flex-end" : "flex-start" }}>
-              <span className="text-xs px-1" style={{ color: "#2a5f72" }}>
-                {m.role === "student" ? "You" : "Patient"}
-              </span>
-              <div className="px-4 py-2.5 rounded-2xl text-sm leading-relaxed"
-                style={m.role === "student"
-                  ? { background: "rgba(8,145,178,0.35)", color: "#e0f4f8", borderBottomRightRadius: "4px", maxWidth: "80%" }
-                  : { background: "rgba(13,59,110,0.7)", color: "#bae6fd", border: "1px solid rgba(34,211,238,0.12)", borderBottomLeftRadius: "4px", maxWidth: "80%" }}>
-                {m.text}
-              </div>
+      {/* ── Main content row ── */}
+      <div
+        className="relative z-10 flex items-stretch justify-between pt-16"
+        style={{ minHeight: "100vh" }}
+      >
+        {/* ── Left: AI Patient character ── */}
+        <div
+          className="flex flex-col justify-end items-center flex-shrink-0"
+          style={{ width: "250px", padding: "59px 48px" }}
+        >
+          <div className="flex flex-col items-stretch" style={{ width: "154px", gap: "30px" }}>
+            <div style={{ height: "127px", position: "relative" }}>
+              <Image
+                src="/chat/ai-patient-top.png"
+                alt="AI Patient"
+                fill
+                className="object-cover"
+              />
             </div>
-          ))}
-          {chatLoading && (
-            <div className="flex flex-col gap-1" style={{ alignItems: "flex-start" }}>
-              <span className="text-xs px-1" style={{ color: "#2a5f72" }}>Patient</span>
-              <div className="px-4 py-2.5 rounded-2xl text-sm animate-pulse"
-                style={{ background: "rgba(13,59,110,0.7)", color: "#4a8fa8", border: "1px solid rgba(34,211,238,0.12)", borderBottomLeftRadius: "4px" }}>
-                …
-              </div>
+            <div style={{ height: "345px", position: "relative" }}>
+              <Image
+                src="/chat/ai-patient-body.png"
+                alt="AI Patient Body"
+                fill
+                className="object-cover"
+              />
             </div>
-          )}
-          <div ref={chatBottomRef} />
+          </div>
         </div>
 
-        {/* ── Mode toggle tabs ── */}
-        <div className="flex px-6 gap-2 pt-3"
-          style={{ borderTop: "1px solid rgba(34,211,238,0.1)" }}>
-          {(["mic", "text"] as InputMode[]).map((mode) => (
-            <button key={mode} onClick={() => setInputMode(mode)}
-              className="px-4 py-1.5 rounded-lg text-xs font-medium transition-all"
-              style={inputMode === mode
-                ? { background: "rgba(8,145,178,0.3)", border: "1px solid rgba(34,211,238,0.4)", color: "#22d3ee" }
-                : { background: "transparent", border: "1px solid rgba(34,211,238,0.1)", color: "#4a8fa8" }}>
-              {mode === "mic" ? "🎙️ Voice" : "⌨️ Text"}
-            </button>
-          ))}
-        </div>
+        {/* ── Center: Chat Window ── */}
+        <div
+          className="flex flex-col justify-center items-stretch flex-shrink-0"
+          style={{
+            width: "698px",
+            padding: "266px 51px 94px 44px",
+            backgroundImage: "url('/chat/chat-window-bg-76c432.png')",
+            backgroundSize: "100% 100%",
+            backgroundRepeat: "no-repeat",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+          }}
+        >
+          {/* Panel */}
+          <div
+            className="flex flex-col justify-end items-stretch flex-1"
+            style={{
+              borderRadius: "24px",
+              padding: "18px",
+              gap: "10px",
+              boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
+              backdropFilter: "blur(25px)",
+              WebkitBackdropFilter: "blur(25px)",
+              background: "rgba(250,250,250,0.08)",
+            }}
+          >
+            {/* Texts Stream */}
+            <div
+              className="flex flex-col overflow-y-auto"
+              style={{
+                borderRadius: "9px",
+                gap: "24px",
+                padding: "12px",
+                flex: 1,
+                maxHeight: "420px",
+                scrollbarWidth: "thin",
+                scrollbarColor: "rgba(250,250,250,0.2) transparent",
+              }}
+            >
+              {messages.length === 0 && (
+                <p
+                  className="text-center italic mt-8"
+                  style={{ color: "rgba(250,250,250,0.35)", fontSize: "20px" }}
+                >
+                  Speak or type to begin the consultation.
+                </p>
+              )}
 
-        {/* ── Mic input ── */}
-        {inputMode === "mic" && (
-          <div className="flex flex-col items-center gap-3 px-6 py-5">
-            {/* Live transcript preview */}
-            {(isListening || displayTranscript) && (
-              <div className="w-full px-4 py-2 rounded-xl text-xs leading-relaxed"
-                style={{
-                  background: "rgba(10,22,40,0.5)",
-                  border: `1px solid ${isListening ? "rgba(239,68,68,0.25)" : "rgba(34,211,238,0.1)"}`,
-                  color: displayTranscript ? "#7dd3e8" : "#2a5f72",
-                  fontStyle: displayTranscript ? "normal" : "italic",
-                }}>
-                {displayTranscript || "Listening…"}
-              </div>
-            )}
-
-            {/* Step indicators */}
-            <div className="flex items-center gap-2 justify-center">
-              {[
-                { n: 1, label: "Speak",    active: isListening || isConnecting, color: isListening ? "#ef4444" : "#fbbf24", bg: isListening ? "rgba(239,68,68,0.25)" : "rgba(251,191,36,0.2)" },
-                { n: 2, label: chatLoading ? "Sending…" : "Send", active: chatLoading, color: "#fbbf24", bg: "rgba(251,191,36,0.2)" },
-                { n: 3, label: "Response", active: !chatLoading && messages.at(-1)?.role === "patient", color: "#22d3ee", bg: "rgba(34,211,238,0.15)" },
-              ].map((s, idx) => (
-                <div key={s.n} className="flex items-center gap-2">
-                  <div className="flex flex-col items-center gap-1">
-                    <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300"
-                      style={{ background: s.active ? s.bg : "rgba(34,211,238,0.05)", border: `1px solid ${s.active ? s.color : "rgba(34,211,238,0.15)"}`, color: s.active ? s.color : "#2a5f72" }}>
-                      {s.n}
+              {messages.map((m, i) => (
+                <div
+                  key={i}
+                  className="flex flex-col"
+                  style={{
+                    alignItems: m.role === "student" ? "flex-end" : "flex-start",
+                    gap: "10px",
+                  }}
+                >
+                  {m.role === "student" ? (
+                    /* Student bubble — right-aligned, blue */
+                    <div
+                      style={{
+                        background: "#00A6FF",
+                        borderRadius: "20px 20px 0px 20px",
+                        padding: "12px 12px 12px 16px",
+                        maxWidth: "80%",
+                        color: "#FAFAFA",
+                        fontSize: "24px",
+                        lineHeight: "1.18em",
+                        fontFamily: "'Gochi Hand', cursive",
+                      }}
+                    >
+                      {m.text}
                     </div>
-                    <span className="text-xs" style={{ color: s.active ? s.color : "#2a5f72" }}>{s.label}</span>
-                  </div>
-                  {idx < 2 && <div className="h-px w-8 mb-4" style={{ background: "rgba(34,211,238,0.1)" }} />}
+                  ) : (
+                    /* Patient bubble — left-aligned, grey with border + replay */
+                    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                      <div
+                        style={{
+                          background: "rgba(102,99,93,0.6)",
+                          border: "2px solid #74777A",
+                          borderRadius: "20px 20px 20px 0px",
+                          padding: "12px 12px 12px 16px",
+                          width: "359px",
+                          color: "#FAFAFA",
+                          fontSize: "24px",
+                          lineHeight: "1.18em",
+                          fontFamily: "'Gochi Hand', cursive",
+                        }}
+                      >
+                        {m.text}
+                      </div>
+                      {/* Replay row */}
+                      <div className="flex items-center" style={{ gap: "10px" }}>
+                        <span style={{ color: "#FAFAFA", fontSize: "20px", fontFamily: "'Gochi Hand', cursive" }}>
+                          🔊 Replay
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
-            </div>
 
-            {/* Mic button */}
-            <div className="relative flex items-center justify-center">
-              {isListening && (
-                <span className="absolute rounded-full animate-ping"
-                  style={{ width: "72px", height: "72px", background: "rgba(239,68,68,0.12)", border: "1px solid rgba(239,68,68,0.25)" }} />
+              {/* Loading bubble */}
+              {chatLoading && (
+                <div className="flex flex-col" style={{ alignItems: "flex-start", gap: "10px" }}>
+                  <div
+                    className="animate-pulse"
+                    style={{
+                      background: "rgba(102,99,93,0.6)",
+                      border: "2px solid #74777A",
+                      borderRadius: "20px 20px 20px 0px",
+                      padding: "12px 16px",
+                      color: "#FAFAFA",
+                      fontSize: "24px",
+                      fontFamily: "'Gochi Hand', cursive",
+                    }}
+                  >
+                    …
+                  </div>
+                </div>
               )}
-              <button onClick={handleMicToggle} disabled={isConnecting || chatLoading}
-                aria-label={isListening ? "Stop and send" : "Start speaking"}
-                className="relative w-16 h-16 rounded-full flex items-center justify-center text-2xl transition-all duration-200"
-                style={isListening
-                  ? { background: "rgba(239,68,68,0.25)", border: "2px solid #ef4444", boxShadow: "0 0 28px rgba(239,68,68,0.5)", cursor: "pointer" }
-                  : isConnecting || chatLoading
-                  ? { background: "rgba(251,191,36,0.1)", border: "2px solid rgba(251,191,36,0.3)", cursor: "not-allowed", opacity: 0.6 }
-                  : { background: "rgba(8,145,178,0.2)", border: "2px solid rgba(34,211,238,0.4)", boxShadow: "0 0 16px rgba(34,211,238,0.2)", cursor: "pointer" }}>
-                {isConnecting ? "⏳" : chatLoading ? "📡" : isListening ? "⏹" : "🎙️"}
-              </button>
+
+              <div ref={chatBottomRef} />
             </div>
 
-            <p className="text-xs text-center font-medium"
-              style={{ color: isListening ? "#ef4444" : isConnecting || chatLoading ? "#fbbf24" : "#4a8fa8" }}>
-              {isConnecting ? "🔄 Connecting…" : isListening ? "🔴 Recording — press ⏹ to send" : chatLoading ? "📡 Sending…" : "🎙️ Press to speak"}
-            </p>
+            {/* Chatbox input row */}
+            <div
+              className="flex items-center justify-between"
+              style={{
+                background: "#FAFAFA",
+                border: "5px solid #FAFAFA",
+                borderRadius: "9px",
+                padding: "12px 12px 12px 16px",
+              }}
+            >
+              {/* Live transcript preview or text input */}
+              {isListening || isConnecting ? (
+                <div className="flex-1 flex items-center" style={{ gap: "8px" }}>
+                  <span
+                    style={{
+                      color: isListening ? "#ef4444" : "#717171",
+                      fontSize: "24px",
+                      fontFamily: "'Gochi Hand', cursive",
+                      flex: 1,
+                    }}
+                  >
+                    {displayTranscript || (isConnecting ? "Connecting…" : "Listening…")}
+                  </span>
+                  {displayTranscript && (
+                    <button
+                      onClick={handleMicSendAsText}
+                      style={{
+                        background: "#00A6FF",
+                        border: "none",
+                        borderRadius: "4px",
+                        padding: "4px 10px",
+                        color: "#FAFAFA",
+                        fontSize: "18px",
+                        fontFamily: "'Gochi Hand', cursive",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Use
+                    </button>
+                  )}
+                </div>
+              ) : (
+                <input
+                  type="text"
+                  value={textInput}
+                  onChange={(e) => setTextInput(e.target.value)}
+                  onKeyDown={handleTextKeyDown}
+                  placeholder="Respond to patient here..."
+                  disabled={chatLoading}
+                  className="flex-1 outline-none bg-transparent"
+                  style={{
+                    color: textInput ? "#09090B" : "#717171",
+                    fontSize: "24px",
+                    fontFamily: "'Gochi Hand', cursive",
+                    lineHeight: "1.18em",
+                  }}
+                />
+              )}
 
-            {(errorMsg || chatError) && (
-              <p className="text-xs text-center" style={{ color: "#f87171" }}>⚠ {errorMsg ?? chatError}</p>
-            )}
-          </div>
-        )}
-
-        {/* ── Text input ── */}
-        {inputMode === "text" && (
-          <div className="flex flex-col gap-3 px-6 py-5">
-            {chatError && (
-              <p className="text-xs" style={{ color: "#f87171" }}>⚠ {chatError}</p>
-            )}
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={textInput}
-                onChange={(e) => setTextInput(e.target.value)}
-                onKeyDown={handleTextKeyDown}
-                placeholder="Ask the patient something…"
-                disabled={chatLoading}
-                className="flex-1 px-4 py-2.5 rounded-xl text-sm outline-none transition-all"
-                style={{ background: "rgba(10,22,40,0.6)", border: "1px solid rgba(34,211,238,0.2)", color: "#e0f4f8" }}
-                onFocus={(e) => { e.currentTarget.style.borderColor = "#22d3ee"; e.currentTarget.style.boxShadow = "0 0 0 2px rgba(34,211,238,0.12)"; }}
-                onBlur={(e)  => { e.currentTarget.style.borderColor = "rgba(34,211,238,0.2)"; e.currentTarget.style.boxShadow = "none"; }}
-              />
-              <button onClick={handleTextSend}
-                disabled={!textInput.trim() || chatLoading}
-                className="px-4 py-2.5 rounded-xl text-sm font-medium transition-all"
+              {/* Mic / Send button */}
+              <button
+                onClick={isListening ? handleMicToggle : textInput.trim() ? handleTextSend : handleMicToggle}
+                disabled={isConnecting || chatLoading}
+                className="flex items-center gap-2 transition-opacity"
                 style={{
-                  background: textInput.trim() && !chatLoading ? "linear-gradient(135deg, #0891b2, #0e7490)" : "rgba(13,59,110,0.4)",
-                  color: textInput.trim() && !chatLoading ? "#e0f4f8" : "#2a5f72",
-                  cursor: textInput.trim() && !chatLoading ? "pointer" : "not-allowed",
-                }}>
-                {chatLoading ? "…" : "Send"}
+                  background: isListening ? "rgba(239,68,68,0.15)" : "#00A6FF",
+                  border: isListening ? "2px solid #ef4444" : "none",
+                  borderRadius: "4px",
+                  padding: "6px 12px 6px 6px",
+                  cursor: isConnecting || chatLoading ? "not-allowed" : "pointer",
+                  opacity: isConnecting || chatLoading ? 0.6 : 1,
+                  flexShrink: 0,
+                }}
+                aria-label={isListening ? "Stop recording" : textInput.trim() ? "Send message" : "Start recording"}
+              >
+                <span style={{ fontSize: "20px" }}>
+                  {isConnecting ? "⏳" : chatLoading ? "📡" : isListening ? "⏹" : textInput.trim() ? "➤" : "🎙️"}
+                </span>
+                <span
+                  style={{
+                    color: "#FAFAFA",
+                    fontSize: "24px",
+                    fontFamily: "'Gochi Hand', cursive",
+                    lineHeight: "1.18em",
+                  }}
+                >
+                  {isConnecting ? "Connecting" : chatLoading ? "Sending" : isListening ? "Stop" : textInput.trim() ? "Send" : "Record"}
+                </span>
               </button>
             </div>
-          </div>
-        )}
 
+            {/* Error display */}
+            {(errorMsg || chatError) && (
+              <p
+                className="text-center"
+                style={{ color: "#f87171", fontSize: "18px", fontFamily: "'Gochi Hand', cursive" }}
+              >
+                ⚠ {errorMsg ?? chatError}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* ── Right side: Student Doctor + Tools + Submit ── */}
+        <div className="flex flex-1 items-stretch" style={{ minWidth: 0 }}>
+          {/* Student Doctor character */}
+          <div
+            className="flex flex-col justify-end items-center flex-shrink-0"
+            style={{ width: "250px", padding: "59px 48px" }}
+          >
+            <div style={{ width: "154px", height: "345px", position: "relative" }}>
+              <Image
+                src="/chat/student-doctor.png"
+                alt="Student Doctor"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Tools and Submit panels */}
+          <div
+            className="flex flex-col justify-center flex-1"
+            style={{ gap: "20px", padding: "20px" }}
+          >
+            {/* Diagnostics Tools Panel */}
+            <div
+              className="flex flex-col"
+              style={{
+                borderRadius: "24px",
+                padding: "24px",
+                gap: "12px",
+                backgroundImage: "url('/chat/tools-panel-bg-a366ba.png')",
+                backgroundSize: "100% 100%",
+                backgroundRepeat: "no-repeat",
+                border: "5px solid rgba(255,255,255,0.15)",
+                boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
+              }}
+            >
+              <h2
+                className="text-center"
+                style={{
+                  color: "#FFFFFF",
+                  fontSize: "36px",
+                  fontFamily: "'Gochi Hand', cursive",
+                  lineHeight: "1.18em",
+                  textShadow: "0px 4px 10px rgba(0,60,117,0.5)",
+                }}
+              >
+                Diagnostics Tools
+              </h2>
+
+              {/* Row 1: Temperature, Heart Rate, Blood Pressure */}
+              <div className="flex justify-between" style={{ gap: "8px" }}>
+                {DIAGNOSTIC_TOOLS.slice(0, 3).map((tool) => {
+                  const val = vitals[tool.key];
+                  const displayVal =
+                    tool.key === "bloodPressureSystolic"
+                      ? `${vitals.bloodPressureSystolic ?? "—"}/${vitals.bloodPressureDiastolic ?? "—"} mmHg`
+                      : val !== undefined
+                      ? tool.format(val, vitals)
+                      : "—";
+                  return (
+                    <div
+                      key={tool.key}
+                      className="flex flex-col items-stretch"
+                      style={{ width: "138px", gap: "6px" }}
+                    >
+                      <div
+                        style={{
+                          height: "138px",
+                          position: "relative",
+                          boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.5)",
+                        }}
+                      >
+                        <Image src={tool.image} alt={tool.label} fill className="object-cover" />
+                      </div>
+                      <span
+                        className="text-center"
+                        style={{
+                          color: "#FFFFFF",
+                          fontSize: "20px",
+                          fontFamily: "'Gochi Hand', cursive",
+                          textShadow: "0px 4px 10px rgba(0,60,117,1)",
+                        }}
+                      >
+                        {tool.label}
+                      </span>
+                      <span
+                        className="text-center"
+                        style={{
+                          color: "#FFFFFF",
+                          fontSize: "36px",
+                          fontFamily: "'Gochi Hand', cursive",
+                          lineHeight: "1.18em",
+                          textShadow: "0px 4px 10px rgba(0,60,117,1)",
+                        }}
+                      >
+                        {displayVal}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Row 2: Blood Oxygen, Respiration Rate, Pain */}
+              <div className="flex justify-between" style={{ gap: "8px" }}>
+                {DIAGNOSTIC_TOOLS.slice(3, 6).map((tool) => {
+                  const val = vitals[tool.key];
+                  const displayVal =
+                    val !== undefined ? tool.format(val, vitals) : "—";
+                  return (
+                    <div
+                      key={tool.key}
+                      className="flex flex-col items-stretch"
+                      style={{ width: "138px", gap: "6px" }}
+                    >
+                      <div
+                        style={{
+                          height: "138px",
+                          position: "relative",
+                          boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.5)",
+                        }}
+                      >
+                        <Image src={tool.image} alt={tool.label} fill className="object-cover" />
+                      </div>
+                      <span
+                        className="text-center"
+                        style={{
+                          color: "#FFFFFF",
+                          fontSize: "20px",
+                          fontFamily: "'Gochi Hand', cursive",
+                          textShadow: "0px 4px 10px rgba(0,60,117,1)",
+                        }}
+                      >
+                        {tool.label}
+                      </span>
+                      <span
+                        className="text-center"
+                        style={{
+                          color: "#FFFFFF",
+                          fontSize: "36px",
+                          fontFamily: "'Gochi Hand', cursive",
+                          lineHeight: "1.18em",
+                          textShadow: "0px 4px 10px rgba(0,60,117,1)",
+                        }}
+                      >
+                        {displayVal}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Submit Panel */}
+            <div
+              className="flex flex-col flex-1"
+              style={{
+                borderRadius: "24px",
+                padding: "24px",
+                gap: "24px",
+                backgroundImage: "url('/chat/submit-panel-bg-174c22.png')",
+                backgroundSize: "100% 100%",
+                backgroundRepeat: "no-repeat",
+                border: "5px solid rgba(255,255,255,0.2)",
+                boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
+              }}
+            >
+              {/* Diagnosis text area */}
+              <div
+                className="flex flex-1"
+                style={{
+                  background: "rgba(250,250,250,0.35)",
+                  border: "5px solid #FAFAFA",
+                  borderRadius: "8px",
+                  padding: "24px 24px 24px 32px",
+                  backdropFilter: "blur(4px)",
+                  WebkitBackdropFilter: "blur(4px)",
+                  minHeight: "80px",
+                }}
+              >
+                <span
+                  style={{
+                    color: "#FAFAFA",
+                    fontSize: "24px",
+                    fontFamily: "'Gochi Hand', cursive",
+                    lineHeight: "1.18em",
+                    opacity: 0.7,
+                  }}
+                >
+                  Respond to patient here...
+                </span>
+              </div>
+
+              {/* Submit Diagnosis button */}
+              <Link
+                href="/setup"
+                className="flex items-center justify-between transition-opacity hover:opacity-90"
+                style={{
+                  background: "#00F621",
+                  borderRadius: "8px",
+                  padding: "12px 12px 12px 20px",
+                }}
+              >
+                <span
+                  style={{
+                    color: "#065811",
+                    fontSize: "24px",
+                    fontWeight: 700,
+                    fontFamily: "Inter, sans-serif",
+                    lineHeight: "1.21em",
+                  }}
+                >
+                  SUBMIT DIAGNOSIS
+                </span>
+                <span style={{ fontSize: "28px" }}>➤</span>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
   );
