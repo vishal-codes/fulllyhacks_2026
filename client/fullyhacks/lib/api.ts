@@ -204,6 +204,21 @@ export async function startCompetition(token: string): Promise<CompetitionStartR
   return res.json() as Promise<CompetitionStartResponse>;
 }
 
+export async function uploadCurriculum(token: string, file: File): Promise<{ doc_id: string; doc_name: string; diseases: string[] }> {
+  const form = new FormData();
+  form.append("file", file);
+  const res = await fetch(`${BASE_URL}/curriculum/upload`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: form,
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Upload failed: ${res.status}${body ? ` — ${body}` : ""}`);
+  }
+  return res.json();
+}
+
 export async function fetchCompetitionDates(token: string): Promise<CompetitionDatesResponse> {
   const res = await fetch(`${BASE_URL}/competition/dates`, {
     headers: { Authorization: `Bearer ${token}` },

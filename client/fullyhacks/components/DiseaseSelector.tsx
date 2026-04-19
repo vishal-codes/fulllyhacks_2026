@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { fetchDiseaseList, fetchDiseaseConfig, createSession } from "@/lib/api";
+import { fetchDiseaseList, fetchDiseaseConfig, createSession, uploadCurriculum } from "@/lib/api";
 import { validateDisease } from "@/lib/validators";
 import { ScenarioConfig } from "@/types/scenario";
 
@@ -49,6 +49,19 @@ export default function DiseaseSelector({
   const [isCustom, setIsCustom] = useState(false);
   const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard">("easy");
 
+  // Curriculum upload state
+  const [curriculumUploading, setCurriculumUploading] = useState(false);
+  const [curriculumUploaded, setCurriculumUploaded] = useState(() => {
+    try { return !!localStorage.getItem("curriculum_matches"); } catch { return false; }
+  });
+  const [curriculumError, setCurriculumError] = useState<string | null>(null);
+  const [curriculumMatches, setCurriculumMatches] = useState<string[] | null>(() => {
+    try {
+      const saved = localStorage.getItem("curriculum_matches");
+      return saved ? JSON.parse(saved) : null;
+    } catch { return null; }
+  });
+
   useEffect(() => {
     fetchDiseaseList()
       .then(setDiseases)
@@ -77,6 +90,26 @@ export default function DiseaseSelector({
     onSelectDisease("Custom Scenario");
     onConfigChange(blankConfig(), true);
     setSubmitError(null);
+  }
+
+  async function handleCurriculumUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const token = session?.backendToken;
+    if (!token) { setCurriculumError("You must be logged in."); return; }
+    setCurriculumUploading(true);
+    setCurriculumError(null);
+    setCurriculumMatches(null);
+    try {
+      const result = await uploadCurriculum(token, file);
+      setCurriculumUploaded(true);
+      setCurriculumMatches(result.diseases);
+      try { localStorage.setItem("curriculum_matches", JSON.stringify(result.diseases)); } catch {}
+    } catch (err) {
+      setCurriculumError(err instanceof Error ? err.message : "Upload failed");
+    } finally {
+      setCurriculumUploading(false);
+    }
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -122,6 +155,39 @@ export default function DiseaseSelector({
   return (
     <form onSubmit={handleSubmit} className="w-full flex flex-col gap-5">
 
+      {/* Curriculum upload */}
+      <div className="flex flex-col gap-2">
+        <label style={{ color: "rgba(250,250,250,0.6)", fontSize: "20px", fontFamily: FONT }}>
+          📄 Upload Curriculum PDF <span style={{ fontSize: "14px", color: "rgba(250,250,250,0.3)" }}>(optional)</span>
+        </label>
+        <label
+          className="w-full py-2.5 rounded-lg border cursor-pointer flex items-center justify-center gap-2 transition-all"
+          style={{
+            background: curriculumUploaded ? "rgba(0,166,255,0.15)" : "rgba(250,250,250,0.06)",
+            borderColor: curriculumUploaded ? "#00A6FF" : "rgba(255,255,255,0.25)",
+            borderStyle: "dashed",
+            color: curriculumUploaded ? "#00A6FF" : "rgba(250,250,250,0.5)",
+            fontFamily: FONT,
+            fontSize: "18px",
+          }}
+        >
+          {curriculumUploading ? "Uploading…" : curriculumUploaded ? "✓ Curriculum uploaded" : "Choose PDF"}
+          <input type="file" accept=".pdf" className="hidden" onChange={handleCurriculumUpload} disabled={curriculumUploading} />
+        </label>
+
+        {curriculumMatches !== null && (
+          <p style={{ color: "rgba(250,250,250,0.4)", fontFamily: FONT, fontSize: "15px" }}>
+            {curriculumMatches.length > 0
+              ? `${curriculumMatches.length} matching disease${curriculumMatches.length > 1 ? "s" : ""} highlighted below`
+              : "No matching diseases found in your curriculum"}
+          </p>
+        )}
+
+        {curriculumError && (
+          <p style={{ color: "#f87171", fontFamily: FONT, fontSize: "16px" }}>⚠ {curriculumError}</p>
+        )}
+      </div>
+
       {/* Disease list */}
       <div className="flex flex-col gap-2">
         <label style={{ color: "rgba(250,250,250,0.6)", fontSize: "20px", fontFamily: FONT }}>
@@ -143,8 +209,12 @@ export default function DiseaseSelector({
             className="grid grid-cols-2 gap-2 max-h-56 overflow-y-auto pr-1"
             style={{ scrollbarWidth: "thin", scrollbarColor: "rgba(255,255,255,0.2) transparent" }}
           >
-            {diseases.map((name) => {
+            {(curriculumMatches !== null
+              ? [...curriculumMatches, ...diseases.filter(d => !curriculumMatches.includes(d))]
+              : diseases
+            ).map((name) => {
               const isActive = selectedDisease === name && !isCustom;
+              const isMatch = curriculumMatches !== null && curriculumMatches.includes(name);
               return (
                 <button
                   key={name}
@@ -154,24 +224,13 @@ export default function DiseaseSelector({
                   className="px-3 py-2 rounded-lg border transition-all duration-150 cursor-pointer text-left"
                   style={
                     isActive
-                      ? {
-                          background: "#00A6FF",
-                          borderColor: "#FAFAFA",
-                          color: "#FAFAFA",
-                          fontFamily: FONT,
-                          fontSize: "18px",
-                        }
-                      : {
-                          background: "rgba(250,250,250,0.08)",
-                          borderColor: "rgba(255,255,255,0.2)",
-                          color: "rgba(250,250,250,0.7)",
-                          fontFamily: FONT,
-                          fontSize: "18px",
-                          opacity: loadingConfig ? 0.5 : 1,
-                        }
+                      ? { background: "#00A6FF", borderColor: "#FAFAFA", color: "#FAFAFA", fontFamily: FONT, fontSize: "18px" }
+                      : isMatch
+                      ? { background: "rgba(0,166,255,0.12)", borderColor: "#00A6FF", color: "#FAFAFA", fontFamily: FONT, fontSize: "18px", opacity: loadingConfig ? 0.5 : 1 }
+                      : { background: "rgba(250,250,250,0.08)", borderColor: "rgba(255,255,255,0.2)", color: "rgba(250,250,250,0.7)", fontFamily: FONT, fontSize: "18px", opacity: loadingConfig ? 0.5 : 1 }
                   }
                 >
-                  {name}
+                  {isMatch && !isActive && <span style={{ marginRight: 4 }}>★</span>}{name}
                 </button>
               );
             })}

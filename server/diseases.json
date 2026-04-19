@@ -20048,5 +20048,4942 @@
         "unit": "/10"
       }
     }
+  },
+  {
+    "name": "Liver cancer",
+    "symptoms": [
+      "a new lump or swelling anywhere on your body",
+      "sweating a lot (particularly at night) or a high temperature that lasts a long time or keeps coming back",
+      "feeling more tired than usual",
+      "unusual bruising or bleeding (such as bleeding from your bottom, blood in your pee or vomiting blood)",
+      "pain anywhere in your body that's not usual for you",
+      "losing weight without trying or feeling less hungry than usual",
+      "needing to pee more often or more urgently, or pain when you pee",
+      "jaundice (the whites of your eyes or your skin looking yellow)",
+      "heartburn or indigestion that's frequent, very painful or gets worse",
+      "a swollen tummy (bloating) that happens often or lasts a long time",
+      "changes in your poo, such as needing to poo more or less often than usual, diarrhoea or constipation that does not get better or gets worse",
+      "problems swallowing",
+      "a hoarse or croaky voice that does not get better",
+      "a sore or ulcer in your mouth that does not get better",
+      "white or red patches in your mouth",
+      "a cough that does not get better or gets worse",
+      "shortness"
+    ],
+    "treatments": [
+      "photodynamic therapy (PDT)",
+      "surgery",
+      "chemotherapy",
+      "radiation therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Low blood pressure (hypotension)",
+    "symptoms": [
+      "feeling hungry",
+      "feeling dizzy",
+      "feeling anxious or irritable",
+      "sweating",
+      "shaking",
+      "tingling lips",
+      "heart palpitations",
+      "feeling tired or weak",
+      "changes in your vision such as blurred vision",
+      "feeling confused"
+    ],
+    "treatments": [
+      "Eat or drink something that will raise your blood sugar quickly",
+      "Take medicine for high blood pressure"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 120,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 5,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Low blood sugar (hypoglycaemia)",
+    "symptoms": [
+      "feeling hungry",
+      "feeling dizzy",
+      "feeling anxious or irritable",
+      "sweating",
+      "shaking",
+      "tingling lips",
+      "heart palpitations",
+      "feeling tired or weak",
+      "changes in your vision such as blurred vision",
+      "feeling confused"
+    ],
+    "treatments": [
+      "Eat or drink something that will raise your blood sugar quickly",
+      "Give a glucagon injection straight away"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Low sperm count",
+    "symptoms": [
+      "Loss of sex drive",
+      "Stress"
+    ],
+    "treatments": [
+      "Intrauterine insemination (IUI)",
+      "IVF",
+      "Surgical procedures for endometriosis or repair of fallopian tubes"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 28,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 6,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Low white blood cell count",
+    "symptoms": [
+      "looking pale or 'washed out'",
+      "feeling tired or weak",
+      "breathlessness",
+      "frequent infections",
+      "unusual and frequent bruising or bleeding",
+      "losing weight without trying to"
+    ],
+    "treatments": [
+      "blood tests",
+      "further tests",
+      "treatment by a haematologist"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Lung cancer",
+    "symptoms": [
+      "cough that does not go away after 3 weeks",
+      "long-standing cough that gets worse",
+      "chest infections that keep coming back",
+      "coughing up blood",
+      "ache or pain when breathing or coughing",
+      "persistent breathlessness",
+      "persistent tiredness or lack of energy",
+      "loss of appetite or unexplained weight loss",
+      "finger clubbing",
+      "difficulty swallowing or pain when swallowing",
+      "wheezing",
+      "hoarse voice",
+      "swelling of your face or neck",
+      "persistent chest or shoulder pain"
+    ],
+    "treatments": [
+      "surgery",
+      "chemotherapy",
+      "radiation therapy",
+      "targeted therapy",
+      "immunotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Lupus",
+    "symptoms": [
+      "joint and muscle pain",
+      "extreme tiredness",
+      "rashes",
+      "headaches",
+      "mouth ulcers",
+      "high temperature",
+      "hair loss",
+      "weight loss",
+      "swollen glands",
+      "depression and anxiety",
+      "chest or tummy pain",
+      "Raynaud's"
+    ],
+    "treatments": [
+      "early treatment",
+      "blood tests",
+      "X-rays and scans",
+      "regular checks and tests"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 35,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Lyme disease",
+    "symptoms": [
+      "high temperature",
+      "cold hands and feet",
+      "vomiting",
+      "confusion",
+      "breathing quickly",
+      "muscle and joint pain",
+      "pale, mottled or blotchy skin",
+      "spots or a rash",
+      "headache",
+      "stiff neck",
+      "dislike of bright lights",
+      "being very sleepy or difficult to wake",
+      "fits (seizures)",
+      "refuse feeds",
+      "irritable",
+      "high-pitched cry",
+      "stiff body or be floppy or unresponsive",
+      "bulging soft spot on the top of their head"
+    ],
+    "treatments": [
+      "antibiotics"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Lymphoedema",
+    "symptoms": [
+      "pain in a muscle",
+      "swelling or bulging of the muscle",
+      "numbness",
+      "weakness",
+      "pins and needles",
+      "tightness",
+      "difficulty moving the affected body part"
+    ],
+    "treatments": [
+      "surgery",
+      "anti-inflammatory painkillers",
+      "physiotherapy",
+      "skin graft",
+      "orthotics"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 94,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Macular hole",
+    "symptoms": [
+      "floaters",
+      "flashes of light in your eye",
+      "dark 'curtain' or shadow in your vision",
+      "changes to your eyesight, such as blurred vision"
+    ],
+    "treatments": [
+      "vitrectomy",
+      "scleral buckling",
+      "pneumatic retinopexy",
+      "cryotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Malaria",
+    "symptoms": [
+      "high temperature",
+      "cold hands and feet",
+      "vomiting",
+      "confusion",
+      "breathing quickly",
+      "muscle and joint pain",
+      "pale, mottled or blotchy skin",
+      "spots or a rash",
+      "headache",
+      "a stiff neck",
+      "a dislike of bright lights",
+      "being very sleepy or difficult to wake",
+      "fits (seizures)",
+      "refuse feeds",
+      "irritable",
+      "high-pitched cry",
+      "stiff body or be floppy or unresponsive",
+      "bulging soft spot on the top of their head"
+    ],
+    "treatments": [
+      "deliver the baby",
+      "medicine to help lower blood pressure",
+      "labetalol",
+      "nifedipine",
+      "methyldopa"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 37.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 3,
+        "max": 9,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Malignant brain tumour (brain cancer)",
+    "symptoms": [
+      "headaches",
+      "seizures (fits)",
+      "nausea",
+      "vomiting",
+      "drowsiness",
+      "mental or behavioural changes",
+      "progressive weakness or paralysis on one side of the body",
+      "vision or speech problems"
+    ],
+    "treatments": [
+      "surgery",
+      "radiotherapy",
+      "chemotherapy",
+      "steroids",
+      "anti-epileptic medicines",
+      "painkillers"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Mallet finger",
+    "symptoms": [
+      "painful",
+      "swollen",
+      "bruised",
+      "difficult to move",
+      "change in colour",
+      "numbness"
+    ],
+    "treatments": [
+      "taping the finger to the next finger",
+      "lifting the hand to reduce swelling",
+      "applying an ice pack",
+      "taking paracetamol",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 94,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Malnutrition",
+    "symptoms": [
+      "weight loss",
+      "hair loss",
+      "dry skin",
+      "lightheaded or dizzy",
+      "osteoporosis",
+      "fertility problems",
+      "loss of sex drive",
+      "problems with the heart and blood vessels"
+    ],
+    "treatments": [
+      "cognitive behavioural therapy (CBT)",
+      "Maudsley anorexia nervosa treatment for adults (MANTRA)",
+      "specialist supportive clinical management (SSCM)",
+      "family therapy",
+      "adolescent-focused psychotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 28,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 6,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Marfan syndrome",
+    "symptoms": [
+      "tiredness",
+      "joint pain and stiffness",
+      "sprains and strains",
+      "joint dislocations",
+      "poor balance or co-ordination",
+      "thin, stretchy skin",
+      "bladder or bowel problems"
+    ],
+    "treatments": [
+      "physiotherapy",
+      "occupational therapy",
+      "podiatry",
+      "paracetamol",
+      "anti-inflammatory painkillers",
+      "warm baths",
+      "hot water bottles",
+      "heat-rub cream"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 140,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Mastitis",
+    "symptoms": [
+      "swollen area on your breast that may feel hot and painful to touch",
+      "wedge-shaped breast lump or a hard area on your breast",
+      "burning pain in your breast that might be constant or only when you breastfeed",
+      "nipple discharge, which may be white or contain streaks of blood",
+      "aches",
+      "high temperature (or feeling hot, cold or shivery)",
+      "tiredness"
+    ],
+    "treatments": [
+      "continue to breastfeed your baby when they want and for as long as they want",
+      "hand express enough breast milk to feed your baby if breastfeeding is too painful, or if your baby does not want to feed from your affected breast",
+      "apply a cold compress to the affected breast for 10 minutes every hour",
+      "take paracetamol or ibuprofen to reduce any pain or high temperature",
+      "rest",
+      "wear a comfortable and supportive bra",
+      "prescribed antibiotics from a GP"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Mastocytosis",
+    "symptoms": [
+      "abnormal growths (lesions) on the skin",
+      "bumps and spots on the body",
+      "blistering",
+      "skin reactions",
+      "itching and flushing",
+      "gut symptoms",
+      "diarrhoea and vomiting",
+      "muscle and joint pain",
+      "mood changes",
+      "headaches",
+      "tiredness (fatigue)",
+      "anaphylaxis"
+    ],
+    "treatments": [
+      "steroid cream (topical corticosteroids)",
+      "antihistamines",
+      "adrenaline auto-injector"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Mastoiditis",
+    "symptoms": [
+      "watery, smelly discharge",
+      "gradual loss of hearing",
+      "pain in the affected ear",
+      "ear infections",
+      "vertigo",
+      "tinnitus",
+      "damage to the facial nerve",
+      "brain abscess",
+      "meningitis"
+    ],
+    "treatments": [
+      "surgery",
+      "ear drops",
+      "antibiotics"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Measles",
+    "symptoms": [
+      "high temperature",
+      "cold hands and feet",
+      "vomiting",
+      "confusion",
+      "breathing quickly",
+      "muscle and joint pain",
+      "pale, mottled or blotchy skin",
+      "spots or a rash",
+      "headache",
+      "stiff neck",
+      "dislike of bright lights",
+      "sleepiness",
+      "fits"
+    ],
+    "treatments": [
+      "antihistamine medicine",
+      "bathing in cool water",
+      "dressing in loose clothes"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Medically unexplained symptoms",
+    "symptoms": [
+      "widespread pain",
+      "extreme sensitivity",
+      "stiffness",
+      "fatigue"
+    ],
+    "treatments": [
+      "psychoanalysis",
+      "cognitive behavioural therapy (CBT)",
+      "family therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Melanoma skin cancer",
+    "symptoms": [
+      "abnormal skin growth",
+      "skin lesions",
+      "skin discoloration"
+    ],
+    "treatments": [
+      "photodynamic therapy (PDT)",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Meningitis",
+    "symptoms": [
+      "high temperature",
+      "cold hands and feet",
+      "vomiting",
+      "confusion",
+      "breathing quickly",
+      "muscle and joint pain",
+      "pale, mottled or blotchy skin",
+      "spots or a rash",
+      "headache",
+      "stiff neck",
+      "dislike of bright lights",
+      "being very sleepy or difficult to wake",
+      "fits (seizures)",
+      "refuse feeds",
+      "irritability",
+      "high-pitched cry",
+      "stiff body or be floppy or unresponsive",
+      "bulging soft spot on the top of their head"
+    ],
+    "treatments": [
+      "Call 999 for an ambulance",
+      "go to your nearest A&E",
+      "USE NHS 111 online",
+      "Call NHS 111 for advice"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Meniscus tear (knee cartilage damage)",
+    "symptoms": [
+      "knee pain",
+      "swelling",
+      "stiffness"
+    ],
+    "treatments": [
+      "rest",
+      "physical therapy",
+      "pain management"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Menopause",
+    "symptoms": [
+      "hot flushes",
+      "night sweats",
+      "mood swings",
+      "vaginal dryness",
+      "irregular periods"
+    ],
+    "treatments": [
+      "hormone replacement therapy (HRT)",
+      "herbal remedies (e.g. evening primrose oil, black cohosh)",
+      "bioidentical hormones",
+      "lifestyle changes (e.g. diet, exercise)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Mesothelioma",
+    "symptoms": [
+      "shortness of breath",
+      "persistent cough",
+      "wheezing",
+      "extreme tiredness (fatigue)",
+      "pain in your chest or shoulder",
+      "clubbed (swollen) fingertips"
+    ],
+    "treatments": [
+      "pulmonary rehabilitation",
+      "oxyge"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Metabolic syndrome",
+    "symptoms": [
+      "High blood pressure",
+      "High cholesterol",
+      "Insulin resistance",
+      "Abdominal obesity",
+      "Elevated fasting glucose"
+    ],
+    "treatments": [
+      "Lifestyle changes",
+      "Medicines such as statins and metformin"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Middle East respiratory syndrome (MERS)",
+    "symptoms": [
+      "high temperature",
+      "cough",
+      "sore throat",
+      "runny or blocked nose",
+      "wheezing and sneezing",
+      "shortness of breath",
+      "red, irritated eyes"
+    ],
+    "treatments": [
+      "antiviral medicines",
+      "oxygen",
+      "ventilation",
+      "medicines (such as antibiotics)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Migraine",
+    "symptoms": [
+      "Painkillers do not work",
+      "Pain on one side of the head",
+      "Sensitivity to light",
+      "Sensitivity to sound",
+      "Nausea",
+      "Vomiting",
+      "Aura"
+    ],
+    "treatments": [
+      "Triptans",
+      "Oxygen",
+      "Electrical pulses to the back of the neck",
+      "Corticosteroids",
+      "Verapamil",
+      "Lithium"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Molar pregnancy",
+    "symptoms": [
+      "Missed or lighter period",
+      "Feeling sick during pregnancy",
+      "Feeling tired",
+      "Sore breasts in early pregnancy",
+      "Peeing more",
+      "Constipation",
+      "Vaginal discharge"
+    ],
+    "treatments": [
+      "Monitoring in hospital",
+      "Medicine for high blood pressure (labetalol, nifedipine or methyldopa)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 140,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Moles",
+    "symptoms": [
+      "red or pink patches",
+      "raised red lumps",
+      "sore or painful",
+      "got bigger, darker or lumpier"
+    ],
+    "treatments": [
+      "medicines",
+      "laser therapy",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Molluscum contagiosum",
+    "symptoms": [
+      "spots",
+      "raised and dome-shaped spots with a shiny white dimple in the middle",
+      "spots on the body and in or around folds of skin",
+      "spots around the lower tummy, genital area and thighs"
+    ],
+    "treatments": [
+      "usually harmless and rarely needs treatment"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 94,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 5,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Morton's neuroma",
+    "symptoms": [
+      "pins and needles in the affected body part",
+      "numbness and less ability to feel pain or changes in temperature",
+      "a burning or sharp pain, usually in the feet",
+      "feeling pain from something that should not be painful at all",
+      "loss of balance or co-ordination caused by less ability to tell the position of the feet or hands"
+    ],
+    "treatments": [
+      "treating any underlying cause or symptoms",
+      "treating diabetes",
+      "vitamin B12 injections or tablets",
+      "steroids",
+      "immunosuppressants",
+      "injections of immunoglobulin",
+      "medicine to treat nerve pain"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Motion sickness",
+    "symptoms": [
+      "dizziness",
+      "feeling sick (nausea)",
+      "being sick",
+      "headache",
+      "feeling cold and going pale",
+      "sweating"
+    ],
+    "treatments": [
+      "reduce motion – sit in the front of a car or in the middle of a boat",
+      "look straight ahead at a fixed point, such as the horizon",
+      "breathe fresh air if possible – for example, by opening a car window",
+      "close your eyes and breathe slowly while focusing on your breathing",
+      "distract children by talking, listening to music or singing songs",
+      "break up long journeys to get some fresh air, drink water or take a walk",
+      "try ginger, which you can take as a tablet, biscuit or tea",
+      "acupressure bands",
+      "tablets – dissolvable tablets are available for children",
+      "patches – can be used by adults and children over 10"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Motor neurone disease (MND)",
+    "symptoms": [
+      "stiff or weak hands",
+      "weak legs and feet",
+      "twitches, spasms or muscle cramps",
+      "problems breathing, swallowing and speaking",
+      "producing a lot of saliva (drool)",
+      "changes in your mood and personality",
+      "being unable to walk or move"
+    ],
+    "treatments": [
+      "medicines to help ease symptoms",
+      "riluzole if you have amyotrophic lateral sclerosis (ALS)",
+      "physiotherapy and exercises",
+      "dietary advice",
+      "mobility equipment",
+      "help with personal care",
+      "help communicating",
+      "talking therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Mouth cancer",
+    "symptoms": [
+      "Ulcers or white patches in the mouth",
+      "Difficulty swallowing",
+      "Pain in the mouth or throat",
+      "Unexplained weight loss",
+      "Tiredness",
+      "Swollen lymph nodes in the neck"
+    ],
+    "treatments": [
+      "Surgery",
+      "Radiotherapy",
+      "Chemotherapy",
+      "Targeted therapy",
+      "Immunotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Mouth ulcers",
+    "symptoms": [
+      "mouth pain",
+      "mouth bleeding",
+      "mouth redness"
+    ],
+    "treatments": [
+      "antimicrobial mouthwash",
+      "painkilling tablet",
+      "corticosteroid lozenges",
+      "salt (saline) mouthwash"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Mpox",
+    "symptoms": [
+      "high temperature",
+      "headache",
+      "muscle aches",
+      "backache",
+      "swollen glands",
+      "shivering",
+      "exhaustion",
+      "joint pain",
+      "rash"
+    ],
+    "treatments": [],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "MRSA",
+    "symptoms": [
+      "painful and swollen skin",
+      "warm skin to touch",
+      "pus or liquid leakage",
+      "red skin",
+      "high temperature",
+      "difficulty breathing",
+      "dizziness",
+      "confusion",
+      "cut or wound with pain, swelling, redness, warmth, or pus"
+    ],
+    "treatments": [
+      "antibiotics"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Mucositis",
+    "symptoms": [
+      "dry mouth",
+      "sore mouth",
+      "mouth ulcers",
+      "bad breath",
+      "fungal mouth infection",
+      "diarrhoea",
+      "sores around bottom",
+      "bleeding from gut",
+      "pain when swallowing",
+      "constipation",
+      "stomach cramps and bloating"
+    ],
+    "treatments": [
+      "advice from GP or care team",
+      "treatments to ease symptoms"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 96,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 35,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Multiple sclerosis",
+    "symptoms": [
+      "feeling extremely tired (fatigue)",
+      "problems with your eyes or your vision, such as blurred vision or eye pain",
+      "numbness or a tingling feeling in different parts of the body",
+      "feeling off balance, dizzy or clumsy (uncoordinated)",
+      "muscle cramps, spasms and stiffness",
+      "needing to pee more often or not being able to control when you pee",
+      "problems with memory or concentration",
+      "sexual problems, including a dry vagina or erection problems",
+      "weakness or numbness in 1 arm",
+      "loss or blurring of vision",
+      "problems with balance and co-ordination"
+    ],
+    "treatments": [
+      "See a GP",
+      "Call 999 or go to A&E if you have sudden weakness or numbness in 1 arm, loss or blurring of vision, problems with balance and co-ordination"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Multiple system atrophy (MSA)",
+    "symptoms": [
+      "bladder problems",
+      "dizziness when standing up",
+      "erectile dysfunction",
+      "slow, clumsy or unsteady movement",
+      "slurred speech",
+      "stiff, tense muscles",
+      "feeling too hot or too cold",
+      "trouble sleeping",
+      "noisy breathing",
+      "difficulty chewing or swallowing",
+      "constipation",
+      "unpredictable laughing or crying"
+    ],
+    "treatments": [
+      "medications to manage symptoms",
+      "physical therapy to improve mobility",
+      "speech therapy to improve communication",
+      "bladder training to manage incontinence"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 96,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 2,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Mumps",
+    "symptoms": [
+      "painless swelling around cheeks and neck",
+      "earache",
+      "difficulty chewing, swallowing or speaking",
+      "headache",
+      "high temperature",
+      "muscle aches",
+      "feeling tired",
+      "loss of appetite"
+    ],
+    "treatments": [
+      "rest",
+      "drink plenty of water",
+      "take paracetamol or ibuprofen",
+      "apply warm towel to cheeks and neck"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 140,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Muscular dystrophy",
+    "symptoms": [
+      "muscle weakness",
+      "difficulty walking",
+      "difficulty lifting things",
+      "falling easily",
+      "muscle pain",
+      "tightness in the joints",
+      "floppiness",
+      "delayed crawling or walking"
+    ],
+    "treatments": [
+      "physiotherapy",
+      "steroids",
+      "ACE inhibitors",
+      "beta blockers",
+      "surgery for scoliosis and tight joints",
+      "breathing machine",
+      "occupational therapy",
+      "mobility equipment",
+      "home adaptations"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Myalgic encephalomyelitis or chronic fatigue syndrome (ME/CFS)",
+    "symptoms": [
+      "extreme tiredness",
+      "sleep problems",
+      "problems with thinking, concentration and memory",
+      "symptoms getting worse after physical or mental activity",
+      "pain in different parts of the body",
+      "flu-like symptoms, such as high temperature, headache and aching joints or muscles"
+    ],
+    "treatments": [
+      "energy management",
+      "cognitive behavioural therapy (CBT)",
+      "medicine to control symptoms such as pain and sleeping problems"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 110,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 39.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 95,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Myasthenia gravis",
+    "symptoms": [
+      "droopy eyelids",
+      "double vision",
+      "difficulty making facial expressions",
+      "problems chewing",
+      "difficulty swallowing",
+      "slurred speech",
+      "weak arms",
+      "weak legs",
+      "weak neck",
+      "shortness of breath"
+    ],
+    "treatments": [
+      "blood test",
+      "nerve function test",
+      "CT scan",
+      "MRI scan"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Myelodysplastic syndrome (MDS)",
+    "symptoms": [
+      "Fatigue",
+      "Shortness of breath",
+      "Pain in the bones or joints",
+      "Frequent infections"
+    ],
+    "treatments": [
+      "Chemotherapy",
+      "Stem cell transplant",
+      "Blood transfusions",
+      "Medications to manage symptoms"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Myeloma",
+    "symptoms": [
+      "Bone pain",
+      "Fatigue",
+      "Weight loss",
+      "Anemia",
+      "Thinning bones",
+      "Recurring infections"
+    ],
+    "treatments": [
+      "Chemotherapy",
+      "Steroids",
+      "Bone marrow transplant",
+      "Radiation therapy",
+      "Targeted therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 94,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Myositis",
+    "symptoms": [
+      "muscle weakness",
+      "difficulty getting up from a chair",
+      "difficulty climbing stairs",
+      "difficulty lifting objects",
+      "difficulty combing hair",
+      "painful or aching muscles",
+      "feeling very tired",
+      "weight loss",
+      "night sweats",
+      "patchy, red rash",
+      "problems with swallowing",
+      "problems with breathing"
+    ],
+    "treatments": [
+      "steroids",
+      "physiotherapy",
+      "medicines to reduce swelling",
+      "immunoglobulin therapy",
+      "medicines to treat rheumatoid arthritis",
+      "speech and language therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 35,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Ménière's disease",
+    "symptoms": [
+      "feeling like you or everything around you is spinning",
+      "losing your balance",
+      "ringing or buzzing sounds in 1 or both ears",
+      "hearing loss",
+      "feeling pressure, discomfort or pain deep inside your ear",
+      "feeling or being sick"
+    ],
+    "treatments": [
+      "lifestyle changes",
+      "low-salt diet",
+      "avoiding caffeine",
+      "breathing exercises",
+      "relaxation techniques"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 18,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Narcolepsy",
+    "symptoms": [
+      "excessive daytime sleepiness",
+      "sleep attacks",
+      "cataplexy",
+      "sleep paralysis",
+      "excessive dreaming and waking in the night",
+      "hypnogogic hallucinations",
+      "hypnopompic hallucinations"
+    ],
+    "treatments": [
+      "medications to regulate sleep-wake cycles",
+      "lifestyle changes to manage sleep and stress"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Nasal and sinus cancer",
+    "symptoms": [
+      "Nosebleeds",
+      "Nasal congestion",
+      "Facial pain",
+      "Swollen lymph nodes in the neck",
+      "Loss of smell"
+    ],
+    "treatments": [
+      "Surgery",
+      "Radiotherapy",
+      "Chemotherapy",
+      "Targeted therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 94,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Nasal polyps",
+    "symptoms": [
+      "blocked nose",
+      "runny nose",
+      "postnasal drip",
+      "reduced sense of smell or taste",
+      "snoring"
+    ],
+    "treatments": [
+      "steroid nose drops or spray",
+      "steroid tablets",
+      "surgery to remove polyps"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 18,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Nasopharyngeal cancer",
+    "symptoms": [
+      "Nosebleeds",
+      "Difficulty swallowing",
+      "Ear pain",
+      "Facial pain",
+      "Headache",
+      "Loss of appetite",
+      "Weight loss"
+    ],
+    "treatments": [
+      "Radiotherapy",
+      "Chemotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Necrotising fasciitis",
+    "symptoms": [
+      "intense pain or loss of feeling",
+      "redness and swelling of the skin",
+      "flu-like symptoms",
+      "being sick (vomiting) and diarrhoea",
+      "confusion",
+      "blisters or black, purple or grey blotches on the skin"
+    ],
+    "treatments": [
+      "hospital treatment",
+      "antibiotics",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 120,
+        "max": 180,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 80,
+        "max": 110,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 100,
+        "max": 140,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.0,
+        "max": 41.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 95,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 5,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Neonatal herpes (herpes in a baby)",
+    "symptoms": [
+      "Fever",
+      "Skin lesions",
+      "Discharge from the eyes or nose",
+      "Difficulty feeding",
+      "Irritability",
+      "Seizures"
+    ],
+    "treatments": [
+      "Antiviral medication",
+      "Supportive care"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 60,
+        "max": 120,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 30,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 160,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Nephrotic syndrome in children",
+    "symptoms": [
+      "swelling",
+      "infections",
+      "urine changes"
+    ],
+    "treatments": [
+      "steroid medication",
+      "diuretics",
+      "penicillin",
+      "dietary changes",
+      "vaccinations",
+      "additional medication"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Liver disease",
+    "symptoms": [
+      "feeling very tired and weak all the time",
+      "loss of appetite",
+      "loss of sex drive",
+      "yellow skin and whites of the eyes",
+      "itchy skin",
+      "feeling or being sick"
+    ],
+    "treatments": [
+      "Maintaining a healthy weight",
+      "Staying within the recommended alcohol limits",
+      "Medication for cirrhosis",
+      "Liver transplant"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Long COVID",
+    "symptoms": [
+      "feeling extremely tired (fatigue)",
+      "shortness of breath",
+      "joint pain and aching muscles",
+      "problems with your memory and concentration, also called brain fog",
+      "high temperature",
+      "blocked or runny nose",
+      "cough",
+      "sore throat",
+      "chest pain or tightness and noticeable heartbeats (heart palpitations)",
+      "losing your hair and getting skin rashes, such as hives",
+      "headaches",
+      "feeling dizzy and vertigo",
+      "sudden confusion (delirium), especially in older people",
+      "difficulty sleeping (insomnia)",
+      "changes to your senses, such as problems with your vision, earaches, hearing ringing sounds inside your ear (tinnitus), and differences in your sense of smell or taste",
+      "tummy pain and diarrhoea",
+      "feeling or being sick, losing weight and not feeling like eating",
+      "pins and needles, and aches and pains in different parts of your body",
+      "anxiety and depression"
+    ],
+    "treatments": [
+      "advice about how to manage tiredness (fatigue)",
+      "physiotherapy and exercises to help with breathing and muscle pain",
+      "cognitive behavioural therapy (CBT) to help with anxiety, depression and fatigue",
+      "activities to improve your memory, concentration, thinking and mood (cognitive rehabilitation)",
+      "help to try to improve your sense of smell",
+      "help with diet and nutrition",
+      "using tools like apps to track your symptoms",
+      "a specialist adviser who will help you access practical, emotional and social support depending on your needs (social prescribing)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Long QT syndrome",
+    "symptoms": [
+      "heart palpitations",
+      "fainting",
+      "seizure or fit",
+      "cardiac arrest"
+    ],
+    "treatments": [],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Long-sightedness",
+    "symptoms": [
+      "finding it hard to see nearby things",
+      "being able to see things more clearly when you move them further away from your eyes",
+      "tired eyes after tasks that involve looking at something closely",
+      "headaches"
+    ],
+    "treatments": [
+      "wearing glasses or contact lenses",
+      "lens implant surgery",
+      "laser eye surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 28,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Miscarriage",
+    "symptoms": [
+      "vaginal bleeding",
+      "pain and cramping in your lower tummy",
+      "pink, grey or white lumps coming out of your vagina",
+      "fluid suddenly coming out of your vagina",
+      "tummy pain",
+      "vaginal discharge that's unusual for you",
+      "heavy bleeding"
+    ],
+    "treatments": [
+      "no treatment and waiting for symptoms to pass",
+      "taking medicine to help pass the pregnancy",
+      "a procedure where a thin tube is inserted through your vagina into your womb to remove the pregnancy using gentle suction",
+      "giving birth"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Neurofibromatosis type 1 (NF1)",
+    "symptoms": [
+      "light brown patches of skin (café-au-lait spots)",
+      "freckles in your armpits or around the tops of your legs",
+      "lumps on or just under your skin (neurofibromas)",
+      "yellow-brown raised dots on the coloured part of your eye (iris)",
+      "eye problems, such as a squint, reduced vision, or a bulging eye",
+      "a large head and below average height",
+      "learning difficulties"
+    ],
+    "treatments": [
+      "medicine to stop tumours growing",
+      "surgery to remove tumours that are at risk of causing problems",
+      "using a beam of radiation to treat small tumours or pieces of a larger tumour that are left after surgery (radiotherapy)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 35,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Neurofibromatosis type 2 (NF2)",
+    "symptoms": [
+      "hearing loss",
+      "ringing or buzzing in your ears",
+      "balance problems",
+      "headaches",
+      "feeling sick (nausea) or being sick (vomiting)",
+      "fits (seizures)",
+      "blurred vision and vision loss",
+      "weakness or lack of movement in your face",
+      "weakness, numbness or tingling in your hands and feet",
+      "lumps or marks on your skin that are sometimes smooth and shiny",
+      "squint",
+      "difficulty seeing caused by cloudy patches in the eyes",
+      "difficulty lifting or moving the feet"
+    ],
+    "treatments": [
+      "surgery",
+      "chemotherapy",
+      "radiation therapy",
+      "medications to manage symptoms"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Neuromyelitis optica (NMO)",
+    "symptoms": [
+      "eye pain",
+      "problems with eyesight or colour vision",
+      "sharp, burning or shooting pain in back, neck, arms or legs",
+      "weakness, numbness or paralysis in arms or legs",
+      "muscle spasms",
+      "problems with bladder and bowels",
+      "sexual problems",
+      "vomiting and hiccups"
+    ],
+    "treatments": [
+      "high dose steroid injections",
+      "plasma exchange",
+      "immunoglobulins",
+      "immunosuppressants",
+      "steroid tablets",
+      "biological medicines",
+      "painkillers",
+      "antidepressant or anticonvulsant medicines",
+      "muscle relaxant or anticonvulsant medicines",
+      "medicines for bladder problems",
+      "medicines for bowel problems",
+      "physiotherapy",
+      "occupational therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Newborn respiratory distress syndrome",
+    "symptoms": [
+      "blue-coloured lips, fingers and toes",
+      "rapid, shallow breathing",
+      "flaring nostrils",
+      "grunting sound when breathing"
+    ],
+    "treatments": [
+      "steroid injection",
+      "magnesium sulphate",
+      "oxygen",
+      "breathing machine (ventilator)",
+      "artificial surfactant",
+      "fluids and nutrition through a tube connected to a vein"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 60,
+        "max": 120,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 30,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 160,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 80,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 50,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Night terrors and nightmares",
+    "symptoms": [
+      "Night terrors: scream, shout, thrash about, jump out of bed, eyes open but not awake, will not remember it",
+      "Nightmares: strong feelings of fear, wake up and be able to remember the dream",
+      "Sleep paralysis: cannot move or speak as you wake up or fall asleep"
+    ],
+    "treatments": [
+      "Cognitive behavioural therapy (CBT)",
+      "Counselling",
+      "Managing conditions that affect sleep",
+      "Trying to deal with things that might be causing stress or anxiety"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Norovirus (vomiting bug)",
+    "symptoms": [
+      "nausea",
+      "vomiting",
+      "sweating",
+      "paler than usual",
+      "retching",
+      "tummy pain",
+      "diarrhoea",
+      "dizziness",
+      "headaches",
+      "eye pain when looking at bright lights",
+      "exhaustion",
+      "loss of appetite"
+    ],
+    "treatments": [
+      "avoiding triggers",
+      "taking medicines"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 95,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 35,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 2,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Noise sensitivity (hyperacusis)",
+    "symptoms": [
+      "everyday sounds seem much louder than they should",
+      "painful sounds",
+      "sensitivity to jingling coins",
+      "sensitivity to a barking dog",
+      "sensitivity to a car engine",
+      "sensitivity to someone chewing",
+      "sensitivity to a vacuum cleaner"
+    ],
+    "treatments": [
+      "sound therapy",
+      "cognitive behavioural therapy (CBT)",
+      "treating the underlying condition (e.g. migraines, Lyme disease)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 18,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Non-alcoholic fatty liver disease (NAFLD)",
+    "symptoms": [
+      "feeling very tired",
+      "feeling generally unwell",
+      "liver pain or discomfort"
+    ],
+    "treatments": [
+      "healthy lifestyle changes",
+      "pioglitazone",
+      "vitamin E",
+      "liver transplant",
+      "weight loss treatments"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Non-allergic rhinitis",
+    "symptoms": [
+      "blocked or runny nose",
+      "sneezing",
+      "sore throat",
+      "post-nasal drip"
+    ],
+    "treatments": [
+      "antihistamines",
+      "nasal sprays to unblock your nose",
+      "salt water nasal sprays or solutions",
+      "prescription nasal sprays",
+      "changing medicine"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 35,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Non-cancerous (benign) brain tumours",
+    "symptoms": [
+      "headaches that get worse over time or do not go away",
+      "seizures (fits)",
+      "feeling sick (nausea) and being sick (vomiting)",
+      "feeling sleepy or dizzy",
+      "changes in your eyesight, such as blurred or double vision",
+      "changes in behaviour or personality, such as confusion or problems with memory and concentration",
+      "problems with speech, movement and balance"
+    ],
+    "treatments": [
+      "surgery to remove the tumour",
+      "radiotherapy (where radiation is used to kill the tumour cells)",
+      "chemotherapy (where medicines are used to kill the tumour cells)",
+      "treatment for any symptoms caused by the tumour"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Non-Hodgkin lymphoma",
+    "symptoms": [
+      "swollen lymph nodes",
+      "fever",
+      "weight loss",
+      "fatigue",
+      "night sweats",
+      "itching",
+      "painless lumps"
+    ],
+    "treatments": [
+      "chemotherapy",
+      "radiation therapy",
+      "stem cell transplant",
+      "immunotherapy",
+      "targeted therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Non-melanoma skin cancer",
+    "symptoms": [
+      "ulcers or sores on the skin",
+      "red or bleeding patches on the skin",
+      "scaly or crusty patches on the skin"
+    ],
+    "treatments": [
+      "surgery",
+      "radiotherapy",
+      "cryotherapy",
+      "topical treatments"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 2,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Noonan syndrome",
+    "symptoms": [
+      "chest pain",
+      "shortness of breath",
+      "tiredness",
+      "heart disease",
+      "hearing loss",
+      "vision problems",
+      "joint and muscle problems",
+      "bleeding and bruising easily",
+      "swollen hands and feet",
+      "chest deformity",
+      "problems feeding",
+      "delayed speech",
+      "short height",
+      "delayed puberty",
+      "undescended testicles",
+      "similar facial features",
+      "immune system problems"
+    ],
+    "treatments": [
+      "medicines for heart problems",
+      "surgery for heart problems",
+      "medicine to help the blood clot",
+      "growth hormone therapy",
+      "hearing aids",
+      "glasses",
+      "speech and language therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Nosebleed",
+    "symptoms": [
+      "nosebleed",
+      "palpitations",
+      "shortness of breath",
+      "paler skin than normal",
+      "swallowing a large amount of blood",
+      "vomiting blood",
+      "weakness",
+      "dizziness",
+      "difficulty breathing"
+    ],
+    "treatments": [
+      "pinch nose above nostrils for 10-15 minutes",
+      "apply icepack to nose",
+      "antiseptic cream to prevent scabbing",
+      "nasal packing with ribbon gauze or sponge"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Obesity",
+    "symptoms": [
+      "breathlessness",
+      "increased sweating",
+      "snoring",
+      "difficulty doing physical activity",
+      "often feeling very tired",
+      "joint and back pain",
+      "low confidence and self-esteem",
+      "feeling isolated"
+    ],
+    "treatments": [
+      "eat a balanced calorie-controlled diet",
+      "take up activities such as fast walking, jogging, swimming or tennis",
+      "join a local weight management programme",
+      "receive support and counselling from a trained healthcare professional",
+      "take orlistat medicine",
+      "take liraglutide, semaglutide or tirzepatide medicine",
+      "consider weight loss surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Oesophageal atresia and tracheo-oesophageal fistula",
+    "symptoms": [
+      "Difficulty swallowing",
+      "Regurgitation",
+      "Coughing or choking while feeding",
+      "Wheezing or noisy breathing",
+      "Blue-tinged skin or lips"
+    ],
+    "treatments": [
+      "Surgery to repair the oesophagus and tracheo-oesophageal fistula",
+      "Gastrostomy tube for feeding",
+      "Ventilator support for breathing"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 80,
+        "max": 120,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 40,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 160,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Oesophageal cancer",
+    "symptoms": [
+      "Difficulty swallowing",
+      "Chest pain",
+      "Unexplained weight loss",
+      "Vomiting",
+      "Coughing up blood"
+    ],
+    "treatments": [
+      "Surgery",
+      "Chemotherapy",
+      "Radiotherapy",
+      "Targeted therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 140,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 2,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Oral thrush (mouth thrush)",
+    "symptoms": [
+      "red inside mouth with white patches",
+      "white patches that leave red spots when wiped off",
+      "cracks at the corners of the mouth",
+      "not tasting things properly",
+      "unpleasant taste in the mouth",
+      "pain inside the mouth",
+      "difficulty eating and drinking",
+      "white coating on the tongue",
+      "white spots in the mouth"
+    ],
+    "treatments": [
+      "antifungal medicine",
+      "antimicrobial mouthwash",
+      "painkilling tablet, mouthwash, gel or spray",
+      "corticosteroid lozenges",
+      "salt (saline) mouthwash"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Orf",
+    "symptoms": [
+      "reddish-blue skin",
+      "itchy skin",
+      "tender skin",
+      "blister",
+      "fluid leak",
+      "crusting"
+    ],
+    "treatments": [
+      "wait for it to clear up"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Osteoarthritis",
+    "symptoms": [
+      "joint pain",
+      "joint stiffness",
+      "swelling",
+      "tenderness",
+      "grating or crackling sound when moving the affected joints"
+    ],
+    "treatments": [
+      "prescription from GP",
+      "physical therapy",
+      "pain relief medication"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 35,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Osteomyelitis",
+    "symptoms": [
+      "severe pain",
+      "swelling of the affected area",
+      "feeling of warmth on the affected area",
+      "redness of the skin in the affected area",
+      "limp",
+      "high temperature"
+    ],
+    "treatments": [
+      "antibiotics",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.0,
+        "max": 40.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 85,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 35,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 9,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Osteophyte (bone spur)",
+    "symptoms": [
+      "pain",
+      "stiffness",
+      "pins and needles",
+      "numbness",
+      "nerve pain",
+      "weakness",
+      "lumps on joints"
+    ],
+    "treatments": [
+      "painkillers",
+      "physiotherapy",
+      "losing weight",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 94,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Osteoporosis",
+    "symptoms": [
+      "broken wrist",
+      "broken hip",
+      "broken spinal bones",
+      "stooped (bent forward) posture",
+      "long-term pain"
+    ],
+    "treatments": [
+      "bone strengthening medicines",
+      "painkillers",
+      "hot and cold treatments",
+      "relaxation techniques",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Otosclerosis",
+    "symptoms": [
+      "gradual hearing loss in 1 or both ears",
+      "hearing ringing, buzzing or other noises in 1 or both ears",
+      "dizziness",
+      "problems with your balance"
+    ],
+    "treatments": [
+      "hearing aids",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 18,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Ovarian cancer",
+    "symptoms": [
+      "bloating",
+      "symptoms of ovarian cancer"
+    ],
+    "treatments": [
+      "surgery",
+      "chemotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 140,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 88,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Ovarian cyst",
+    "symptoms": [
+      "pelvic pain",
+      "pain during sex",
+      "difficulty emptying your bowels",
+      "a frequent need to urinate",
+      "heavy periods",
+      "irregular periods or lighter periods than normal",
+      "bloating and a swollen tummy",
+      "feeling very full after only eating a little",
+      "difficulty getting pregnant"
+    ],
+    "treatments": [
+      "follow-up ultrasound scan",
+      "blood tests",
+      "surgical treatment to remove the cysts"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 40.0,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 98,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 30,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Overactive thyroid (hyperthyroidism)",
+    "symptoms": [
+      "nervousness, anxiety and irritability",
+      "mood swings",
+      "difficulty sleeping",
+      "persistent tiredness and weakness",
+      "sensitivity to heat",
+      "swelling in your neck from an enlarged thyroid gland (goitre)",
+      "an irregular and/or unusually fast heart rate (palpitations)",
+      "twitching or trembling",
+      "weight loss"
+    ],
+    "treatments": [
+      "blood test",
+      "further tests to identify the cause",
+      "medication",
+      "radioactive iodine treatment",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Paget's disease of bone",
+    "symptoms": [
+      "bone or joint pain",
+      "skin feeling warm over the affected bone",
+      "changes in bone shape",
+      "shooting pain that travels along or across the body, numbness and tingling (peripheral neuropathy), or balance problems"
+    ],
+    "treatments": [
+      "medications to control pain and bone turnover",
+      "surgery to repair or replace affected bones",
+      "physical therapy to improve mobility and strength"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
   }
 ]

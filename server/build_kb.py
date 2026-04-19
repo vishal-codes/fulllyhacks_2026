@@ -24,6 +24,7 @@ import os
 import re
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -60,6 +61,7 @@ INTER_REQUEST_SLEEP   = 1.0
 QUEUE_429_BACKOFF     = 15      # seconds to sleep after a 429 before retrying the crawl
 QUEUE_429_MAX_RETRIES = 4
 MAX_DISEASES_DEFAULT  = 10
+AGENT_MEMORY_PATH     = "/agent/notes/clinicverse_kb_summary.md"
 LLM_MODEL             = "llama-3.1-8b-instant"
 OUTPUT_PATH           = _HERE / "diseases.json"
 
@@ -179,6 +181,45 @@ _IMG_RE = re.compile(r"!\[[^\]]*\]\([^)]+\)")
 def _strip_images(text: str) -> str:
     text = _IMG_RE.sub("", text)
     return re.sub(r"\n{3,}", "\n\n", text).strip()
+
+
+# ---------------------------------------------------------------------------
+# HD Agent memory
+# ---------------------------------------------------------------------------
+
+def read_agent_memory(hd: HumanDelta) -> str:
+    """Read the last build summary from HD agent memory, if it exists."""
+    try:
+        content = hd.fs.read(AGENT_MEMORY_PATH)
+        if content and len(content) > 10:
+            print(f"[build_kb] Agent memory found:\n{content.strip()}")
+            return content
+    except Exception:
+        pass
+    print("[build_kb] No prior agent memory found — fresh start.")
+    return ""
+
+
+def write_agent_memory(hd: HumanDelta, total: int, ok: int, fail: int,
+                       via_search: int, via_fs_read: int, diseases: list[str]) -> None:
+    """Write a build summary to HD agent memory for future runs."""
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    disease_list = "\n".join(f"- {d}" for d in sorted(diseases))
+    content = f"""# KB Build Summary
+
+**Last run:** {now}
+**Total diseases in KB:** {total}
+**This run:** {ok} added, {fail} failed
+**Context source:** {via_search} via HD semantic search, {via_fs_read} via fs.read
+
+## Diseases indexed
+{disease_list}
+"""
+    try:
+        hd.fs.write(AGENT_MEMORY_PATH, content)
+        print(f"[build_kb] Agent memory written to {AGENT_MEMORY_PATH}")
+    except Exception as e:
+        print(f"[build_kb] Could not write agent memory: {e}", file=sys.stderr)
 
 
 # ---------------------------------------------------------------------------
@@ -391,6 +432,8 @@ def main() -> None:
         max_n = MAX_DISEASES_DEFAULT
     print(f"[build_kb] MAX_DISEASES={max_n}")
 
+    read_agent_memory(hd)
+
     az = fetch_az_text(hd)
     entries = parse_disease_entries(az)
     print(f"[build_kb] parsed {len(entries)} diseases from A-Z")
@@ -443,6 +486,9 @@ def main() -> None:
         f"context: {via_search} via SEARCH, {via_fs_read} via fs.read. "
         f"total entries: {len(results)}"
     )
+
+    all_disease_names = [e["name"] for e in results if isinstance(e, dict) and "name" in e]
+    write_agent_memory(hd, len(results), ok, fail, via_search, via_fs_read, all_disease_names)
 
 
 if __name__ == "__main__":

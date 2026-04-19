@@ -35,7 +35,7 @@ from contextlib import asynccontextmanager
 from datetime import datetime, timezone
 from typing import Literal, Optional
 
-from fastapi import Depends, FastAPI, HTTPException
+from fastapi import Depends, FastAPI, File, HTTPException, UploadFile
 from pydantic import BaseModel
 from starlette.middleware.cors import CORSMiddleware
 
@@ -50,6 +50,7 @@ from knowledge_base import (
 )
 from session import create_session, get_session, remove_session
 from report import generate_report
+import curriculum as _curriculum
 
 # Load .env if present (development convenience)
 try:
@@ -288,6 +289,29 @@ def start_competition(user_id: str = Depends(_auth.get_current_user_id)):
         raise HTTPException(status_code=409, detail=f"Could not start competition: {e}")
 
     return _competition_payload(session_id, patient, str(today))
+
+
+# ---------------------------------------------------------------------------
+# Curriculum routes
+# ---------------------------------------------------------------------------
+
+@app.post("/curriculum/upload")
+async def upload_curriculum(
+    file: UploadFile = File(...),
+    user_id: str = Depends(_auth.get_current_user_id),
+):
+    """Upload a curriculum PDF. Returns doc_id and list of matched KB diseases."""
+    if not file.filename:
+        raise HTTPException(status_code=400, detail="No file provided.")
+    if not ((file.content_type or "") == "application/pdf" or (file.filename or "").lower().endswith(".pdf")):
+        raise HTTPException(status_code=400, detail="Only PDF files are supported.")
+    try:
+        file_bytes = await file.read()
+        return _curriculum.upload_curriculum(file_bytes, file.filename)
+    except EnvironmentError as e:
+        raise HTTPException(status_code=503, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Upload failed: {e}")
 
 
 # ---------------------------------------------------------------------------
