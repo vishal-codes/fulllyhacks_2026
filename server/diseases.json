@@ -1,0 +1,2853 @@
+[
+  {
+    "name": "Abdominal aortic aneurysm",
+    "symptoms": [
+      "tummy or back pain",
+      "pulsing feeling in the tummy"
+    ],
+    "treatments": [
+      "lifestyle changes (quit smoking, healthy diet, regular exercise, weight loss, reduce alcohol)",
+      "medications to lower blood pressure and cholesterol",
+      "elective surgery for large or rapidly growing aneurysm",
+      "emergency surgery for ruptured aneurysm"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Acanthosis nigricans",
+    "symptoms": [
+      "dark, thicker skin patches",
+      "dry, velvety texture",
+      "patches in skin folds (armpits, neck, groin)",
+      "skin tags on patches",
+      "itchy skin"
+    ],
+    "treatments": [
+      "weight loss",
+      "hormone‑balancing medication",
+      "insulin‑balancing medication",
+      "change offending medication",
+      "dermatology‑based skin‑appearance treatments"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 110,
+        "max": 120,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 70,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 70,
+        "max": 80,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 2,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Achalasia",
+    "symptoms": [
+      "dysphagia (difficulty swallowing)",
+      "regurgitation of undigested food",
+      "choking and coughing fits",
+      "heartburn",
+      "chest pain",
+      "repeated chest infections",
+      "drooling of vomit or saliva",
+      "weight loss"
+    ],
+    "treatments": [
+      "nitrates",
+      "nifedipine",
+      "balloon dilation",
+      "botox injection",
+      "Heller's myotomy (surgical myotomy)",
+      "acid‑reflux medication (post‑procedure)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 110,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 70,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 4,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Acne",
+    "symptoms": [
+      "spots on face",
+      "spots on back",
+      "spots on chest",
+      "hot or painful skin",
+      "blackheads",
+      "whiteheads",
+      "papules",
+      "pustules",
+      "nodules",
+      "cysts"
+    ],
+    "treatments": [
+      "wash affected area twice daily with mild soap and lukewarm water",
+      "avoid oil‑based make‑up and skincare products",
+      "use water‑based non‑comedogenic products",
+      "remove make‑up before bed",
+      "apply fragrance‑free water‑based emollient if skin is dry",
+      "regular exercise and shower promptly after sweating",
+      "wash hair regularly and keep it away from face",
+      "pharmacist‑advised over‑the‑counter creams or gels",
+      "low‑concentration benzoyl peroxide products",
+      "prescription antibiotics for severe acne",
+      "stronger prescription creams"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 3,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Acoustic neuroma (vestibular schwannoma)",
+    "symptoms": [
+      "unilateral hearing loss",
+      "tinnitus",
+      "vertigo",
+      "persistent headache",
+      "blurred or double vision",
+      "facial numbness, pain or weakness (one side)",
+      "ataxia (one side)",
+      "voice changes or dysphagia"
+    ],
+    "treatments": [
+      "monitoring with regular MRI scans",
+      "brain surgery",
+      "stereotactic radiosurgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 94,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Acromegaly",
+    "symptoms": [
+      "swollen hands and feet",
+      "tiredness or difficulty sleeping",
+      "sleep apnoea",
+      "sweating",
+      "numbness and weakness in hands",
+      "abnormal height growth in children and teenagers (gigantism)",
+      "body growth – feet, fingers, head, tongue and neck increase in size",
+      "headaches",
+      "joint pain",
+      "thicker, more oily skin",
+      "deeper voice",
+      "irregular periods",
+      "erection problems"
+    ],
+    "treatments": [
+      "surgery to remove the tumour",
+      "radiotherapy to target the tumour",
+      "injections or tablets to reduce growth hormone levels"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Actinic keratoses (solar keratoses)",
+    "symptoms": [
+      "dry, rough, scaly patches",
+      "sandpaper-like texture",
+      "size 1‑2 cm",
+      "colour from skin‑tone to pink, red or brown",
+      "itchiness",
+      "occurs on sun‑exposed areas (face, hands, arms, ears, scalp, legs)"
+    ],
+    "treatments": [
+      "watchful waiting for single patch",
+      "prescription creams and gels",
+      "cryotherapy (freezing)",
+      "surgical excision or curettage",
+      "photodynamic therapy (PDT)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Actinomycosis",
+    "symptoms": [
+      "Lumps in your cheek or neck",
+      "difficulty chewing",
+      "pus leaking from your skin",
+      "Shortness of breath",
+      "chest pain",
+      "cough",
+      "pus leaking from the skin on your chest",
+      "Diarrhoea or constipation",
+      "pain",
+      "a lump or swelling in your tummy",
+      "pus leaking from the skin on your tummy",
+      "Pain low down in your tummy",
+      "vaginal bleeding or unusual discharge",
+      "a lump or swelling in your lower tummy"
+    ],
+    "treatments": [
+      "intravenous antibiotics",
+      "oral antibiotic tablets for several months",
+      "surgery to drain abscesses and remove infected skin"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Acute cholecystitis",
+    "symptoms": [
+      "sudden sharp pain in upper right abdomen",
+      "pain radiating to right shoulder",
+      "tender abdomen, worsened by deep breathing",
+      "persistent abdominal pain",
+      "high temperature",
+      "nausea",
+      "vomiting",
+      "sweating",
+      "loss of appetite",
+      "jaundice",
+      "abdominal bulge"
+    ],
+    "treatments": [
+      "fasting (no oral intake)",
+      "intravenous fluids",
+      "analgesia (pain relief medication)",
+      "antibiotics",
+      "cholecystectomy (gallbladder removal)",
+      "laparoscopic cholecystectomy",
+      "open cholecystectomy",
+      "percutaneous drainage if surgery unsuitable"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Acute kidney injury (AKI)",
+    "symptoms": [
+      "reduced urine output",
+      "excessive thirst",
+      "nausea or vomiting",
+      "swollen feet or legs",
+      "fatigue, dizziness, confusion or sleepiness",
+      "breathlessness, especially when lying down"
+    ],
+    "treatments": [
+      "antibiotics or other medicines to treat infection, raise blood pressure, reduce swelling or modulate immune response",
+      "stop or adjust nephrotoxic medications",
+      "intravenous fluid replacement",
+      "urinary catheterisation",
+      "surgical removal of urinary obstruction",
+      "dialysis"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Acute lymphoblastic leukaemia",
+    "symptoms": [
+      "fatigue",
+      "fever",
+      "frequent infections",
+      "easy bruising or bleeding",
+      "bone or joint pain",
+      "swollen lymph nodes",
+      "pale skin",
+      "weight loss"
+    ],
+    "treatments": [
+      "chemotherapy",
+      "targeted therapy",
+      "stem cell (bone marrow) transplant",
+      "radiation therapy",
+      "supportive care (blood transfusions, antibiotics)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Acute myeloid leukaemia",
+    "symptoms": [
+      "looking pale or washed out",
+      "feeling tired or weak",
+      "breathlessness",
+      "frequent infections",
+      "unusual and frequent bruising or bleeding",
+      "losing weight without trying"
+    ],
+    "treatments": [
+      "chemotherapy",
+      "intensive chemotherapy and radiotherapy",
+      "bone marrow or stem cell transplant"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Acute pancreatitis",
+    "symptoms": [
+      "abdominal pain",
+      "fever",
+      "nausea",
+      "vomiting"
+    ],
+    "treatments": [
+      "intravenous fluids and nutrients",
+      "painkillers",
+      "antibiotics",
+      "surgery for gallstones",
+      "support to stop drinking alcohol"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Acute respiratory distress syndrome (ARDS)",
+    "symptoms": [
+      "shortness of breath",
+      "short, fast breaths"
+    ],
+    "treatments": [
+      "oxygen via mask",
+      "mechanical ventilation",
+      "antibiotics",
+      "intravenous fluids"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Addison's disease",
+    "symptoms": [
+      "extreme tiredness (fatigue)",
+      "hyperpigmentation of skin",
+      "loss of appetite",
+      "weight loss",
+      "abdominal pain",
+      "nausea or vomiting",
+      "craving for salty foods",
+      "dizziness or light‑headedness on standing",
+      "joint pain",
+      "muscle weakness",
+      "muscle cramps",
+      "headache",
+      "slightly raised temperature",
+      "increased thirst and polyuria",
+      "difficulty concentrating",
+      "anxiety",
+      "depression"
+    ],
+    "treatments": [
+      "hydrocortisone",
+      "prednisolone",
+      "fludrocortisone"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Adenomyosis",
+    "symptoms": [
+      "painful periods",
+      "heavy menstrual bleeding",
+      "pelvic pain",
+      "bloating or abdominal heaviness",
+      "pain during sex",
+      "asymptomatic"
+    ],
+    "treatments": [
+      "intrauterine system (IUS/Mirena)",
+      "progestogen‑only pill",
+      "combined oral contraceptive pill",
+      "contraceptive patch",
+      "tranexamic acid",
+      "NSAIDs",
+      "hysterectomy",
+      "endometrial ablation"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "ADHD in adults",
+    "symptoms": [
+      "easily distracted",
+      "forgetful",
+      "difficulty organising time",
+      "difficulty following instructions or completing tasks",
+      "frequent loss of items",
+      "high energy or restlessness",
+      "excessive talkativeness",
+      "interrupting conversations",
+      "impulsive quick decisions"
+    ],
+    "treatments": [
+      "lifestyle modifications (exercise, sleep hygiene, balanced diet)",
+      "reasonable workplace adjustments",
+      "medication (methylphenidate, lisdexamfetamine)",
+      "cognitive behavioural therapy (CBT)",
+      "mindfulness therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 110,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 70,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 2,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "ADHD in children and young people",
+    "symptoms": [
+      "easily distracted",
+      "difficulty listening or following instructions",
+      "forgetting everyday tasks",
+      "high energy levels",
+      "fidgeting or tapping hands/feet",
+      "talking noisily",
+      "restlessness",
+      "getting up when expected to sit still",
+      "difficulty waiting turn",
+      "interrupting conversations"
+    ],
+    "treatments": [
+      "regular physical activity",
+      "consistent sleep routine",
+      "healthy balanced diet",
+      "structured tasks with breaks",
+      "clear simple instructions",
+      "reward charts and praise",
+      "medication (e.g., methylphenidate)",
+      "melatonin for sleep problems",
+      "cognitive behavioural therapy (CBT)",
+      "support groups and parent training"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Age-related macular degeneration (AMD)",
+    "symptoms": [
+      "blurred central vision",
+      "distortion of straight lines",
+      "difficulty reading",
+      "dark spot in central vision",
+      "reduced colour perception"
+    ],
+    "treatments": [
+      "anti‑VEGF intravitreal injections",
+      "photodynamic therapy",
+      "laser photocoagulation",
+      "AREDS vitamin supplementation",
+      "low‑vision aids"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Albinism",
+    "symptoms": [
+      "very pale skin that burns easily",
+      "white or very light hair",
+      "poor eyesight (short‑sightedness or long‑sightedness)",
+      "low vision",
+      "astigmatism",
+      "photophobia (light sensitivity)",
+      "nystagmus (involuntary eye movement)",
+      "squint",
+      "clumsiness due to visual impairment"
+    ],
+    "treatments": [
+      "glasses or contact lenses",
+      "regular eye tests",
+      "low‑vision aids (large‑print materials, magnifiers, telescopic lenses, screen magnification software)",
+      "sunglasses, tinted glasses and wide‑brimmed hats for photophobia",
+      "surgery for nystagmus or eye muscle correction",
+      "glasses, eye exercises, surgery or injections for squint",
+      "patching therapy for lazy eye",
+      "high‑SPF sunscreen and protective clothing",
+      "regular skin checks for skin cancer"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Alcohol misuse",
+    "symptoms": [
+      "hand tremors",
+      "sweating",
+      "visual hallucinations",
+      "depression",
+      "anxiety",
+      "insomnia"
+    ],
+    "treatments": [
+      "counselling",
+      "self‑help groups",
+      "cognitive behavioural therapy",
+      "detoxification",
+      "chlordiazapoxide",
+      "acamprosate",
+      "naltrexone"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Alcohol poisoning",
+    "symptoms": [
+      "confusion",
+      "slurred speech",
+      "inability to coordinate movement",
+      "vomiting",
+      "incontinence",
+      "pale or blue-tinged skin",
+      "slow or irregular breathing",
+      "seizure",
+      "loss of consciousness"
+    ],
+    "treatments": [
+      "hospital monitoring",
+      "intravenous fluids",
+      "respiratory support"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Alcohol-related liver disease",
+    "symptoms": [
+      "feeling sick",
+      "weight loss",
+      "loss of appetite",
+      "jaundice",
+      "swelling in ankles and abdomen",
+      "confusion or drowsiness",
+      "vomiting blood or blood in stools"
+    ],
+    "treatments": [
+      "complete abstinence from alcohol",
+      "support and advice from alcohol addiction services",
+      "liver transplant in severe cases"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Allergic rhinitis",
+    "symptoms": [
+      "sneezing",
+      "itchy nose",
+      "runny or blocked nose",
+      "itchy, red and watery eyes",
+      "cough",
+      "itchy roof of mouth"
+    ],
+    "treatments": [
+      "avoid triggers",
+      "antihistamines",
+      "decongestant nasal sprays or drops",
+      "steroid nasal sprays",
+      "salt water nasal spray or rinse"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 90,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 2,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Allergies",
+    "symptoms": [
+      "runny nose or sneezing",
+      "red or watering eyes",
+      "pain or tenderness around cheeks, eyes or forehead",
+      "coughing, wheezing or breathlessness",
+      "raised rash (hives) or itchy or red skin",
+      "diarrhoea, stomach cramps or bloating",
+      "feeling or being sick",
+      "swollen eyes, lips, mouth or throat"
+    ],
+    "treatments": [
+      "avoidance of allergen",
+      "antihistamines",
+      "steroid nasal sprays, tablets and creams",
+      "adrenaline auto‑injectors (e.g., EpiPen) for severe reactions",
+      "desensitisation (immunotherapy)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Acid and chemical burns",
+    "symptoms": [
+      "pain",
+      "burning sensation",
+      "skin damage",
+      "eye damage"
+    ],
+    "treatments": [
+      "painkillers",
+      "antibiotics",
+      "fluids",
+      "surgery",
+      "reconstructive surgery",
+      "physiotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Altitude sickness",
+    "symptoms": [
+      "headache",
+      "loss of appetite",
+      "feeling or being sick",
+      "feeling tired or exhausted",
+      "dizziness",
+      "difficulty sleeping"
+    ],
+    "treatments": [
+      "rest",
+      "anti-sickness medicine",
+      "painkillers",
+      "steroid medicine",
+      "medicine to lower blood pressure",
+      "oxygen therapy",
+      "hyperbaric chamber"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 140,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 80,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 80,
+        "max": 95,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 2,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Alzheimer's disease",
+    "symptoms": [
+      "memory problems",
+      "confusion",
+      "disorientation",
+      "difficulty planning or making decisions",
+      "problems with speech and language",
+      "problems moving around without assistance or performing self-care tasks",
+      "behaviour changes",
+      "hallucinations",
+      "delusions",
+      "low mood",
+      "anxiety"
+    ],
+    "treatments": [
+      "medicines to relieve symptoms",
+      "cognitive stimulation therapy",
+      "making changes to home environment",
+      "psychological treatments"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Amyloidosis",
+    "symptoms": [
+      "feeling very tired or weak",
+      "losing weight",
+      "shortness of breath",
+      "swollen feet or legs",
+      "bruising around eyes",
+      "fast or slow heartbeat",
+      "chest pain",
+      "loss of appetite",
+      "nausea",
+      "diarrhoea",
+      "constipation",
+      "frothy urine",
+      "pain in hands and feet",
+      "numbness in hands and feet",
+      "tingling in hands and feet"
+    ],
+    "treatments": [
+      "painkillers",
+      "anti-sickness medicines",
+      "diuretics",
+      "chemotherapy",
+      "stem cell or bone marrow transplant",
+      "kidney dialysis",
+      "kidney transplant",
+      "liver transplant"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Anabolic steroid misuse",
+    "symptoms": [
+      "reduced sperm count",
+      "infertility",
+      "shrunken testicles",
+      "erectile dysfunction",
+      "hair loss",
+      "breast development",
+      "increased risk of testicular cancer",
+      "severe acne",
+      "excess growth of facial and body hair",
+      "decreased breast size",
+      "swelling of the clitoris",
+      "deepened voice",
+      "increased sex drive",
+      "problems with periods",
+      "heart attack",
+      "stroke",
+      "liver or kidney problems",
+      "high blood pressure",
+      "deep vein thrombosis",
+      "fluid retention",
+      "high cholesterol",
+      "aggressive behaviour",
+      "mood swings",
+      "paranoia",
+      "manic behaviour",
+      "hallucinations",
+      "stunted growth in adolescents"
+    ],
+    "treatments": [
+      "counselling",
+      "referral to a specially trained drugs counsellor",
+      "gradually reducing the dose of anabolic steroids",
+      "treatment for addiction"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 150,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 90,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Anal cancer",
+    "symptoms": [
+      "bleeding",
+      "pain",
+      "itching",
+      "discharge",
+      "lump"
+    ],
+    "treatments": [
+      "chemoradiotherapy",
+      "surgery",
+      "radiotherapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Anal fissure",
+    "symptoms": [
+      "severe, sharp pain when pooing",
+      "burning pain after pooing",
+      "bright red blood in the toilet or on the toilet paper after pooing"
+    ],
+    "treatments": [
+      "laxatives",
+      "pain relief medicines like Buscopan or mebeverine",
+      "healing cream",
+      "injection into the anus",
+      "small cut in the muscle in the anus"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 6,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Anal fistula",
+    "symptoms": [
+      "skin irritation around the anus",
+      "constant, throbbing pain",
+      "smelly discharge from near the anus",
+      "passing pus or blood when pooing",
+      "swelling and redness around the anus",
+      "high temperature",
+      "difficulty controlling bowel movements"
+    ],
+    "treatments": [
+      "fistulotomy",
+      "seton procedures"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 38.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Anaphylaxis",
+    "symptoms": [
+      "swelling of throat and tongue",
+      "difficulty breathing",
+      "difficulty swallowing",
+      "tightness in throat",
+      "hoarse voice",
+      "wheezing",
+      "coughing",
+      "noisy breathing",
+      "feeling tired",
+      "feeling confused",
+      "feeling faint",
+      "dizziness",
+      "fainting",
+      "cold skin",
+      "blue, grey or pale skin",
+      "rash"
+    ],
+    "treatments": [
+      "adrenaline injection",
+      "adrenaline drip",
+      "oxygen",
+      "fluids",
+      "allergy specialist referral"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 80,
+        "max": 120,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 50,
+        "max": 80,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 100,
+        "max": 140,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36,
+        "max": 38,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 20,
+        "max": 40,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 6,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Androgen insensitivity syndrome",
+    "symptoms": [
+      "undescended testicles",
+      "underdeveloped genitals",
+      "lack of pubic and underarm hair",
+      "no periods"
+    ],
+    "treatments": [
+      "hormone therapy",
+      "surgery",
+      "psychological support"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Angelman syndrome",
+    "symptoms": [
+      "delayed development",
+      "seizures or fits",
+      "frequent laughter and smiling",
+      "easily excitable",
+      "restless (hyperactive)",
+      "short attention span",
+      "trouble sleeping",
+      "ataxia",
+      "microbrachycephaly",
+      "strabismus",
+      "sticking the tongue out",
+      "scoliosis",
+      "walking with arms in the air"
+    ],
+    "treatments": [
+      "anti-epileptic medicine",
+      "physiotherapy",
+      "communication therapy",
+      "behavioural therapy"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Angina",
+    "symptoms": [
+      "chest pain",
+      "tightness",
+      "squeezing",
+      "pressure",
+      "dull ache",
+      "nausea",
+      "breathlessness",
+      "dizziness",
+      "sweating"
+    ],
+    "treatments": [
+      "glyceryl trinitrate",
+      "beta blockers",
+      "low-dose aspirin",
+      "statins",
+      "coronary angioplasty",
+      "coronary artery bypass"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Angioedema",
+    "symptoms": [
+      "raised, itchy rash (hives)",
+      "swelling of face, lips, tongue, eyelids",
+      "swelling of hands or feet",
+      "swelling of genitals",
+      "stomach pain",
+      "breathing difficulties",
+      "throat swelling",
+      "skin, tongue or lips turning blue, grey or pale"
+    ],
+    "treatments": [
+      "identifying and avoiding the underlying cause",
+      "antihistamine medicine (cetirizine, fexofenadine, loratadine)",
+      "steroid tablets (prednisolone)"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Animal and human bites",
+    "symptoms": [
+      "pain",
+      "swelling",
+      "redness",
+      "infection",
+      "high temperature",
+      "shivering",
+      "unpleasant smell from the wound"
+    ],
+    "treatments": [
+      "cleaning the wound",
+      "stitches",
+      "sticky strips",
+      "special glue",
+      "antibiotics",
+      "tetanus treatment",
+      "rabies treatment",
+      "blood tests for hepatitis B, C and HIV"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38,
+        "max": 40,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Ankylosing spondylitis",
+    "symptoms": [
+      "back pain and stiffness",
+      "pain and swelling in other parts of the body",
+      "extreme tiredness (fatigue)"
+    ],
+    "treatments": [
+      "exercises",
+      "physiotherapy",
+      "medicine",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Antiphospholipid syndrome (APS)",
+    "symptoms": [
+      "throbbing pain and swelling in 1 leg",
+      "pain and swelling in arm or tummy",
+      "warm, red or darkened skin",
+      "swollen veins",
+      "sudden breathing difficulties",
+      "chest pain and coughing up blood",
+      "joint pain",
+      "bleeding more easily",
+      "reddish-blue rash on lower legs",
+      "repeated miscarriages"
+    ],
+    "treatments": [
+      "warfarin",
+      "anticoagulant medicine",
+      "treatment for high blood pressure",
+      "treatment for high cholesterol"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Aphasia",
+    "symptoms": [
+      "speaking difficulties",
+      "slow speech",
+      "long pauses",
+      "repeating words",
+      "mixing up words",
+      "missing out words",
+      "making up words",
+      "difficulty understanding others",
+      "reading difficulties",
+      "writing difficulties"
+    ],
+    "treatments": [
+      "speech and language therapy",
+      "matching words to pictures",
+      "categorising words",
+      "repeating words",
+      "practising non-verbal communication",
+      "using technology",
+      "speech and language therapy apps",
+      "computer programs"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Appendicitis",
+    "symptoms": [
+      "pain in the middle of the abdomen",
+      "pain in the lower right side of the abdomen",
+      "feeling or being sick",
+      "loss of appetite",
+      "high temperature",
+      "constipation or diarrhoea",
+      "peeing more than usual",
+      "sudden confusion"
+    ],
+    "treatments": [
+      "surgery to remove the appendix",
+      "antibiotics"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Arthritis",
+    "symptoms": [
+      "pain",
+      "swelling",
+      "stiffness",
+      "flare-ups",
+      "redness",
+      "hot joints"
+    ],
+    "treatments": [
+      "physiotherapy",
+      "occupational therapy",
+      "medicines",
+      "equipment",
+      "complementary therapies",
+      "surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Asbestosis",
+    "symptoms": [
+      "shortness of breath",
+      "persistent cough",
+      "wheezing",
+      "extreme tiredness",
+      "chest or shoulder pain",
+      "clubbed fingertips"
+    ],
+    "treatments": [
+      "pulmonary rehabilitation",
+      "oxygen therapy",
+      "inhaler"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 95,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 16,
+        "max": 24,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Aspergillosis",
+    "symptoms": [
+      "shortness of breath",
+      "cough",
+      "wheezing",
+      "high temperature",
+      "weight loss",
+      "tiredness"
+    ],
+    "treatments": [
+      "steroid tablets",
+      "antifungal tablets",
+      "surgery",
+      "antifungal medicine"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 38.5,
+        "max": 40.2,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 86,
+        "max": 94,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 22,
+        "max": 32,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 4,
+        "max": 8,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Asthma",
+    "symptoms": [
+      "wheezing",
+      "coughing",
+      "shortness of breath",
+      "chest feeling tight"
+    ],
+    "treatments": [
+      "inhalers",
+      "anti-inflammatory reliever (AIR) inhaler",
+      "maintenance and reliever therapy (MART) inhaler",
+      "preventer inhaler",
+      "blue reliever inhaler",
+      "montelukast",
+      "biological therapies",
+      "oxygen through a mask",
+      "nebuliser",
+      "steroid tablets or injections"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 92,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Astigmatism",
+    "symptoms": [
+      "blurred vision",
+      "headaches",
+      "eye strain"
+    ],
+    "treatments": [
+      "glasses",
+      "contact lenses",
+      "laser surgery"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Ataxia",
+    "symptoms": [
+      "balance and walking difficulties",
+      "speaking difficulties",
+      "swallowing difficulties",
+      "tasks requiring high control difficulties",
+      "vision problems"
+    ],
+    "treatments": [
+      "speech and language therapy",
+      "physiotherapy",
+      "occupational therapy",
+      "medication for muscle, bladder, heart and eye problems"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 90,
+        "max": 120,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 95,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  },
+  {
+    "name": "Atherosclerosis",
+    "symptoms": [
+      "chest pain",
+      "pain in arms and legs",
+      "shortness of breath",
+      "feeling tired",
+      "feeling weak",
+      "feeling confused"
+    ],
+    "treatments": [
+      "statins",
+      "blood pressure medication",
+      "blood thinners",
+      "surgery to improve blood flow"
+    ],
+    "vitals_ranges": {
+      "bp_sys": {
+        "min": 100,
+        "max": 130,
+        "unit": "mmHg"
+      },
+      "bp_dia": {
+        "min": 60,
+        "max": 85,
+        "unit": "mmHg"
+      },
+      "hr": {
+        "min": 60,
+        "max": 100,
+        "unit": "bpm"
+      },
+      "temp": {
+        "min": 36.5,
+        "max": 37.5,
+        "unit": "C"
+      },
+      "spo2": {
+        "min": 90,
+        "max": 100,
+        "unit": "%"
+      },
+      "rr": {
+        "min": 12,
+        "max": 20,
+        "unit": "breaths/min"
+      },
+      "pain": {
+        "min": 0,
+        "max": 10,
+        "unit": "/10"
+      }
+    }
+  }
+]

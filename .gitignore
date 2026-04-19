@@ -58,3 +58,5 @@ dist/
 build/
 *.egg
 .eggs/  
+server/.claude/scheduled_tasks.lock
+server/humandeltadocs.pdf
