@@ -76,3 +76,35 @@ export interface ApiDiseaseDetail {
   treatments: string[];
   vitals_ranges: ApiVitalsRanges;
 }
+
+// ─── Session ──────────────────────────────────────────────────────────────────
+
+/** Body sent to POST /session/new */
+export interface NewSessionRequest {
+  disease?: string;
+  symptoms?: string[];
+  vitals?: Record<string, number>;
+}
+
+/** Response from POST /session/new — backend returns patient info, not a session_id */
+export interface NewSessionResponse {
+  name: string;
+  age: number;
+  gender: string;
+  disease: string;
+  vitals: Record<string, number>;
+  session_id?: string; // may be added in future
+  [key: string]: unknown;
+}
+
+/** Body sent to POST /session/chat */
+export interface ChatRequest {
+  message: string;
+  max_new_tokens?: number;
+}
+
+/** Response from POST /session/chat */
+export interface ChatResponse {
+  response: string;
+  [key: string]: unknown;
+}
