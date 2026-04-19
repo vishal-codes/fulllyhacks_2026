@@ -57,17 +57,10 @@ export default async function WelcomePage() {
 
       {/* ── Top nav bar ── */}
       <nav
-        className="relative z-10 w-full flex items-center justify-between px-8 py-5"
+        className="relative z-10 w-full flex items-center justify-end px-8 py-5"
         style={{ borderBottom: "1px solid rgba(34,211,238,0.08)" }}
       >
        
-        <span className="text-xs px-3 py-1 rounded-full" style={{
-          background: "rgba(34,211,238,0.08)",
-          border: "1px solid rgba(34,211,238,0.15)",
-          color: "#4a8fa8",
-        }}>
-          Educational Tool
-        </span>
         <form
           action={async () => {
             "use server";

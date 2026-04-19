@@ -85,16 +85,7 @@ export default function CompetitionPanel() {
             One shared patient for everyone, once per day.
           </p>
         </div>
-        <span
-          className="text-xs px-3 py-1 rounded-full"
-          style={{
-            background: "rgba(34,211,238,0.08)",
-            border: "1px solid rgba(34,211,238,0.15)",
-            color: "#22d3ee",
-          }}
-        >
-          Today
-        </span>
+        
       </div>
 
       <div
