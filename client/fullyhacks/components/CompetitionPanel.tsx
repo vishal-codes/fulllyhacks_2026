@@ -79,7 +79,7 @@ export default function CompetitionPanel() {
       className="w-full p-8 flex flex-col justify-between"
       style={{
         borderRadius: "24px",
-        border: "5px solid rgba(255,255,255,1)",
+        border: "2px solid rgba(255,255,255,1)",
         boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
         background: "rgba(9,9,11,0.55)",
         backdropFilter: "blur(100px)",

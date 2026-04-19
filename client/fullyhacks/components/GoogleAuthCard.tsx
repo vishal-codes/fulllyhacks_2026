@@ -62,7 +62,7 @@ export default function GoogleAuthCard() {
         <div className="flex flex-col items-center gap-3">
           <div className="text-5xl select-none">🐚</div>
           <h1 className="text-3xl font-bold" style={{ color: "#22d3ee" }}>
-            Virtual Patient
+            ClinicVerse
           </h1>
           <p className="text-center text-sm" style={{ color: "#7dd3e8" }}>
             Register or log in with Google to access the home screen and start consultations.

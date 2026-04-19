@@ -26,7 +26,7 @@ export default async function WelcomePage() {
       className="relative flex flex-col"
       style={{
         fontFamily: "'Gochi Hand', cursive",
-        backgroundImage: "url('/chat/dl5bagm-50c8f4c3-b03a-44c6-bfa0-4a16bda4b8e3.jpg')",
+        backgroundImage: "url('/chat/Single-Celled_Defense_196.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -35,7 +35,7 @@ export default async function WelcomePage() {
       }}
     >
       {/* ── Gradient overlay: transparent at top → 90% dark at bottom ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.97) 100%)" }} />
+      <div className="absolute inset-0 z-0 pointer-events-none" style={{ background: "rgba(0,0,0,0.75)" }} />
 
       {/* ── Bubbles ── */}
       {BUBBLES.map(([size, left, delay, duration], i) => (
@@ -63,7 +63,7 @@ export default async function WelcomePage() {
         }}
       >
         <span style={{ color: "#FAFAFA", fontFamily: "'Gochi Hand', cursive", fontSize: "20px" }}>
-          Virtual Patient Practice
+          ClinicVerse
         </span>
         <form
           action={async () => {
@@ -102,9 +102,7 @@ export default async function WelcomePage() {
               textShadow: "0px 4px 20px rgba(0,60,117,0.6)",
             }}
           >
-            Virtual Patient
-            <br />
-            Practice
+            ClinicVerse
           </h1>
           <p
             className="text-xl leading-relaxed max-w-md mx-auto"
@@ -127,11 +125,11 @@ export default async function WelcomePage() {
               className="flex flex-col justify-between gap-5 p-8"
               style={{
                 borderRadius: "24px",
-                border: "5px solid rgba(255,255,255,1)",
+                border: "2px solid rgba(255,255,255,1)",
                 boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
                 background: "rgba(9,9,11,0.55)",
-                backdropFilter: "blur(20px)",
-                WebkitBackdropFilter: "blur(20px)",
+                backdropFilter: "blur(100px)",
+                WebkitBackdropFilter: "blur(100px)",
               }}
             >
               <div>
@@ -189,7 +187,7 @@ export default async function WelcomePage() {
             className="flex items-center justify-between w-full px-7 py-5 transition-all duration-200"
             style={{
               borderRadius: "24px",
-              border: "5px solid rgba(255,255,255,1)",
+              border: "2px solid rgba(255,255,255,1)",
               boxShadow: "0px 4px 10px 0px rgba(0,60,117,0.25)",
               background: "rgba(9,9,11,0.55)",
               backdropFilter: "blur(100px)",

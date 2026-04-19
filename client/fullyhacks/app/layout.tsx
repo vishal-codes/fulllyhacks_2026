@@ -20,7 +20,7 @@ const gochiHand = Gochi_Hand({
 });
 
 export const metadata: Metadata = {
-  title: "Virtual Patient Practice",
+  title: "ClinicVerse",
   description: "An educational tool for practicing patient diagnostic conversations.",
 };
 
