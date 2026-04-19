@@ -4,7 +4,11 @@ app.py
 FastAPI server for the Medical Patient Simulator.
 
 Startup:
-    GROQ_API_KEY=<your_key> uvicorn app:app --reload --port 8000
+    uv run app.py                                    # runs uvicorn on :8000
+    uvicorn app:app --reload --port 8000             # equivalent
+
+Requires GROQ_API_KEY and HD_API_KEY in the environment or in a sibling
+.env file.
 
 Routes
 ------
@@ -203,3 +207,19 @@ def end_session():
     report = generate_report(session)
     session.end()
     return report
+
+
+# ---------------------------------------------------------------------------
+# Entry point — `uv run app.py`
+# ---------------------------------------------------------------------------
+
+
+if __name__ == "__main__":
+    import os
+    import uvicorn
+
+    host = os.environ.get("HOST", "0.0.0.0")
+    port = int(os.environ.get("PORT", "8000"))
+    reload = os.environ.get("RELOAD", "1") not in ("0", "false", "False")
+
+    uvicorn.run("app:app", host=host, port=port, reload=reload)

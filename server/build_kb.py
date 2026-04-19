@@ -13,10 +13,10 @@ Flow
      a. hd.indexes.create(disease_url, max_pages=1)  — crawl JUST that page,
         no sub-link following.
      b. job.wait() until completed.
-     c. hd.fs.read("/source/website/www.nhs.uk/conditions/<slug>") returns
+     c. hd.fs.read("/source/website/nhs.uk/conditions/{slug}.md") returns
         the full single-page text (Symptoms + Tests + Treatment + Causes
         are all inline on the NHS page).
-     d. Send that text to OpenRouter (openai/gpt-oss-120b:free) with a
+     d. Send that text to Groq (llama-3.3-70b-versatile) with a
         strict JSON schema; validate; append to diseases.json.
 
 Env vars
