@@ -81,9 +81,10 @@ function mapApiToConfig(data: ApiDiseaseDetail): ScenarioConfig {
  */
 export async function createSession(
   config: ScenarioConfig | null,
-  diseaseName: string
+  diseaseName: string,
+  difficulty: "easy" | "medium" | "hard" = "easy"
 ): Promise<NewSessionResponse> {
-  const body: NewSessionRequest = {};
+  const body: NewSessionRequest = { difficulty };
 
   if (diseaseName && diseaseName !== "Custom Scenario") {
     body.disease = diseaseName;

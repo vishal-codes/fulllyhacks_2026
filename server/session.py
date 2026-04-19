@@ -34,6 +34,43 @@ class DiseaseEngine:
 
 
 # ---------------------------------------------------------------------------
+# Difficulty modifiers
+# ---------------------------------------------------------------------------
+
+DIFFICULTY_MODIFIERS: dict[str, str] = {
+    "easy": (
+        "\n=== PATIENT BEHAVIOUR (EASY) ===\n"
+        "You are calm and cooperative. Answer questions clearly and accurately.\n"
+        "Volunteer relevant details when the doctor asks directly.\n"
+        "================================\n"
+    ),
+    "medium": (
+        "\n=== PATIENT BEHAVIOUR (MEDIUM) ===\n"
+        "You are slightly anxious and worried about your condition.\n"
+        "Be vague about exact durations — say things like "
+        "'I think it was a few days ago, maybe a week?' rather than giving precise dates.\n"
+        "Sometimes you need a follow-up question before giving a complete answer.\n"
+        "You may ask the doctor what certain questions mean, but stay cooperative overall.\n"
+        "==================================\n"
+    ),
+    "hard": (
+        "\n=== PATIENT BEHAVIOUR (HARD) ===\n"
+        "You are emotionally distressed and reluctant to engage fully.\n"
+        "Behaviour rules — follow ALL of these:\n"
+        "  - Be INCONSISTENT about timelines: contradict yourself on onset dates "
+        "('last week... actually it might be two weeks, I'm not sure').\n"
+        "  - MINIMISE your symptoms: 'It's probably nothing, I feel bad wasting your time.'\n"
+        "  - ANCHOR on a self-diagnosis: 'I already looked it up, I think it's just stress.'\n"
+        "  - DEFLECT clinical questions: 'I don't know, isn't that what you're supposed to figure out?'\n"
+        "  - Occasionally express worry about practical concerns: work, family, cost of treatment.\n"
+        "  - Only reveal your most significant symptom after the doctor has asked about it TWICE "
+        "or shown genuine empathy.\n"
+        "================================\n"
+    ),
+}
+
+
+# ---------------------------------------------------------------------------
 # Prompt builders
 # ---------------------------------------------------------------------------
 
@@ -57,6 +94,7 @@ _SYSTEM_TEMPLATE = (
     "REQUIRED RESPONSE FORMAT for name/age questions:\n"
     "  Doctor: What is your name?      ->  My name is {name}.\n"
     "  Doctor: How old are you?        ->  I am {age} years old.\n"
+    "{difficulty_block}"
     "{rag_block}"
     "{log_block}"
 )
@@ -66,6 +104,7 @@ def _make_system_msg(
     patient: dict,
     rag_context: list[str] | None = None,
     symptom_log: dict | None = None,
+    difficulty: str = "easy",
 ) -> str:
     rag_block = ""
     if rag_context:
@@ -87,6 +126,8 @@ def _make_system_msg(
             + "\n=== Do NOT contradict any of the above. ==="
         )
 
+    difficulty_block = DIFFICULTY_MODIFIERS.get(difficulty, DIFFICULTY_MODIFIERS["easy"])
+
     return _SYSTEM_TEMPLATE.format(
         name=patient["name"],
         age=patient["age"],
@@ -94,6 +135,7 @@ def _make_system_msg(
         symptoms=patient["symptoms"],
         onset=patient["onset"],
         history=patient["history"],
+        difficulty_block=difficulty_block,
         rag_block=rag_block,
         log_block=log_block,
     )
@@ -137,16 +179,18 @@ class GlobalSession:
         self.symptom_log: dict = {}
         self.engine: DiseaseEngine | None = None
         self.active: bool = False
+        self.difficulty: str = "easy"
 
     # ── Lifecycle ─────────────────────────────────────────────────────────
 
-    def reset(self, patient: dict) -> None:
+    def reset(self, patient: dict, difficulty: str = "easy") -> None:
         """Start a new consultation with the given patient."""
         self.patient = patient
         self.engine = DiseaseEngine(patient)
         self.symptom_log = {}
+        self.difficulty = difficulty
         self.history = (
-            [{"role": "system", "content": _make_system_msg(patient)}]
+            [{"role": "system", "content": _make_system_msg(patient, difficulty=difficulty)}]
             + _make_seed_turns(patient)
         )
         self.active = True
@@ -171,7 +215,7 @@ class GlobalSession:
 
         # Rebuild system message with latest RAG context + symptom log
         self.history[0]["content"] = _make_system_msg(
-            self.patient, rag_ctx, self.symptom_log
+            self.patient, rag_ctx, self.symptom_log, self.difficulty
         )
 
         self.history.append({"role": "user", "content": f"Doctor: {doctor_message}"})

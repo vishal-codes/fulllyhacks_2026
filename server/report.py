@@ -137,6 +137,77 @@ Return ONLY the following JSON object — no markdown, no preamble, no trailing 
 
 
 # ---------------------------------------------------------------------------
+# Counterfactual prompt
+# ---------------------------------------------------------------------------
+
+_COUNTERFACTUAL_PROMPT = """\
+You are a senior clinical educator reviewing a medical student's consultation.
+
+GROUND TRUTH
+------------
+Disease            : {disease}
+Canonical symptoms : {symptoms}
+Standard treatments: {treatments}
+Patient vitals     : {vitals}
+Student score      : {total_score}/100
+
+FULL CONSULTATION TRANSCRIPT
+-----------------------------
+{transcript}
+
+TASK
+----
+Based on the ground-truth disease and what the student actually asked, identify the KEY QUESTIONS
+the student should have asked but did not. Focus on high-value questions that would have:
+  1. Uncovered critical symptoms that were never revealed
+  2. Helped the student narrow down the correct diagnosis faster
+  3. Demonstrated stronger clinical reasoning
+
+Also suggest the ideal order in which those questions should have been asked.
+
+Return ONLY the following JSON object — no markdown, no preamble, no trailing text:
+
+{{
+  "counterfactual": {{
+    "missed_questions": [
+      {{
+        "question": "<the question the student should have asked>",
+        "why_important": "<1-2 sentences: what this would have revealed and why it matters clinically>",
+        "symptom_targeted": "<which canonical symptom or clinical feature this question addresses>"
+      }}
+    ],
+    "ideal_question_order": [
+      "<question 1 to ask first>",
+      "<question 2>",
+      "<question 3>",
+      "..."
+    ],
+    "key_learning_point": "<1-2 sentences summarising the most important lesson from this consultation>"
+  }}
+}}
+"""
+
+
+def _generate_counterfactual(patient: dict, transcript_turns: list[dict], total_score: int) -> dict:
+    """Second Groq call: what questions should the student have asked?"""
+    canonical = patient.get("canonical_symptoms", [])
+    treatments = patient.get("treatments", [])[:6]
+    vitals = patient["vitals"]
+
+    prompt = _COUNTERFACTUAL_PROMPT.format(
+        disease=patient["disease"],
+        symptoms=", ".join(canonical),
+        treatments=", ".join(treatments) if treatments else "not specified",
+        vitals=", ".join(f"{k}: {v}" for k, v in vitals.items()),
+        total_score=total_score,
+        transcript=_format_transcript(transcript_turns),
+    )
+
+    raw = _call_groq(prompt)
+    return _parse_json(raw)
+
+
+# ---------------------------------------------------------------------------
 # Public
 # ---------------------------------------------------------------------------
 
@@ -172,13 +243,17 @@ def generate_report(session) -> dict:
     osce = _parse_json(raw)
 
     # Ensure total_score is always present even if Groq miscalculates
+    total_score = 0
     if "osce_report" in osce and "domains" in osce["osce_report"]:
         domains = osce["osce_report"]["domains"]
-        computed_total = sum(
+        total_score = sum(
             domains.get(d, {}).get("score", 0)
             for d in ("history_taking", "clinical_reasoning", "communication", "final_diagnosis")
         )
-        osce["osce_report"]["total_score"] = computed_total
+        osce["osce_report"]["total_score"] = total_score
+
+    # Second Groq call: counterfactual missed questions
+    counterfactual = _generate_counterfactual(patient, transcript_turns, total_score)
 
     return {
         "patient": {
@@ -193,7 +268,8 @@ def generate_report(session) -> dict:
         "vitals":     vitals,
         "transcript": transcript_turns,
         "symptoms":   coverage,
-        **osce,   # merges osce_report key at top level
+        **osce,           # merges osce_report key at top level
+        **counterfactual, # merges counterfactual key at top level
     }
 
 

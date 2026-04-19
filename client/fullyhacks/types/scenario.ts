@@ -84,6 +84,7 @@ export interface NewSessionRequest {
   disease?: string;
   symptoms?: string[];
   vitals?: Record<string, number>;
+  difficulty?: "easy" | "medium" | "hard";
 }
 
 /** Response from POST /session/new — backend returns patient info with formatted vitals */

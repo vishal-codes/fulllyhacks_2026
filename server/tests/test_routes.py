@@ -398,3 +398,94 @@ class TestFullFlow:
         assert resp.status_code == 200
         # Transcript from session 2 should be empty (no chat turns)
         assert len(resp.json()["transcript"]) == 0
+
+
+# ---------------------------------------------------------------------------
+# Difficulty modes
+# ---------------------------------------------------------------------------
+
+class TestDifficultyModes:
+    def test_easy_difficulty_accepted(self, client):
+        resp = client.post("/session/new", json={"disease": "Pneumonia", "difficulty": "easy"})
+        assert resp.status_code == 200
+
+    def test_medium_difficulty_accepted(self, client):
+        resp = client.post("/session/new", json={"disease": "Pneumonia", "difficulty": "medium"})
+        assert resp.status_code == 200
+
+    def test_hard_difficulty_accepted(self, client):
+        resp = client.post("/session/new", json={"disease": "Pneumonia", "difficulty": "hard"})
+        assert resp.status_code == 200
+
+    def test_invalid_difficulty_returns_422(self, client):
+        resp = client.post("/session/new", json={"disease": "Pneumonia", "difficulty": "extreme"})
+        assert resp.status_code == 422
+
+    def test_default_difficulty_is_easy(self, client):
+        """Omitting difficulty should default to easy without error."""
+        resp = client.post("/session/new", json={"disease": "Pneumonia"})
+        assert resp.status_code == 200
+
+    def test_difficulty_stored_in_session(self, client):
+        """After reset with hard, the session's difficulty attribute should be 'hard'."""
+        client.post("/session/new", json={"disease": "Pneumonia", "difficulty": "hard"})
+        import session as session_module
+        assert session_module.get_session().difficulty == "hard"
+
+    def test_easy_difficulty_stored_in_session(self, client):
+        client.post("/session/new", json={"disease": "Pneumonia", "difficulty": "easy"})
+        import session as session_module
+        assert session_module.get_session().difficulty == "easy"
+
+    def test_medium_difficulty_stored_in_session(self, client):
+        client.post("/session/new", json={"disease": "Pneumonia", "difficulty": "medium"})
+        import session as session_module
+        assert session_module.get_session().difficulty == "medium"
+
+    def test_chat_works_after_hard_difficulty(self, client):
+        client.post("/session/new", json={"disease": "Pneumonia", "difficulty": "hard"})
+        resp = client.post("/session/chat", json={"message": "What is your name?"})
+        assert resp.status_code == 200
+        assert "response" in resp.json()
+
+
+# ---------------------------------------------------------------------------
+# Counterfactual report
+# ---------------------------------------------------------------------------
+
+class TestCounterfactualReport:
+    def test_report_has_counterfactual_key(self, client, chatted_session):
+        data = client.post("/session/end").json()
+        assert "counterfactual" in data
+
+    def test_counterfactual_has_missed_questions(self, client, chatted_session):
+        counterfactual = client.post("/session/end").json()["counterfactual"]
+        assert "missed_questions" in counterfactual
+        assert isinstance(counterfactual["missed_questions"], list)
+
+    def test_counterfactual_missed_questions_non_empty(self, client, chatted_session):
+        counterfactual = client.post("/session/end").json()["counterfactual"]
+        assert len(counterfactual["missed_questions"]) > 0
+
+    def test_each_missed_question_has_required_fields(self, client, chatted_session):
+        questions = client.post("/session/end").json()["counterfactual"]["missed_questions"]
+        for q in questions:
+            assert "question" in q, "missing 'question' field"
+            assert "why_important" in q, "missing 'why_important' field"
+            assert "symptom_targeted" in q, "missing 'symptom_targeted' field"
+
+    def test_counterfactual_has_ideal_question_order(self, client, chatted_session):
+        counterfactual = client.post("/session/end").json()["counterfactual"]
+        assert "ideal_question_order" in counterfactual
+        assert isinstance(counterfactual["ideal_question_order"], list)
+
+    def test_counterfactual_has_key_learning_point(self, client, chatted_session):
+        counterfactual = client.post("/session/end").json()["counterfactual"]
+        assert "key_learning_point" in counterfactual
+        assert isinstance(counterfactual["key_learning_point"], str)
+        assert len(counterfactual["key_learning_point"]) > 0
+
+    def test_counterfactual_and_osce_both_present(self, client, chatted_session):
+        data = client.post("/session/end").json()
+        assert "osce_report" in data
+        assert "counterfactual" in data

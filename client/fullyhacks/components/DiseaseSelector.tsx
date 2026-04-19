@@ -43,6 +43,7 @@ export default function DiseaseSelector({
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [isCustom, setIsCustom] = useState(false);
+  const [difficulty, setDifficulty] = useState<"easy" | "medium" | "hard">("easy");
 
   // Fetch disease list on mount
   useEffect(() => {
@@ -87,7 +88,7 @@ export default function DiseaseSelector({
     try {
       // Clear previous conversation history before starting a new session
       try { sessionStorage.removeItem("chat_history"); } catch {}
-      const session = await createSession(editorConfig, selectedDisease);
+      const session = await createSession(editorConfig, selectedDisease, difficulty);
 
       // Build URL with vitals from the session response so the conversation
       // page can display them in the Diagnostics Tools panel.
@@ -225,6 +226,67 @@ export default function DiseaseSelector({
         <span>＋</span>
         Create Custom Scenario
       </button>
+
+      {/* Difficulty */}
+      <div className="flex flex-col gap-2">
+        <label className="text-sm font-medium" style={{ color: "#7dd3e8" }}>
+          Patient difficulty
+        </label>
+        <div className="grid grid-cols-3 gap-2">
+          {(["easy", "medium", "hard"] as const).map((level) => {
+            const isActive = difficulty === level;
+            const activeStyles: Record<typeof level, React.CSSProperties> = {
+              easy: {
+                background: "rgba(8,145,178,0.5)",
+                borderColor: "#22d3ee",
+                color: "#e0f4f8",
+                boxShadow: "0 0 10px rgba(34,211,238,0.3)",
+              },
+              medium: {
+                background: "rgba(180,130,20,0.35)",
+                borderColor: "#fbbf24",
+                color: "#fef3c7",
+                boxShadow: "0 0 10px rgba(251,191,36,0.25)",
+              },
+              hard: {
+                background: "rgba(180,30,30,0.35)",
+                borderColor: "#f87171",
+                color: "#fee2e2",
+                boxShadow: "0 0 10px rgba(248,113,113,0.25)",
+              },
+            };
+            const labels: Record<typeof level, string> = {
+              easy: "Easy",
+              medium: "Medium",
+              hard: "Hard",
+            };
+            return (
+              <button
+                key={level}
+                type="button"
+                onClick={() => setDifficulty(level)}
+                className="py-2 rounded-lg border text-sm font-medium transition-all duration-150 cursor-pointer"
+                style={
+                  isActive
+                    ? activeStyles[level]
+                    : {
+                        background: "rgba(13,59,110,0.3)",
+                        borderColor: "rgba(34,211,238,0.15)",
+                        color: "#4a8fa8",
+                      }
+                }
+              >
+                {labels[level]}
+              </button>
+            );
+          })}
+        </div>
+        <p className="text-xs" style={{ color: "#2a5f72" }}>
+          {difficulty === "easy" && "Cooperative patient — answers clearly and directly."}
+          {difficulty === "medium" && "Anxious patient — vague on timing, needs follow-ups."}
+          {difficulty === "hard" && "Distressed patient — deflects, contradicts, minimises symptoms."}
+        </p>
+      </div>
 
       {/* Error */}
       {submitError && (

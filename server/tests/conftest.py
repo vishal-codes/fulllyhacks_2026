@@ -12,7 +12,7 @@ import sys
 import json
 import os
 from pathlib import Path
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, call
 
 import pytest
 from fastapi.testclient import TestClient
@@ -66,6 +66,32 @@ MOCK_OSCE_JSON = json.dumps({
     }
 })
 
+# A valid counterfactual JSON response for the second _call_groq call
+MOCK_COUNTERFACTUAL_JSON = json.dumps({
+    "counterfactual": {
+        "missed_questions": [
+            {
+                "question": "Do you have any night sweats?",
+                "why_important": "Night sweats can indicate systemic infection or malignancy.",
+                "symptom_targeted": "night sweats"
+            },
+            {
+                "question": "Have you coughed up any blood?",
+                "why_important": "Haemoptysis is a red flag symptom in respiratory presentations.",
+                "symptom_targeted": "haemoptysis"
+            }
+        ],
+        "ideal_question_order": [
+            "What is your name and how old are you?",
+            "What brings you in today?",
+            "When did your symptoms start?",
+            "Do you have a fever or chills?",
+            "Have you coughed up any blood?"
+        ],
+        "key_learning_point": "Always ask about red flag symptoms early in respiratory presentations."
+    }
+})
+
 
 # ---------------------------------------------------------------------------
 # Client fixture — module-scoped so it is created once per test file
@@ -78,10 +104,18 @@ def client():
       - model.load() mocked (no Qwen weights loaded)
       - session.generate_patient_response mocked (no GPU/MPS inference)
       - report._call_groq mocked (no GROQ_API_KEY needed)
+        The mock cycles: first call → OSCE JSON, second call → counterfactual JSON,
+        then repeats for subsequent end calls.
     """
+    def _groq_side_effect(prompt: str) -> str:
+        # Distinguish the two calls by content: OSCE prompt contains "OSCE examiner"
+        if "OSCE examiner" in prompt:
+            return MOCK_OSCE_JSON
+        return MOCK_COUNTERFACTUAL_JSON
+
     with patch("model.load"), \
          patch("session.generate_patient_response", return_value=MOCK_PATIENT_RESPONSE), \
-         patch("report._call_groq", return_value=MOCK_OSCE_JSON):
+         patch("report._call_groq", side_effect=_groq_side_effect):
         import app as app_module
         with TestClient(app_module.app) as c:
             yield c

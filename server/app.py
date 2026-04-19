@@ -21,7 +21,7 @@ POST  /session/end               end session, get Groq evaluation report
 """
 
 from contextlib import asynccontextmanager
-from typing import Optional
+from typing import Literal, Optional
 
 from fastapi import FastAPI, HTTPException
 from starlette.middleware.cors import CORSMiddleware
@@ -86,6 +86,7 @@ class NewSessionRequest(BaseModel):
     disease: Optional[str] = None
     symptoms: Optional[list[str]] = None
     vitals: Optional[dict[str, float]] = None
+    difficulty: Literal["easy", "medium", "hard"] = "easy"
 
 
 class ChatRequest(BaseModel):
@@ -155,7 +156,7 @@ def new_session(body: NewSessionRequest = NewSessionRequest()):
         patient = synthea_patient()
 
     session = get_session()
-    session.reset(patient)
+    session.reset(patient, difficulty=body.difficulty)
 
     return {
         "name":    patient["name"],
