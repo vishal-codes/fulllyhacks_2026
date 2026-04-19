@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, Suspense } from "react";
+import { useState, useRef, Suspense, useEffect } from "react";
 import { useScribe } from "@elevenlabs/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -70,6 +70,55 @@ const DIAGNOSTIC_TOOLS = [
     format: (v: number) => `${v}/10`,
   },
 ];
+
+// Patient speech bubble — the ai-patient-top.png sprite, animated in/out
+function PatientBubble({ visible }: { visible: boolean }) {
+  const [rendered, setRendered] = useState(visible);
+  const [animClass, setAnimClass] = useState(visible ? "bubble-in" : "");
+
+  useEffect(() => {
+    if (visible) {
+      setRendered(true);
+      setAnimClass("bubble-in");
+    } else if (rendered) {
+      setAnimClass("bubble-out");
+      const t = setTimeout(() => setRendered(false), 200);
+      return () => clearTimeout(t);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
+
+  return (
+    <div className={animClass} style={{ height: "127px", position: "relative", visibility: rendered ? "visible" : "hidden" }}>
+      <Image src="/chat/ai-patient-top.png" alt="AI Patient speaking" fill className="object-cover" />
+    </div>
+  );
+}
+
+// Speech bubble with slide-up/fade-in on mount and pop on unmount
+function SpeechBubble({ src, alt, visible }: { src: string; alt: string; visible: boolean }) {
+  const [rendered, setRendered] = useState(visible);
+  const [animClass, setAnimClass] = useState(visible ? "bubble-in" : "");
+
+  useEffect(() => {
+    if (visible) {
+      setRendered(true);
+      setAnimClass("bubble-in");
+    } else if (rendered) {
+      setAnimClass("bubble-out");
+      const t = setTimeout(() => setRendered(false), 200);
+      return () => clearTimeout(t);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visible]);
+
+  if (!rendered) return null;
+  return (
+    <div className={animClass} style={{ position: "absolute", top: "-127px", left: "0", right: "0", margin: "0 auto", zIndex: 20, width: "154px", height: "127px" }}>
+      <Image src={src} alt={alt} width={154} height={127} style={{ objectFit: "contain", width: "100%", height: "100%" }} />
+    </div>
+  );
+}
 
 // Staggered "..." loading indicator — each dot fades in/out with an offset
 function StaggeredDots() {
@@ -212,6 +261,7 @@ function ConversationContent() {
       setChatError("Not authenticated. Please log in to use the competition.");
       return;
     }
+    showDoctorBubble();
     submitToChat(textInput);
     setTextInput("");
   }
@@ -269,6 +319,7 @@ function ConversationContent() {
           setChatError("Not authenticated. Please log in to use the competition.");
           return;
         }
+        showDoctorBubble();
         await submitToChat(text);
       }
     } else {
@@ -313,6 +364,18 @@ function ConversationContent() {
 
   const errorMsg = scribeError ?? scribeHookError;
   const [endingSession, setEndingSession] = useState(false);
+
+  // ── Speech bubble visibility ──────────────────────────────────────────────
+  // Patient bubble: shown while TTS is playing (ttsLoading)
+  // Doctor bubble: shown while mic is active OR for 3s after sending a message
+  const [doctorSpeaking, setDoctorSpeaking] = useState(false);
+  const doctorSpeakingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function showDoctorBubble() {
+    if (doctorSpeakingTimerRef.current) clearTimeout(doctorSpeakingTimerRef.current);
+    setDoctorSpeaking(true);
+    doctorSpeakingTimerRef.current = setTimeout(() => setDoctorSpeaking(false), 3000);
+  }
 
   async function handleEndSession() {
     if (endingSession) return;
@@ -397,22 +460,11 @@ function ConversationContent() {
           className="flex flex-col justify-end items-center flex-shrink-0"
           style={{ width: "250px", padding: "59px 48px" }}
         >
-          <div className="flex flex-col items-stretch" style={{ width: "154px", gap: "30px" }}>
-            <div style={{ height: "127px", position: "relative" }}>
-              <Image
-                src="/chat/ai-patient-top.png"
-                alt="AI Patient"
-                fill
-                className="object-cover"
-              />
-            </div>
+          <div className="flex flex-col items-stretch" style={{ width: "154px", gap: "30px", position: "relative" }}>
+            {/* ai-patient-top.png is the speech variant — animated in/out with TTS */}
+            <PatientBubble visible={ttsLoading} />
             <div style={{ height: "345px", position: "relative" }}>
-              <Image
-                src="/chat/ai-patient-body.png"
-                alt="AI Patient Body"
-                fill
-                className="object-cover"
-              />
+              <Image src="/chat/ai-patient-body.png" alt="AI Patient Body" fill className="object-cover" />
             </div>
           </div>
         </div>
@@ -661,6 +713,12 @@ function ConversationContent() {
             style={{ width: "250px", padding: "59px 48px" }}
           >
             <div style={{ width: "154px", height: "345px", position: "relative" }}>
+              {/* Doctor speech bubble — visible while mic is active or just after sending */}
+              <SpeechBubble
+                src="/chat/Speech Doctor.png"
+                alt="Doctor speaking"
+                visible={isListening || isConnecting || doctorSpeaking}
+              />
               <Image
                 src="/chat/student-doctor.png"
                 alt="Student Doctor"

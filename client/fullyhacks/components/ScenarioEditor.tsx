@@ -200,9 +200,8 @@ export default function ScenarioEditor({
 
   return (
     <div
-      className="flex flex-col gap-5 overflow-y-auto"
+      className="flex flex-col gap-5"
       style={{
-        maxHeight: "calc(100vh - 280px)",
         scrollbarWidth: "thin",
         scrollbarColor: "rgba(255,255,255,0.2) transparent",
       }}
