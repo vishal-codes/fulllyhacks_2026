@@ -21,6 +21,8 @@ function authHeaders(token: string): HeadersInit {
   };
 }
 
+console.log("hello")
+
 // ─── Fetch all disease names ──────────────────────────────────────────────────
 
 export async function fetchDiseaseList(): Promise<string[]> {
