@@ -248,23 +248,17 @@ def synthea_patient() -> dict:
 def synthea_patient_from_spec(
     disease: str,
     symptoms: list[str],
-    vitals_ranges: dict,
+    vitals: dict,
 ) -> dict:
     """
-    Create a synthetic patient for a doctor-specified disease, symptom list,
-    and vitals ranges.
+    Create a synthetic patient for a doctor-specified disease and symptom list.
 
-    vitals_ranges format (all keys optional; missing keys fall back to
-    disease defaults then normal defaults):
-        {
-          "bp_sys":  {"min": 130, "max": 160},
-          "bp_dia":  {"min": 80,  "max": 100},
-          "hr":      {"min": 90,  "max": 120},
-          "temp":    {"min": 38.5,"max": 40.0},
-          "spo2":    {"min": 86,  "max": 94},
-          "rr":      {"min": 22,  "max": 32},
-          "pain":    {"min": 4,   "max": 8},
-        }
+    vitals: flat dict of exact values supplied by the doctor in the UI.
+        Keys: "bp_sys", "bp_dia", "hr", "temp", "spo2", "rr", "pain"
+        Any key omitted is sampled randomly from the disease's default range.
+
+        Example:
+            {"hr": 110, "temp": 39.2, "bp_sys": 145, "bp_dia": 90}
     """
     # Resolve canonical symptoms from KB; fall back to provided list
     canonical = list(SYMPTOM_KB.get(disease, symptoms or ["general discomfort"]))
@@ -281,15 +275,15 @@ def synthea_patient_from_spec(
     onset = random.choice(_GENERIC_ONSETS).format(n=onset_n)
     history = ", ".join(random.sample(_GENERIC_HISTORY, 2))
 
-    # Merge: provided ranges override disease defaults override normal defaults
-    base_ranges = disease_vitals_ranges(disease)  # already merged with normal
-    merged_ranges = {
-        key: vitals_ranges.get(key, base_ranges[key])
-        for key in base_ranges
-    }
+    # For each vital: use the doctor-supplied value if present, else sample
+    # randomly from the disease's default range.
+    base_ranges = disease_vitals_ranges(disease)
 
     def _v(key: str):
-        return _vital_from_range(key, merged_ranges[key])
+        if key in vitals:
+            val = vitals[key]
+            return round(float(val), 1) if key == "temp" else int(val)
+        return _vital_from_range(key, base_ranges[key])
 
     return {
         "name":               name,
@@ -307,7 +301,6 @@ def synthea_patient_from_spec(
         "treatments":         TREATMENT_KB.get(disease, []),
         "onset":              onset,
         "history":            history,
-        "vitals_ranges":      merged_ranges,   # kept for report/reference
         "vitals": {
             "BP":   f"{_v('bp_sys')}/{_v('bp_dia')} mmHg",
             "HR":   f"{_v('hr')} bpm",

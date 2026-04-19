@@ -167,26 +167,21 @@ class TestSessionNew:
         data = resp.json()
         assert data["disease"] == "Pneumonia"
 
-    def test_with_custom_vitals_ranges(self, client):
+    def test_with_custom_vitals(self, client):
         resp = client.post("/session/new", json={
             "disease": "Pneumonia",
-            "vitals_ranges": {
-                "hr": {"min": 95, "max": 120, "unit": "bpm"},
-                "temp": {"min": 38.5, "max": 40.0, "unit": "°C"}
-            }
+            "vitals": {"hr": 110, "temp": 39.2}
         })
         assert resp.status_code == 200
 
-    def test_hr_within_custom_range(self, client):
+    def test_exact_vital_value_used(self, client):
         resp = client.post("/session/new", json={
             "disease": "Pneumonia",
-            "vitals_ranges": {
-                "hr": {"min": 140, "max": 150, "unit": "bpm"}
-            }
+            "vitals": {"hr": 145}
         })
         vitals = resp.json()["vitals"]
         hr_val = int(vitals["HR"].split()[0])
-        assert 140 <= hr_val <= 150
+        assert hr_val == 145
 
     def test_resets_existing_session(self, client):
         # Start two sessions back to back — second should succeed

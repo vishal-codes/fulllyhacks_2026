@@ -216,15 +216,10 @@ class TestSyntheaPatientFromSpec:
         for sym in custom:
             assert sym in p["symptoms"]
 
-    def test_custom_vitals_ranges_respected(self):
-        # Force HR range to very high values
-        hr_range = {"min": 140, "max": 150}
-        p = synthea_patient_from_spec(
-            "Pneumonia", [],
-            {"hr": hr_range}
-        )
+    def test_exact_vital_value_used(self):
+        p = synthea_patient_from_spec("Pneumonia", [], {"hr": 145})
         hr_val = int(p["vitals"]["HR"].split()[0])
-        assert 140 <= hr_val <= 150
+        assert hr_val == 145
 
     def test_has_all_required_fields(self):
         p = synthea_patient_from_spec("Pneumonia", ["Fever"], {})

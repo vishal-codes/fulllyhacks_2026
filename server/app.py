@@ -68,21 +68,20 @@ app.add_middleware(
 # ---------------------------------------------------------------------------
 
 
-class VitalRange(BaseModel):
-    min: float
-    max: float
-    unit: str = ""
-
-
 class NewSessionRequest(BaseModel):
     """
     All fields optional.
     - No body → random patient from the KB.
-    - With disease (+ optional symptoms / vitals_ranges) → doctor-specified patient.
+    - With disease (+ optional symptoms / vitals) → doctor-specified patient.
+
+    vitals: flat dict of exact values the doctor set in the UI, e.g.
+        {"hr": 110, "temp": 39.2, "bp_sys": 145, "bp_dia": 90,
+         "spo2": 92, "rr": 24, "pain": 6}
+    Any key omitted is sampled randomly from the disease's default range.
     """
     disease: Optional[str] = None
     symptoms: Optional[list[str]] = None
-    vitals_ranges: Optional[dict[str, VitalRange]] = None
+    vitals: Optional[dict[str, float]] = None
 
 
 class ChatRequest(BaseModel):
@@ -143,15 +142,10 @@ def new_session(body: NewSessionRequest = NewSessionRequest()):
     so the doctor knows what they're simulating.
     """
     if body.disease:
-        vitals_ranges = (
-            {k: v.model_dump() for k, v in body.vitals_ranges.items()}
-            if body.vitals_ranges
-            else {}
-        )
         patient = synthea_patient_from_spec(
             disease=body.disease,
             symptoms=body.symptoms or [],
-            vitals_ranges=vitals_ranges,
+            vitals=body.vitals or {},
         )
     else:
         patient = synthea_patient()
